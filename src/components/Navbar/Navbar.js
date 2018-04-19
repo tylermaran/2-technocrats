@@ -13,31 +13,31 @@ const Navbar = props => (
         John J. Schmidt
       </div>
       <ul className="nav bd-sidenav">
-        <li classNamme="bd-toc-link" id="stocks">Stocks</li>
+        <li className="bd-toc-link active" id="stocks">Stocks</li>
       </ul>
       <ul className="nav bd-sidenav">
-        <li classNamme="bd-toc-link">-MSFT</li>
+        <li className="bd-toc-link">-MSFT</li>
       </ul>
       <ul className="nav bd-sidenav">
-        <li classNamme="bd-toc-link">-SPY</li>
+        <li className="bd-toc-link">-SPY</li>
       </ul>
       <ul className="nav bd-sidenav">
-        <li classNamme="bd-toc-link">-FB</li>
+        <li className="bd-toc-link">-FB</li>
       </ul>
       <ul className="nav bd-sidenav">
-        <li classNamme="bd-toc-link">-APPL</li>
+        <li className="bd-toc-link">-APPL</li>
       </ul>
       <ul className="nav bd-sidenav">
-        <li classNamme="bd-toc-link">-TSLA</li>
+        <li className="bd-toc-link">-TSLA</li>
       </ul>
       <ul className="nav bd-sidenav">
-        <li classNamme="bd-toc-link">-AMZN</li>
+        <li className="bd-toc-link">-AMZN</li>
       </ul>
       <ul className="nav bd-sidenav">
-        <li classNamme="bd-toc-link">-USO</li>
+        <li className="bd-toc-link">-USO</li>
       </ul>
       <ul className="nav bd-sidenav">
-        <li classNamme="bd-toc-link">-DOW</li>
+        <li className="bd-toc-link">-DOW</li>
       </ul>
     </nav>
   </div>

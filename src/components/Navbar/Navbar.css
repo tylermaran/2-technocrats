@@ -47,9 +47,15 @@
   text-align: left;
 }
 
+.bd-sidebar ul .active {
+  background-color: #F5F4F2;
+}
+
 .bd-sidebar ul #stocks {
   font-weight: bold;
 }
+
+
 
 .bd-sidebar ul li:hover {
   background-color: #F5F4F2;
