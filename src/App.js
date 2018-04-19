@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Wrapper from "./components/Wrapper";
 import Navbar from "./components/Navbar";
 import Title from "./components/Title";
+import Graph from "./components/Graph";
 import "./App.css";
 
 
@@ -16,6 +17,7 @@ class App extends Component {
         <Navbar />
         <Wrapper>
           <Title />
+          <Graph />
         </Wrapper>
       </div>
     </Router>

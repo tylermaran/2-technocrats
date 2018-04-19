@@ -24,6 +24,12 @@
   }
 }
 
+@media screen and (max-width: 640px) {
+  .bd-sidebar #studentName {
+    font-size: 12px;
+  }
+}
+
 .bd-sidebar #studentName {
   font-family: "Open Sans";
   background-color: #E5E4E2;
@@ -34,7 +40,7 @@
 }
 
 .bd-sidebar ul li {
-  padding: .75rem 2.25rem;
+  padding: 1rem 2.25rem;
   font-family: "Open Sans";
   border: 1px solid #E5E4E2;
   width: 100%;
