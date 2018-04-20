@@ -9,6 +9,7 @@ import PieChart from "./components/PieChart";
 import "./App.css";
 
 
+
 class App extends Component {
 
   // Map over this.state.pics and render a PicCard component for each pic object

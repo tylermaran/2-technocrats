@@ -23,7 +23,7 @@ const PieChart = props => (
     </div>
     {/*Graph goes below*/}
     <h4>Portfolio Diversity</h4>
-    <img src={require(`${"./images/piechart.png"}`)} />
+    <img className="pieImg" src={require(`${"./images/piechart.png"}`)} />
 
   </div>)
 

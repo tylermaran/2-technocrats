@@ -7,6 +7,7 @@
   padding: 0px;
   margin-left: -20px;
   overflow: scroll;
+  color: #124257;
 }
 
 .bd-sidebar #brandName {
@@ -46,6 +47,7 @@
   border: 1px solid #E5E4E2;
   width: 100%;
   text-align: left;
+  background-color: white;
 }
 
 .bd-sidebar ul .active {

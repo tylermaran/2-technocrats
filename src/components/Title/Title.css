@@ -5,6 +5,7 @@
 .title {
   font-size: 50px;
   font-family: "Open Sans";
+  color: #124257;
 }
 
 .form {
@@ -15,7 +16,7 @@
 }
 
 input {
-  border: 2px solid lightgrey;
+  border: 2px solid #26a69a;
   border-radius: 5px;
   font-size: 25px;
   width: 100%;
