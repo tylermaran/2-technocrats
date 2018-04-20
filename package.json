@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "a simple stock trading simulation app ",
   "main": "index.js",
-  "scripts": {
-    "test": "node server.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/LoganS44/2-technocrats.git"
