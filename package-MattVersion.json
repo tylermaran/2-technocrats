@@ -25,21 +25,8 @@
   "bugs": {
     "url": "https://github.com/LoganS44/2-technocrats/issues"
   },
-  "private": true,
+  "homepage": "https://github.com/LoganS44/2-technocrats#readme",
   "dependencies": {
-    "file-loader": "^1.1.11",
-    "react": "^16.3.1",
-    "express": "^4.16.3",
-    "react-dom": "^16.3.1",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4",
-    "shuffle-array": "^1.0.1",
-    "url-loader": "^1.0.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "express": "^4.16.3"
   }
 }
