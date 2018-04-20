@@ -1,0 +1,32 @@
+{
+  "name": "2-technocrats",
+  "version": "1.0.0",
+  "description": "a simple stock trading simulation app ",
+  "main": "index.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoganS44/2-technocrats.git"
+  },
+  "keywords": [
+    "stock",
+    "trading",
+    "best",
+    "app",
+    "ever",
+    "nodejs",
+    "node",
+    "express"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LoganS44/2-technocrats/issues"
+  },
+  "homepage": "https://github.com/LoganS44/2-technocrats#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
