@@ -12,6 +12,9 @@ const Navbar = props => (
       <div className="bd-toc-item" id="studentName">
         John J. Schmidt
       </div>
+      <div className="bd-toc-item" id="studentName">
+        Class #123
+      </div>
       <ul className="nav bd-sidenav">
         <li className="bd-toc-link active" id="stocks">Stocks</li>
       </ul>
