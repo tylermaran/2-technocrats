@@ -8,6 +8,7 @@
   margin-left: -20px;
   overflow: scroll;
   color: #124257;
+  box-shadow: 0 0 5px black;
 }
 
 .bd-sidebar #brandName {
