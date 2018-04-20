@@ -2,18 +2,27 @@ import React from "react";
 import "./PieChart.css";
 
 const PieChart = props => (
-  <div className="graph col-6">
-    <div class="form-group">
-      <select class="form-control" id="q2">
-        <option ></option>
-        <option value="1">Strongly Disagree</option>
-        <option value="2">Disagree</option>
-        <option value="3">Nuetral</option>
-        <option value="4">Agree</option>
-        <option value="5">Strongly Agree</option>
+  <div className="piechart col-6">
+    <div class="form-group" placeholder="Period">
+      <select class="form-control">
+        <option disabled selected hidden>Period</option>
+        <option></option>
+        <option>January</option>
+        <option>February</option>
+        <option>March</option>
+        <option>April</option>
+        <option>May</option>
+        <option>June</option>
+        <option>July</option>
+        <option>August</option>
+        <option>September</option>
+        <option>October</option>
+        <option>November</option>
+        <option>December</option>
       </select>
     </div>
     {/*Graph goes below*/}
+    <h4>Portfolio Diversity</h4>
     <img src={require(`${"./images/piechart.png"}`)} />
 
   </div>)
