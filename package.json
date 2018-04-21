@@ -24,7 +24,6 @@
   },
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
     "axios": "^0.18.0",
     "body-parser": "^1.17.2",
     "concurrently": "^3.5.1",
@@ -32,16 +31,6 @@
     "express": "^4.16.3",
     "file-loader": "^1.1.11",
     "mongoose": "^5.0.11",
-=======
-    "bootstrap": "3",
-    "express": "^4.16.3",
-    "file-loader": "^1.1.11",
-    "react": "^16.3.1",
-    "react-bootstrap": "^0.32.1",
-    "react-dom": "^16.3.1",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4",
->>>>>>> b0d5a55fed7d2a34d20bcdcf6e6c64c1fcbb893f
     "shuffle-array": "^1.0.1",
     "url-loader": "^1.0.1"
   },
