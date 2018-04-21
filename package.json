@@ -24,26 +24,23 @@
   },
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
     "axios": "^0.18.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
-    "concurrently": "^3.5.1",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "file-loader": "^1.1.11",
+    "jsonwebtoken": "^8.2.1",
     "mongoose": "^5.0.11",
-=======
-    "bootstrap": "3",
-    "express": "^4.16.3",
-    "file-loader": "^1.1.11",
-    "react": "^16.3.1",
-    "react-bootstrap": "^0.32.1",
-    "react-dom": "^16.3.1",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4",
->>>>>>> b0d5a55fed7d2a34d20bcdcf6e6c64c1fcbb893f
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
     "shuffle-array": "^1.0.1",
-    "url-loader": "^1.0.1"
+    "url-loader": "^1.0.1",
+    "validator": "^9.4.1"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1",
+    "nodemon": "^1.17.3"
   },
   "scripts": {
     "server": "node server.js",
@@ -53,5 +50,5 @@
     "seed": "node scripts/seedDB.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "installDeps": "yarn && cd client && yarn"
-  }
+  }  
 }
