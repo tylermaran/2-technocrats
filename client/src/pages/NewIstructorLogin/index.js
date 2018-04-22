@@ -41,7 +41,7 @@ const submitForm = values => {
 
 }
 
-const NewInstructor =({
+const NewInstructorForm =({
   submitting,
 
   handleSubmit
@@ -144,7 +144,7 @@ const NewInstructor =({
 );
 
 export default reduxForm({
-
+  from: 'NewInstructorForm',
   validate
 
-});
+});(NewInstructorForm);

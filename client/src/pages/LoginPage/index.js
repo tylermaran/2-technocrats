@@ -136,10 +136,10 @@ import renderField from 'component/ FormInputs/renderField';
 
 
 export default reduxForm({
-
+  from: 'LoginForm',
   validate
 
-})
+})(LoginForm);
 
 
 
