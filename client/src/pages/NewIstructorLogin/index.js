@@ -54,7 +54,7 @@ const NewInstructor =({
     </div>
     <div className="content">
 
-      <form className="form-horizontal" onSubmit={handleSubmit}>
+      <form className="form-newinstuctor" onSubmit={handleSubmit}>
 
         <div className="form-group">
           <label className="col-md-3 control-label">Email</label>

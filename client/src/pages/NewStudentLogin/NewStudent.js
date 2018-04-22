@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import renderField from 'components/FormInputs/renderFields';
+import renderField from 'components/FormInputs/renderField';
 
 const validate = values => {
 
@@ -46,7 +46,7 @@ const submitForm = values => {
 
 }
 
-const NewInstructor =({
+const NewStudent =({
   submitting,
 
   handleSubmit
@@ -59,7 +59,7 @@ const NewInstructor =({
     </div>
     <div className="content">
 
-      <form className="form-horizontal" onSubmit={handleSubmit}>
+      <form className="form-newstudent" onSubmit={handleSubmit}>
 
         <div className="form-group">
           <label className="col-md-3 control-label">Email</label>

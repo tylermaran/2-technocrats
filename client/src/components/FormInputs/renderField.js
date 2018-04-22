@@ -3,15 +3,17 @@ import TextInput from './TextInput';
 import Checkbox from './Checkbox';
 import Radio from './Radio';
 
-const renderField = (props) => (
+const renderFields = (props) => (
 
   <div>
 
-    { (props.type === 'Name' ||
+    { (props.type === 'name' ||
 
-       props.type === 'Email' ||
+       props.type === 'email' ||
 
-       props.type === 'password') &&
+       props.type === 'password' ||
+
+       props.type === 'number') &&
 
       <TextInput {...props} />
 
@@ -25,4 +27,4 @@ const renderField = (props) => (
 
 );
 
-export default rederField;
+export default renderFields;
