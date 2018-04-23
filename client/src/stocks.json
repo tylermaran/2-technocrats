@@ -1,0 +1,47 @@
+[
+  {
+    "id": 0,
+    "name": "Stocks",
+    "image": "./images/graph.png"
+  },
+  {
+    "id": 1,
+    "name": "-MSFT",
+    "image": "./images/msft.png"
+  },
+  {
+    "id": 2,
+    "name": "-SPY",
+    "image": "./images/spy.png"
+  },
+  {
+    "id": 3,
+    "name": "-FB",
+    "image": "./images/fb.png"
+  },
+  {
+    "id": 4,
+    "name": "-APPL",
+    "image": "./images/appl.png"
+  },
+  {
+    "id": 5,
+    "name": "-TSLA",
+    "image": "./images/tsla.png"
+  },
+  {
+    "id": 6,
+    "name": "-AMZN",
+    "image": "./images/amzn.png"
+  },
+  {
+    "id": 7,
+    "name": "-USO",
+    "image": "./images/uso.png"
+  },
+  {
+    "id": 8,
+    "name": "-DOW",
+    "image": "./images/dow.png"
+  }
+]
