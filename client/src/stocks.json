@@ -2,46 +2,55 @@
   {
     "id": 0,
     "name": "Stocks",
-    "image": "./images/graph.png"
+    "image": "./images/graph.png",
+    "news": "News"
   },
   {
     "id": 1,
     "name": "-MSFT",
-    "image": "./images/msft.png"
+    "image": "./images/msft.png",
+    "news": "Microsoft"
   },
   {
     "id": 2,
     "name": "-SPY",
-    "image": "./images/spy.png"
+    "image": "./images/spy.png",
+    "news": "SPDR"
   },
   {
     "id": 3,
     "name": "-FB",
-    "image": "./images/fb.png"
+    "image": "./images/fb.png",
+    "news": "Facebook"
   },
   {
     "id": 4,
     "name": "-APPL",
-    "image": "./images/appl.png"
+    "image": "./images/appl.png",
+    "news": "Apple"
   },
   {
     "id": 5,
     "name": "-TSLA",
-    "image": "./images/tsla.png"
+    "image": "./images/tsla.png",
+    "news": "Tesla"
   },
   {
     "id": 6,
     "name": "-AMZN",
-    "image": "./images/amzn.png"
+    "image": "./images/amzn.png",
+    "news": "Amazon"
   },
   {
     "id": 7,
     "name": "-USO",
-    "image": "./images/uso.png"
+    "image": "./images/uso.png",
+    "news": "USO"
   },
   {
     "id": 8,
     "name": "-DOW",
-    "image": "./images/dow.png"
+    "image": "./images/dow.png",
+    "news": "DOW"
   }
 ]
