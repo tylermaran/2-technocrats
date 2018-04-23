@@ -2,3 +2,5 @@ node_modules
 client/node_modules
 config/.env
 .env
+client/yarn.lock
+client/yarn-error.log
