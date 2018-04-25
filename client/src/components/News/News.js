@@ -1,10 +1,10 @@
 import React from "react";
 import "./News.css";
 
-const PieChart = props => (
+const News = props => (
   <div className="news col-6">
     <h1>Market News</h1>
-    <p id="blurb">{props.news}</p>
+    <p id="blurb">Here's some news about {props.title}!</p>
   </div>)
 
-export default PieChart;
+export default News;

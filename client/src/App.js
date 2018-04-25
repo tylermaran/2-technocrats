@@ -12,7 +12,8 @@ import "./App.css";
 
 
 let image = "./images/graph.png";
-let news = "Bacon ipsum dolor amet short loin turducken ribeye doner frankfurter salami pastrami turkey sirloin bacon. Cupim ham chuck, filet mignon tail shoulder meatball jowl frankfurter shank. Beef ribs short ribs ham kielbasa sausage filet mignon flank pork chop meatloaf venison jerky. Burgdoggen pancetta meatloaf tenderloin pork leberkas. Corned beef frankfurter fatback flank burgdoggen landjaeger alcatra bresaola."
+let title = "Stocks";
+let priceArray =  [22.20, 34.90, 42.28, 51.93, 62.21, 82.12, 102.50, 107.23];
 
 class App extends Component {
   state = {
@@ -21,7 +22,7 @@ class App extends Component {
 
   handleClick = id => {
     this.state.stocks.map(stock => (
-      (stock.id === id) ? (image = stock.image, news = stock.news) : null
+      (stock.id === id) ? (image = stock.image, title = stock.title, priceArray = stock.priceArray) : null
     ))
 
     this.setState({stocks})
@@ -35,11 +36,12 @@ class App extends Component {
         <Wrapper>
           <Title />
           <Graph
-            image={image}
+            title={title}
+            priceArray={priceArray}
           />
           <div className="row">
             <News
-              news={news}
+              title={title}
             />
             <PieChart />
           </div>
