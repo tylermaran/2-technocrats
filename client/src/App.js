@@ -10,6 +10,7 @@ import PieChart from "./components/PieChart";
 import stocks from "./stocks.json";
 import "./App.css";
 
+
 let image = "./images/graph.png";
 let news = "Bacon ipsum dolor amet short loin turducken ribeye doner frankfurter salami pastrami turkey sirloin bacon. Cupim ham chuck, filet mignon tail shoulder meatball jowl frankfurter shank. Beef ribs short ribs ham kielbasa sausage filet mignon flank pork chop meatloaf venison jerky. Burgdoggen pancetta meatloaf tenderloin pork leberkas. Corned beef frankfurter fatback flank burgdoggen landjaeger alcatra bresaola."
 
