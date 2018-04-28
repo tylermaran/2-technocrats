@@ -2,14 +2,6 @@ import React from 'react';
 import ReactChartist from 'react-chartist';
 import Chartist from 'chartist';
 
-const dataPreferences = {
-
-  labels: ['62%','32%','6%'],
-
-  series: [62, 32, 6]
-
-};
-
 const optionsPreferences = {
 
   donut: true,
@@ -40,11 +32,9 @@ const optionsPreferences = {
 
 };
 
+const PieChart = props => (
 
-
-const PublicPreference = props => (
-
-  <div className="card">
+  <div className=" pie card">
 
     <div className="header">
 
@@ -54,11 +44,16 @@ const PublicPreference = props => (
 
     <div className="content">
 
-      <ReactChartist data={dataPreferences} options={optionsPreferences} type="Pie" className="ct-chart" />
+      <ReactChartist data={{
+            labels: ['62%','32%','6%'],
+            series: [62, 32, 6]
+      }}data={dataPreferences} options={optionsPreferences} type="Pie" className="ct-chart" />
 
     </div>
 
-    <div className="content">
+    <div className="footer">
+
+      <h6>Legend</h6>
 
       <i className="fa fa-circle text-info"></i> Apple
 
@@ -71,7 +66,5 @@ const PublicPreference = props => (
   </div>
 
 );
-
-
 
 export default PieChart;
