@@ -7,7 +7,7 @@ const profile = require("./routes/api/profile");
 const posts = require("./routes/api/posts");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: true }));
