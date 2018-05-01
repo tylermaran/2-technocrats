@@ -24,17 +24,32 @@ var studentSchema = new Schema({
     type: String,
     required: true
   },
-  // `transaction` is an object that stores a transaction id
-  // The ref property links the ObjectId to the Note model
-  // This allows us to populate the Student table with an associated Note
-  transaction: {
-    type: Schema.Types.ObjectId,
-    ref: "transaction"
-  },
-  transaction: {
-    type: Schema.Types.ObjectId,
-    ref: "transaction"
-  }
+
+  transaction: [{
+    type: String,
+    numberShares: Number,
+    tickerSelected: String,
+    totalCost: Number
+  }],
+
+  watchlist: [{
+    tickerSelected: {
+      type: String,
+      required: true,
+      unique: true
+    }
+  }],
+
+  portfolio: [{
+    ticker: {
+      type: String,
+      required: true,
+      unique: true
+    },
+    value: Number,
+    avargeCost: Number
+  }]
+
 });
 
 // This creates our model from the above schema, using mongoose's model method
