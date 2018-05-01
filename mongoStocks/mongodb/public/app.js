@@ -104,6 +104,7 @@ $("#submit").on("click", function () {
 
           // Create transaction object. This will be passed to the POST and added to the db
           var transaction = {
+            type: 'buy',
             numberShares: numberShares,
             tickerSelected: tickerSelected
           }
