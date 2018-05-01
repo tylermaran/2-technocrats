@@ -3,13 +3,9 @@ var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 var request = require("request");
-
-
-// Axios is a promised-based http library, similar to jQuery's Ajax method
-// It works on the client and on the server
 var axios = require("axios");
 
-// Require all models
+// Require all models (looks to index.js in models folder)
 var db = require("./models");
 var PORT = 5000;
 
@@ -22,9 +18,6 @@ app.use(express.static("public"));
 // Use morgan logger for logging requests
 app.use(logger("dev"));
 
-// By default mongoose uses callbacks for async queries, we're setting it to 
-// use promises (.then syntax) instead
-
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/stocktraderdb", {});
@@ -35,21 +28,16 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-
-// Search for Specific ticker - provides JSON
+// Search for Specific ticker - return JSON file
 app.get("/api/:ticker?", function (req, res) {
   var ticker = req.params.ticker;
-  console.log(ticker);
-
+  console.log("API Lookup: " + ticker);
   var parameters = {
     symbols: ticker,
     types: 'quote,news,chart',
     range: '1m',
     last: '5'
   }
-
-  console.log(parameters);
-
   axios({
       method: 'GET',
       url: 'https://api.iextrading.com/1.0//stock/market/batch',
@@ -59,32 +47,13 @@ app.get("/api/:ticker?", function (req, res) {
       }
     })
     .then(function (response) {
-
       res.json(response.data);
     });
 });
 
-
-// Route for getting all Articles from the db
-app.get("/transactions", function (req, res) {
-  // Grab every document in the Articles collection
-  db.Transaction.find({}).sort({
-      "_id": -1
-    })
-    .then(function (dbTransaction) {
-      // If we were able to successfully find Articles, send them back to the client
-      res.json(dbTransaction);
-    })
-    .catch(function (err) {
-      // If an error occurred, send it to the client
-      res.json(err);
-    });
-
-});
-
-// Route for saving/updating an Article's associated Note
-app.post("/buy", function (req, res) {
-  console.log("********************");
+// Buy route: Intiates a buy transaction. Takes in student id
+app.post("/buy/:id", function (req, res) {
+  console.log("*********Buy Transaction***********");
   var purchase = req.body;
   console.log(purchase);
 
@@ -95,8 +64,7 @@ app.post("/buy", function (req, res) {
     last: '5'
   }
 
-  console.log(parameters);
-
+  // When buying, does a last minute price check on the stock
   axios({
       method: 'GET',
       url: 'https://api.iextrading.com/1.0//stock/market/batch',
@@ -106,25 +74,96 @@ app.post("/buy", function (req, res) {
       }
     })
     .then(function (response) {
-      console.log(purchase.tickerSelected);
+      console.log("Ticker: " + purchase.tickerSelected);
       var purchasePrice = response.data[purchase.tickerSelected].quote.close;
-      console.log(purchasePrice);
-      purchase.totalCost =  purchasePrice*purchase.numberShares;
-
-
+      console.log("Purchase Price" + purchasePrice);
+      purchase.totalCost = purchasePrice * purchase.numberShares;
+      var studentID = req.params.id;
       res.json(response.data);
-      db.Transaction.create(purchase)
-        .then(function (dbTransaction) {
+
+      // Looks up student with id = req.params.id
+      console.log(req.params.id);
+      db.Student.findOneAndUpdate({
+          _id: req.params.id
+        }, {
+          $push: {
+            transaction: purchase
+          }
+        }).then(function (dbStudent) {
           // View the added result in the console
-          console.log(dbTransaction);
+          console.log(dbStudent);
+          updatePortfolio(studentID, purchase)
         })
         .catch(function (err) {
           // If an error occurred, send it to the client
           return res.json(err);
         });
     });
-
 });
+
+// Adds to watch list, takes in student id as param
+app.post("/watch/:id", function (req, res) {
+  console.log("******** Watch List ************");
+  var watchlist = req.body;
+
+  // looks for student id in db.Student and adds ticker to watch list
+  db.Student.findOneAndUpdate({
+      _id: req.params.id
+    }, {
+      $push: {
+        watchlist: watchlist
+      }
+    }).then(function (dbStudent) {
+      // View the added result in the console
+      console.log(dbStudent);
+    })
+    .catch(function (err) {
+      // If an error occurred, send it to the client
+      return res.json(err);
+    });
+});
+
+// Create new student (currently using dummy data)
+app.get("/newstudent", function (req, res) {
+  console.log("Adding new student");
+  var student = {
+    studentName: "John J. Schmit",
+    firstName: "John",
+    lastName: "Schmit",
+    classNumber: 1337
+  }
+  db.Student.create(student)
+    .then(function (dbStudent) {
+      // View the added result in the console
+      return console.log(dbStudent);
+    })
+    .catch(function (err) {
+      // If an error occurred, send it to the client
+      return res.json(err);
+    });
+})
+
+// Lookup all students
+app.get("/students", function (req, res) {
+  // Lookup all students. To filter by class, add a function here
+  db.Student.find({}).sort({
+      "_id": -1
+    })
+    .then(function (dbStudent) {
+      res.json(dbStudent);
+    })
+    .catch(function (err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+});
+
+// Takes in transactions and updates the student portfolio
+function updatePortfolio(id, transaction) {
+  console.log("Update portfolio: " + id)
+  console.log(transaction);
+
+}
 
 // Start the server
 app.listen((process.env.PORT || 5000), function () {
