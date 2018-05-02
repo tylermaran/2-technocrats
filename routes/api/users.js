@@ -6,6 +6,8 @@ const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
+const passport = require("passport");
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -73,7 +75,6 @@ router.post(`/login`, (req, res) => {
           avatar: user.avatar
         };
 
-
         jwt.sign(
           payload,
           keys.secretOrKey,
@@ -91,5 +92,14 @@ router.post(`/login`, (req, res) => {
     });
   });
 });
+
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json({ msg: "sucess" });
+    
+  }
+);
 
 module.exports = router;
