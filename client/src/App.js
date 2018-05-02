@@ -9,7 +9,7 @@ import News from "./components/News";
 import PieChart from "./components/PieChart";
 import stocks from "./stocks.json";
 import "./App.css";
-
+var axios = require("axios");
 
 let image = "./images/graph.png";
 let title = "Stocks";
@@ -24,11 +24,44 @@ class App extends Component {
     this.state.stocks.map(stock => (
       (stock.id === id) ? (image = stock.image, title = stock.title, priceArray = stock.priceArray) : null
     ))
+    console.log(title);
+    var ticker = title;
+    ticker = ticker.toUpperCase();
+    console.log(ticker);
+    var parameters = {
+      symbols: ticker,
+      types: 'chart,news',
+      range: '1y',
+      last: '5'
+    }
+    //  Pull stock data based on parameters
+    axios({
+      method: 'GET',
+      url: 'https://api.iextrading.com/1.0//stock/market/batch',
+      params: parameters,
 
-    this.setState({stocks})
+    })
+      .then(function (response) {
+        var sourceData = response.data;
+        var chartArray = []
+        for (let index = 0; index < sourceData[ticker].chart.length; index++) {
+          var chartValue = {
+            date: sourceData[ticker].chart[index].date,
+            value: sourceData[ticker].chart[index].close,
+          }
+          chartArray.push(chartValue);
+        }
+        var returnObject = {
+          price: chartArray,
+          news: sourceData[ticker].news
+        }
+        console.log(returnObject);
+
+      });
+    this.setState({ stocks })
   }
 
-  //axios 
+
 
   render() {
     return (
