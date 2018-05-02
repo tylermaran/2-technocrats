@@ -1,7 +1,6 @@
 import React from "react";
 import "./Graph.css";
 import ReactChartist from 'react-chartist';
-import Chartist from 'chartist';
 
 
 const optionsStock ={
@@ -14,8 +13,8 @@ const optionsStock ={
         }
     },
     stretch: true,
-    low: 10,
-    high: 100,
+    low: 0,
+    high: 1000,
     classNames: {
         point: 'ct-point ct-green',
         line: 'ct-line ct-green'
@@ -23,6 +22,8 @@ const optionsStock ={
 };
 
 const Graph = props => (
+
+
 
 
     <div className="graph card">

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import Wrapper from "./components/Wrapper";
 import Navbar from "./components/Navbar";
-import NavLinks from "./components/NavLinks";
 import Title from "./components/Title";
 import Graph from "./components/Graph";
 import News from "./components/News";
@@ -11,9 +10,8 @@ import stocks from "./stocks.json";
 import "./App.css";
 var axios = require("axios");
 
-let image = "./images/graph.png";
 let title = "Stocks";
-let priceArray =  [22.20, 34.90, 42.28, 51.93, 62.21, 82.12, 102.50, 107.23];
+let newPriceArray = [];
 
 class App extends Component {
   state = {
@@ -22,7 +20,7 @@ class App extends Component {
 
   handleClick = id => {
     this.state.stocks.map(stock => (
-      (stock.id === id) ? (image = stock.image, title = stock.title, priceArray = stock.priceArray) : null
+      (stock.id === id) ? (title = stock.title) : null
     ))
     console.log(title);
     var ticker = title;
@@ -55,9 +53,23 @@ class App extends Component {
           price: chartArray,
           news: sourceData[ticker].news
         }
+
         console.log(returnObject);
 
+
+        for (var j = 0; j < 10 ; j++) {
+          newPriceArray.push(returnObject.price[j].value)
+        }
+
       });
+
+
+
+      console.log(newPriceArray);
+
+
+
+
     this.setState({ stocks })
   }
 
@@ -72,7 +84,7 @@ class App extends Component {
           <Title />
           <Graph
             title={title}
-            priceArray={priceArray}
+            priceArray={newPriceArray}
           />
           <div className="row">
             <News

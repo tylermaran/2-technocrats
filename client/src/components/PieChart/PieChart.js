@@ -3,8 +3,8 @@ import "./PieChart.css";
 
 const PieChart = props => (
   <div className="piechart col-6">
-    <div class="form-group" placeholder="Period">
-      <select class="form-control">
+    <div className="form-group" placeholder="Period">
+      <select className="form-control">
         <option disabled selected hidden>Period</option>
         <option></option>
         <option>January</option>
@@ -23,7 +23,7 @@ const PieChart = props => (
     </div>
     {/*Graph goes below*/}
     <h4>Portfolio Diversity</h4>
-    <img className="pieImg" src={require(`${"./images/piechart.png"}`)} />
+    <img className="pieImg" alt="pie chart" src={require(`${"./images/piechart.png"}`)} />
 
   </div>)
 
