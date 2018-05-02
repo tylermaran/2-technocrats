@@ -53,7 +53,7 @@ app.get("/chart/:ticker", function (req, res) {
         news: sourceData[ticker].news
       }
       console.log(returnObject);
-      res.json(response.data);
+      return res.json(response.data);
     });
 });
 

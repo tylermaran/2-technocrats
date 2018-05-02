@@ -28,6 +28,8 @@ class App extends Component {
     this.setState({stocks})
   }
 
+  //axios 
+
   render() {
     return (
     <Router>

@@ -24,7 +24,9 @@ var studentSchema = new Schema({
     type: String,
     required: true
   },
-
+  cash: {
+    type: Number
+  },
   transaction: [{
     type: String,
     numberShares: Number,
