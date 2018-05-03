@@ -5,9 +5,10 @@ const routes = require("./routes");
 const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
 const posts = require("./routes/api/posts");
+const passport = require('passport');
+const axios = require("axios");
 
 const app = express();
-var axios = require("axios");
 const PORT = process.env.PORT || 3001;
  
 // Configure body parser for AJAX requests
@@ -15,10 +16,17 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
+
 // Serve up static assets
 app.use(express.static("client/build"));
 // Add routes, both API and view
 // app.use(routes);
+
+//passport 
+app.use(passport.initialize());
+
+//Passport Config
+require('./config/passport')(passport);
 
 
 // Lookup data for chart
