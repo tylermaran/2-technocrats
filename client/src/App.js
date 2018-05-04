@@ -10,7 +10,9 @@ import stocks from "./stocks.json";
 import "./App.css";
 var axios = require("axios");
 
+let image = "./images/graph.png";
 let title = "Stocks";
+<<<<<<< HEAD
 let news = "";
 let min = 0;
 let max = 1000;
@@ -20,7 +22,33 @@ class App extends Component {
     stocks,
     priceArray: [],
     title: ""
+=======
+let priceArray = [22.2, 34.9, 42.28, 51.93, 62.21, 82.12, 102.5, 107.23];
+
+class App extends Component {
+  state = {
+    response: "something",
+    stocks
+>>>>>>> a0f7d228b5dc7fe4c1323dbe302266d2ddab6d3e
   };
+
+  componentDidMount() {
+    // this.callApi()
+    //   .then(res => this.setState({ response: res.express }))
+    //   .catch(err => console.log(err));
+  }
+
+  callApi = async () => {
+    const response = await fetch("/api/users/test");
+    const body = await response.json();
+    console.log(body)
+    if (response.status !== 200) throw Error(`my error ${body.message}`);
+
+    return body;
+  };
+  // state = {
+  //   stocks
+  // };
 
   handleClick = id => {
 
