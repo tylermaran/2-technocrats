@@ -83,6 +83,16 @@ class App extends Component {
 
       });
 
+    // testing get/post routing
+    axios({
+      method: 'GET',
+      url: '/api/users/test',
+    })
+      .then((response) => {
+        console.log(response);
+        console.log("it works");
+      });
+
   }
 
 
