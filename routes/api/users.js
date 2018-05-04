@@ -8,6 +8,9 @@ const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
 
+//load input validataion
+const validateRegisterInput = require("../../validation/register");
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -22,9 +25,19 @@ router.get("/test", (req, res) => res.json({ msg: "users Works" }));
 
 router.post("/register", (req, res) => {
   console.log("posting register");
+
+  const { errors, isValid } = validateRegisterInput(req.body);
+
+  console.log(`isValid ${isValid}`)
+  //check validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
-      return res.status(400).json({ email: "Email already exists" });
+      errors.email = "Email already exists"
+      return res.status(400).json(errors);
     } else {
       //Add avatar
       const avatar = gravatar.url(req.body.email, {
@@ -98,7 +111,6 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     res.json(req.user);
-    
   }
 );
 
