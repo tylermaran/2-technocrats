@@ -3,7 +3,7 @@
     "id": 0,
     "name": "Stocks",
     "image": "./images/graph.png",
-    "title": "Stocks",
+    "title": "QQQ",
     "priceArray": [22.20, 34.90, 42.28, 51.93, 62.21, 82.12, 102.50, 107.23]
   },
   {
@@ -18,7 +18,7 @@
     "name": "-SPY",
     "image": "./images/spy.png",
     "title": "SPY",
-    "priceArray": [25, 27, 18, 33, 19, 49, 60, 80]
+    "priceArray": [234.3095, 234.0249, 234.2997, 235.2222, 235.1829, 234.967, 235.389, 234.9081]
   },
   {
     "id": 3,
