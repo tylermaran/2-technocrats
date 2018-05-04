@@ -1,5 +1,6 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+// import { Link, withRouter } from "react-router-dom";
+// import {Collapse} from 'react-bootstrap';
 import NavLinks from "../NavLinks";
 import "./Navbar.css";
 import stocks from "../../stocks.json";
@@ -19,14 +20,18 @@ const Navbar = props => (
         Class #123
       </div>
     </nav>
-    {stocks.map(stock => (
-      <NavLinks
+   {stocks.map(stock => ( 
+      <NavLinks 
         handleClick={props.handleClick}
         name={stock.name}
         id={stock.id}
-      />
-    ))}
-  </div>
+     /> 
+    
+    ))} 
+    </div>
+
+  
+  
 
 
   // <nav classNameNameName="navbar navbar-default">
