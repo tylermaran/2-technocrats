@@ -4,7 +4,7 @@ import "./News.css";
 const News = props => (
   <div className="news col-6">
     <h1>Market News</h1>
-    <p id="blurb">Here's some news about {props.title}!</p>
+    <p id="blurb">{props.news}</p>
   </div>)
 
 export default News;

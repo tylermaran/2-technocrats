@@ -4,7 +4,7 @@ import React from "react";
 import NavLinks from "../NavLinks";
 import "./Navbar.css";
 import stocks from "../../stocks.json";
-console.log("testing!!!");
+
 // Depending on the current path, this component sets the "active" classNameName on the appropriate navigation link item
 const Navbar = props => (
 

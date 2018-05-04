@@ -1,32 +1,101 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import Wrapper from "./components/Wrapper";
 import Navbar from "./components/Navbar";
-import NavLinks from "./components/NavLinks";
 import Title from "./components/Title";
 import Graph from "./components/Graph";
 import News from "./components/News";
 import PieChart from "./components/PieChart";
 import stocks from "./stocks.json";
 import "./App.css";
-
+var axios = require("axios");
 
 let image = "./images/graph.png";
 let title = "Stocks";
-let priceArray =  [22.20, 34.90, 42.28, 51.93, 62.21, 82.12, 102.50, 107.23];
+let news = "";
+let min = 0;
+let max = 1000;
 
 class App extends Component {
   state = {
-    stocks
+    stocks,
+    priceArray: [],
+    title: ""
   };
 
-  handleClick = id => {
-    this.state.stocks.map(stock => (
-      (stock.id === id) ? (image = stock.image, title = stock.title, priceArray = stock.priceArray) : null
-    ))
-
-    this.setState({stocks})
+  componentDidMount() {
+    // this.callApi()
+    //   .then(res => this.setState({ response: res.express }))
+    //   .catch(err => console.log(err));
   }
+
+  callApi = async () => {
+    const response = await fetch("/api/users/test");
+    const body = await response.json();
+    console.log(body)
+    if (response.status !== 200) throw Error(`my error ${body.message}`);
+
+    return body;
+  };
+  // state = {
+  //   stocks
+  // };
+
+  handleClick = id => {
+
+    const stock = this.state.stocks.find( item => item.id === id );
+    title = stock.title;
+    const ticker = stock.title.toUpperCase(); // TODO: maybe unneeded??
+
+    //  Pull stock data based on parameters
+    var parameters = {
+      symbols: ticker,
+      types: 'chart,news',
+      range: '1y',
+      last: '5'
+    }
+    axios({
+      method: 'GET',
+      url: 'https://api.iextrading.com/1.0//stock/market/batch',
+      params: parameters
+    })
+      .then((response) => {
+
+        var stockData = response.data[ticker];
+        console.log(stockData);
+        const dayLimit = 30;
+
+        const priceArray = [];
+        for ( let i = 0; i < dayLimit; i++ ) {
+          priceArray.push( stockData.chart[i].close );
+        }
+
+        news = stockData.news[0].headline;
+
+        min = Math.min.apply(Math, priceArray);
+        max = Math.max.apply(Math, priceArray);
+
+        // const priceArray = stockData.chart
+        //   .map( quote => quote.close )
+        //   .filter( (quote, i) => i < dayLimit );
+
+        this.setState({ priceArray })
+
+      });
+
+    // testing get/post routing
+    axios({
+      method: 'GET',
+      url: '/api/users/test',
+    })
+      .then((response) => {
+        console.log(response);
+        console.log("it works");
+      });
+
+  }
+
+
 
   render() {
     return (
@@ -37,11 +106,13 @@ class App extends Component {
           <Title />
           <Graph
             title={title}
-            priceArray={priceArray}
+            priceArray={this.state.priceArray}
+            min={min}
+            max={max}
           />
           <div className="row">
             <News
-              title={title}
+              news={news}
             />
             <PieChart />
           </div>
