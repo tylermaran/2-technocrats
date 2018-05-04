@@ -21,9 +21,9 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
-      .catch(err => console.log(err));
+    // this.callApi()
+    //   .then(res => this.setState({ response: res.express }))
+    //   .catch(err => console.log(err));
   }
 
   callApi = async () => {
@@ -78,14 +78,14 @@ class App extends Component {
 
 
         for (var j = 0; j < 10 ; j++) {
-          newPriceArray.push(returnObject.price[j].value)
+          // newPriceArray.push(returnObject.price[j].value)
         }
 
       });
 
 
 
-      console.log(newPriceArray);
+      // console.log(newPriceArray);
 
 
 
@@ -104,7 +104,7 @@ class App extends Component {
           <Title />
           <Graph
             title={title}
-            priceArray={newPriceArray}
+            // priceArray={newPriceArray}
           />
           <div className="row">
             <News
