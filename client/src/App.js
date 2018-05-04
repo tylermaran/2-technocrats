@@ -11,66 +11,59 @@ import "./App.css";
 var axios = require("axios");
 
 let title = "Stocks";
-let newPriceArray = [];
+let news = "";
+let min = 0;
+let max = 1000;
 
 class App extends Component {
   state = {
-    stocks
+    stocks,
+    priceArray: [],
+    title: ""
   };
 
   handleClick = id => {
-    this.state.stocks.map(stock => (
-      (stock.id === id) ? (title = stock.title) : null
-    ))
-    console.log(title);
-    var ticker = title;
-    ticker = ticker.toUpperCase();
-    console.log(ticker);
+
+    const stock = this.state.stocks.find( item => item.id === id );
+    title = stock.title;
+    const ticker = stock.title.toUpperCase(); // TODO: maybe unneeded??
+
+    //  Pull stock data based on parameters
     var parameters = {
       symbols: ticker,
       types: 'chart,news',
       range: '1y',
       last: '5'
     }
-    //  Pull stock data based on parameters
     axios({
       method: 'GET',
       url: 'https://api.iextrading.com/1.0//stock/market/batch',
-      params: parameters,
-
+      params: parameters
     })
-      .then(function (response) {
-        var sourceData = response.data;
-        var chartArray = []
-        for (let index = 0; index < sourceData[ticker].chart.length; index++) {
-          var chartValue = {
-            date: sourceData[ticker].chart[index].date,
-            value: sourceData[ticker].chart[index].close,
-          }
-          chartArray.push(chartValue);
-        }
-        var returnObject = {
-          price: chartArray,
-          news: sourceData[ticker].news
+      .then((response) => {
+
+        var stockData = response.data[ticker];
+        console.log(stockData);
+        const dayLimit = 30;
+
+        const priceArray = [];
+        for ( let i = 0; i < dayLimit; i++ ) {
+          priceArray.push( stockData.chart[i].close );
         }
 
-        console.log(returnObject);
+        news = stockData.news[0].headline;
 
+        min = Math.min.apply(Math, priceArray);
+        max = Math.max.apply(Math, priceArray);
 
-        for (var j = 0; j < 10 ; j++) {
-          newPriceArray.push(returnObject.price[j].value)
-        }
+        // const priceArray = stockData.chart
+        //   .map( quote => quote.close )
+        //   .filter( (quote, i) => i < dayLimit );
+
+        this.setState({ priceArray })
 
       });
 
-
-
-      console.log(newPriceArray);
-
-
-
-
-    this.setState({ stocks })
   }
 
 
@@ -84,11 +77,13 @@ class App extends Component {
           <Title />
           <Graph
             title={title}
-            priceArray={newPriceArray}
+            priceArray={this.state.priceArray}
+            min={min}
+            max={max}
           />
           <div className="row">
             <News
-              title={title}
+              news={news}
             />
             <PieChart />
           </div>
