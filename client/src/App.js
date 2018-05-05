@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 
 //Pages
-import Login from "./pages/Login2";
+import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ProfilePage from "./pages/ProfilePage";
 
@@ -20,5 +20,5 @@ class App extends Component {
     );
   }
 }
-
+ 
 export default App;
