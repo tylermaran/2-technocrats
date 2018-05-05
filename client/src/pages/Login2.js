@@ -1,6 +1,7 @@
 import React from "react";
 import { field, reduxForm } from "redux-form";
-import renderField from "component/ FormInputs/renderField";
+import renderField from "../components/FormInputs/renderField";
+import { Field } from 'redux-form'
 
 const validate = values => {
   const errors = {};
