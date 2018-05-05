@@ -131,7 +131,8 @@ app.get("/newstudent", function (req, res) {
     studentName: "John J. Schmit",
     firstName: "John",
     lastName: "Schmit",
-    classNumber: 1337
+    classNumber: 1337,
+    cash: 10000
   }
   db.Student.create(student)
     .then(function (dbStudent) {

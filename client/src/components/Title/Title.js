@@ -1,7 +1,6 @@
 import React from "react";
 import "./Title.css";
 
-let title = "Student Portfolio";
 
 const Title = props => (
   <div className="row">
