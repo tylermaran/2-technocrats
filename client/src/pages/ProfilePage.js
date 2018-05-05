@@ -18,7 +18,7 @@ let news = "";
 let min = 0;
 let max = 1000;
 
-class App extends Component {
+class ProfilePage extends Component {
   state = {
     stocks,
     priceArray: [],
@@ -69,14 +69,25 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Route exact path="/" component={ProfilePage} />
-        <div className="container">
-          <Route exact path="/register" compontent={Register} />
-          <Route exact path="/login" compontent={Login} />          
+        <div className="container-fluid">
+          <Navbar handleClick={this.handleClick} />
+          <Wrapper>
+            <Title />
+            <Graph
+              title={title}
+              priceArray={this.state.priceArray}
+              min={min}
+              max={max}
+            />
+            <div className="row">
+              <News news={news} />
+              <PieChart />
+            </div>
+          </Wrapper>
         </div>
       </Router>
     );
   }
 }
 
-export default App;
+export default ProfilePage;
