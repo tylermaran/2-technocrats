@@ -15,17 +15,17 @@ let news = "";
 let min = 0;
 let max = 1000;
 
-const monthArray = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-"11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-"21", "22", "23", "24", "25", "26", "27", "28", "29", "30"];
 
-let timeline = monthArray;
 
 class App extends Component {
   state = {
     stocks,
     priceArray: [],
-    title: ""
+    title: "",
+    timeline: [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+    "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+    "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"],
+    dayLimit: 30
   };
 
   componentDidMount() {
@@ -68,10 +68,10 @@ class App extends Component {
 
         var stockData = response.data[ticker];
         console.log(stockData);
-        const dayLimit = 30;
+
 
         const priceArray = [];
-        for ( let i = 0; i < dayLimit; i++ ) {
+        for ( let i = 0; i < this.state.dayLimit; i++ ) {
           priceArray.push( stockData.chart[i].close );
         }
 
@@ -102,7 +102,18 @@ class App extends Component {
 
   }
 
-  
+  displayWeek = () => {
+    this.setState({  timeline: [ "1", "2", "3", "4", "5", "6", "7"],
+    dayLimit:7 })
+  }
+
+  displayMonth = () => {
+    this.setState({timeline: [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+    "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+    "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"],
+  dayLimit: 30 })
+  }
+
 
 
 
@@ -118,7 +129,9 @@ class App extends Component {
             priceArray={this.state.priceArray}
             min={min}
             max={max}
-            timeline={timeline}
+            timeline={this.state.timeline}
+            displayWeek={this.displayWeek}
+            displayMonth={this.displayMonth}
           />
           <div className="row">
             <News
