@@ -53,7 +53,7 @@ const PieChart = props => (
 
     <div className="footer">
 
-      <h6>Legend</h6>
+
 
       <i className="fa fa-circle text-info"></i> Apple
 
