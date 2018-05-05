@@ -84,7 +84,7 @@ class ReactBootstrapTable extends Component {
     
                       <TableHeaderColumn
     
-                        dataField='country'
+                        dataField='Profile Balance'
     
                         width="15%"
     
@@ -96,7 +96,7 @@ class ReactBootstrapTable extends Component {
     
                       <TableHeaderColumn
     
-                        dataField='salary'
+                        dataField='Total Return'
     
                         width="15%"
     
@@ -108,7 +108,7 @@ class ReactBootstrapTable extends Component {
     
                       <TableHeaderColumn
     
-                        dataField='job'
+                        dataField='Percent Return'
     
                         width="15%">
     
@@ -118,7 +118,7 @@ class ReactBootstrapTable extends Component {
     
                       <TableHeaderColumn
     
-                        dataField='description'
+                        dataField='Description'
     
                         width="30%">
     
