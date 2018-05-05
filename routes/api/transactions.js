@@ -5,11 +5,11 @@ const router = express.Router();
 // @desc    Test post route
 // @access  Private
 router.get("/test", (req, res) => res.json({
-    msg: "buying Works"
+    msg: "transactions Works"
 }));
 
 
-router.post("/buy/:id", function (req, res) {
+router.post("/transaction/:id", function (req, res) {
     console.log("*********Buy Transaction***********");
     var purchase = req.body;
     console.log(purchase);
@@ -57,5 +57,13 @@ router.post("/buy/:id", function (req, res) {
                 });
         });
 });
+
+function updatePortfolio(studentID, purchase) {
+
+    // Update portfolio
+    // Check transaction type
+
+
+}
 
 module.exports = router;
