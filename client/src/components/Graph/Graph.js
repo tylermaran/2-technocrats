@@ -3,12 +3,7 @@ import "./Graph.css";
 import ReactChartist from 'react-chartist';
 
 
-
-
 const Graph = props => (
-
-
-
 
     <div className="graph card">
 
