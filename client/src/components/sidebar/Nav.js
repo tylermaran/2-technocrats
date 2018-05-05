@@ -26,25 +26,25 @@ class Nav extends Component {
     
             </li>
 
-            <li className={this.isPathActive('/charts') ? 'active' : null}>
+            <li className={this.isPathActive('/pages/StudentClassroom') ? 'active' : null}>
     
-              <Link to="/charts">
+              <Link to="/pages/StudentClassroom">
 
                 <i className="pe-4s-graph"></i>
 
-                <p>Charts</p>
+                <p>Student Classroom</p>
 
               </Link>
 
             </li>
 
-            <li className={this.isPathActive('/calendar') ? 'active' : null}>
+            <li className={this.isPathActive('/stocks.json') ? 'active' : null}>
 
-              <Link to="/calendar">
+              <Link to="/stocks.json">
 
                 <i className="pe-4s-date"></i>
 
-                <p>Calendar</p>
+                <p>Watch List</p>
 
               </Link>
 
@@ -75,51 +75,51 @@ class Nav extends Component {
     
                   <ul className="nav">
     
-                    <li className={this.isPathActive('/components/buttons') ? 'active' : null}>
+                    <li className={this.isPathActive('/components/NavLinks') ? 'active' : null}>
     
-                      <Link to="/components/buttons">Buttons</Link>
-    
-                    </li>
-    
-                    <li className={this.isPathActive('/components/grid') ? 'active' : null}>
-    
-                      <Link to="/components/grid">Grid System</Link>
+                      <Link to="/components/NavLinks">-MSFT</Link>
     
                     </li>
     
-                    <li className={this.isPathActive('/components/icons') ? 'active' : null}>
+                    <li className={this.isPathActive('/components/NavLinks') ? 'active' : null}>
     
-                      <Link to="/components/icons">Icons</Link>
-    
-                    </li>
-    
-                    <li className={this.isPathActive('/components/notifications') ? 'active' : null}>
-    
-                      <Link to="/components/notifications">Notifications</Link>
+                      <Link to="/components/NavLinks">-SPY</Link>
     
                     </li>
     
-                    <li className={this.isPathActive('/components/panels') ? 'active' : null}>
+                    <li className={this.isPathActive('/components/NavLinks') ? 'active' : null}>
     
-                      <Link to="/components/panels">Panels</Link>
-    
-                    </li>
-    
-                    <li className={this.isPathActive('/components/sweetalert') ? 'active' : null}>
-    
-                      <Link to="/components/sweetalert">Sweet Alert</Link>
+                      <Link to="/components/NavLinks">-FB</Link>
     
                     </li>
     
-                    <li className={this.isPathActive('/components/typography') ? 'active' : null}>
+                    <li className={this.isPathActive('/components/NavLinks') ? 'active' : null}>
     
-                      <Link to="/components/typography">Typography</Link>
+                      <Link to="/components/NavLinks">-AAPL</Link>
+    
+                    </li>
+    
+                    <li className={this.isPathActive('/components/NavLinks') ? 'active' : null}>
+    
+                      <Link to="/components/NavLinks">-TSLA</Link>
+    
+                    </li>
+    
+                    <li className={this.isPathActive('/components/NavLinks') ? 'active' : null}>
+    
+                      <Link to="/components/NavLinks">-AMZN</Link>
+    
+                    </li>
+    
+                    <li className={this.isPathActive('/components/NavLinks') ? 'active' : null}>
+    
+                      <Link to="/components/NavLinks">-USO</Link>
     
                     </li>
 
-                    <li className={this.isPathActive('/components/typography') ? 'active' : null}>
+                    <li className={this.isPathActive('/components/NavLinks') ? 'active' : null}>
     
-                      <Link to="/components/typography">Typography</Link>
+                      <Link to="/components/NavLinks">-DOW</Link>
 
                     </li>
     
