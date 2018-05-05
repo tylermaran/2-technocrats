@@ -1,15 +1,12 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import Wrapper from "./components/Wrapper";
-import Navbar from "./components/Navbar";
-import Title from "./components/Title";
-import Graph from "./components/Graph";
-import News from "./components/News";
-import PieChart from "./components/PieChart";
-import stocks from "./stocks.json";
-import "./App.css";
+import Wrapper from "../components/Wrapper";
+import Navbar from "../components/Navbar";
+import Title from "../components/Title";
+import Graph from "../components/Graph";
+import News from "../components/News";
+import PieChart from "../components/PieChart";
+import stocks from "../stocks.json";
 
-import Login from './pages/'
 let axios = require("axios");
 
 // let image = "./images/graph.png";
@@ -68,7 +65,6 @@ class ProfilePage extends Component {
 
   render() {
     return (
-      <Router>
         <div className="container-fluid">
           <Navbar handleClick={this.handleClick} />
           <Wrapper>
@@ -85,7 +81,6 @@ class ProfilePage extends Component {
             </div>
           </Wrapper>
         </div>
-      </Router>
     );
   }
 }
