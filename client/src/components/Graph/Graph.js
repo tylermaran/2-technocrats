@@ -4,7 +4,6 @@ import ReactChartist from 'react-chartist';
 
 
 
-
 const Graph = props => (
 
 
@@ -42,9 +41,11 @@ const Graph = props => (
           }} type="Line" className="ct-chart" />
       </div>
       <div class="row" id="btnRow">
-        <button>Week</button><button>Month</button><button>Quarter</button><button>Year</button>
+        <button onClick={() => props.displayWeek()}>Week</button><button onClick={() => props.displayMonth()}>Month</button><button>Quarter</button><button>Year</button>
       </div>
     </div>
+
+
 
   );
 
