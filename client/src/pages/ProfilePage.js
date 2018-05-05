@@ -6,6 +6,8 @@ import Graph from "../components/Graph";
 import News from "../components/News";
 import PieChart from "../components/PieChart";
 import stocks from "../stocks.json";
+import NavBarTop from '../components/Navbar/NavBarTop.js'
+
 
 let axios = require("axios");
 
@@ -117,9 +119,13 @@ class ProfilePage extends Component {
 
   render() {
     return (
+      
       <div className="app">
+        
         <Navbar handleClick={this.handleClick}/>
+        <NavBarTop />
         <Wrapper>
+          
           <Title />
           <Graph
             title={title}

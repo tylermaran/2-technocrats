@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import NavBarTop from '../components/Navbar/NavBarTop.js'
+import NavBarTop from "../components/Navbar/NavBarTop.js";
 
 class Register extends Component {
   constructor() {
@@ -10,7 +10,7 @@ class Register extends Component {
       password: "",
       passwords: "",
       errors: {}
-    }
+    };
   }
 
   render() {
@@ -21,10 +21,32 @@ class Register extends Component {
           <form>
             <div className="form-group row">
               <label for="example-email-input" className="col-2 col-form-label">
+                Name
+              </label>
+              <div className="col-10">
+                <input 
+                className="form-control" 
+                type="name" 
+                id="input" 
+                placeholder="First and Last Name"
+                name="name"
+                value={this.state.name}
+                />
+              </div>
+            </div>
+            <div className="form-group row">
+              <label for="example-email-input" className="col-2 col-form-label">
                 Email
               </label>
               <div className="col-10">
-                <input className="form-control" type="email" id="input" />
+                <input 
+                className="form-control" 
+                type="email" 
+                id="input" 
+                placeholder="example@example.com"
+                name="email"
+                value={this.state.email}
+                />
               </div>
             </div>
             <div className="form-group row">
@@ -38,7 +60,9 @@ class Register extends Component {
                 <input
                   className="form-control"
                   type="password"
-                  id="example-password-input"
+                  placeholder="12345"
+                  id="password2"
+                  value={this.state.password}
                 />
               </div>
             </div>
@@ -53,7 +77,9 @@ class Register extends Component {
                 <input
                   className="form-control"
                   type="password"
-                  id="example-password-input"
+                  placeholder="12345"
+                  id="password2"
+                  value={this.state.password2}
                 />
               </div>
             </div>

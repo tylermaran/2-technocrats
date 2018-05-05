@@ -11,10 +11,10 @@ class Navbar extends Component {
           <Link className="navbar-brand" to="/">
             Profile
           </Link>
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand" to="/login">
             Login
           </Link>
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand" to="/register">
             Register
           </Link>
           <button
