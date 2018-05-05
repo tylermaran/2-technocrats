@@ -4,20 +4,11 @@ import ReactChartist from 'react-chartist';
 
 const PieChart = props => (
   <div className="piechart col-6">
-    <div className="form-group" placeholder="Period">
-      <select className="form-control">
-        <option disabled selected hidden>Period</option>
-        <option></option>
-        <option>Week</option>
-        <option>Month</option>
-        <option>Quarter</option>
-        <option>Year</option>
-      </select>
-    </div>
     {/*Graph goes below*/}
-    <h4>Portfolio Diversity</h4>
+
 
       <div className=" pie card">
+        <h4>Portfolio Diversity</h4>
 
         <div className="header">
 
@@ -28,13 +19,12 @@ const PieChart = props => (
         <div className="content">
 
           <ReactChartist data={{
-                labels: ['62%','32%','6%'],
-                series: [62, 32, 6]
+                series: [15, 5, 20, 10, 10, 5, 5, 30]
           }} options={{
 
             donut: true,
 
-            donutWidth: 40,
+            donutWidth: 60,
 
             startAngle: 0,
 
@@ -65,12 +55,23 @@ const PieChart = props => (
         <div className="footer">
 
 
+          <div className="legend">
+            <i className="fa fa-circle" id="btn1"></i> Microsoft
 
-          <i className="fa fa-circle text-info"></i> Apple
+            <i className="fa fa-circle" id="btn2"></i> SPDR<br />
 
-          <i className="fa fa-circle text-warning"></i> Samsung
+            <i className="fa fa-circle" id="btn3"></i> Facebook
 
-          <i className="fa fa-circle text-danger"></i> Windows Phone
+            <i className="fa fa-circle" id="btn4"></i> Apple<br />
+
+            <i className="fa fa-circle" id="btn5"></i> Tesla
+
+            <i className="fa fa-circle" id="btn6"></i> Amazon<br />
+
+            <i className="fa fa-circle" id="btn7"></i> USO
+
+            <i className="fa fa-circle" id="btn8"></i> DOW<br />
+          </div>
 
         </div>
 

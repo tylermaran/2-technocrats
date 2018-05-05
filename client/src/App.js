@@ -4,6 +4,7 @@ import Wrapper from "./components/Wrapper";
 import Navbar from "./components/Navbar";
 import Title from "./components/Title";
 import Graph from "./components/Graph";
+import Period from "./components/Period";
 import News from "./components/News";
 import PieChart from "./components/PieChart";
 import stocks from "./stocks.json";
@@ -104,6 +105,9 @@ class App extends Component {
         <Navbar handleClick={this.handleClick}/>
         <Wrapper>
           <Title />
+          <div className="row">
+            <Period />
+          </div>
           <Graph
             title={title}
             priceArray={this.state.priceArray}
