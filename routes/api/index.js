@@ -4,14 +4,14 @@ const postRoutes = require("./posts");
 const profileRoutes = require("./profile");
 const studentRoutes = require("./students");
 const userRoutes = require("./users");
-const buyRoutes = require("./buy");
-const watcgRoutes = require("./watch");
+const transactionRoutes = require("./transactions");
+const watchRoutes = require("./watch");
 
 // API Routes
 router.use("/posts", postRoutes);
 router.use("/profile", profileRoutes);
 router.use("/students", studentRoutes);
 router.use("/users", userRoutes);
-router.use("/buy", buyRoutes);
+router.use("/transactions", transactionRoutes);
 router.use("/watch", watchRoutes);
 module.exports = router;
