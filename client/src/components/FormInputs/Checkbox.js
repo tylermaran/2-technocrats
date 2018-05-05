@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import cx from "classnames";
-import uncheckImage from "assets/images/checkbox-1.svg";
-import checkImage from "assets/images/checkbox-2.svg";
+import uncheckImage from "../../assets/images/checkbox-1.svg.png";
+import checkImage from "../../assets/images/checkbox-2.svg.png";
 
 class Checkbox extends Component {
-  render() {
+  render() { 
     let {
       input,
       label,

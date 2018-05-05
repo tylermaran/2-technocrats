@@ -11,6 +11,12 @@ class Navbar extends Component {
           <Link className="navbar-brand" to="/">
             Profile
           </Link>
+          <Link className="navbar-brand" to="/">
+            Login
+          </Link>
+          <Link className="navbar-brand" to="/">
+            Register
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
