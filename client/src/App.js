@@ -4,18 +4,22 @@ import Wrapper from "./components/Wrapper";
 import Navbar from "./components/Navbar";
 import Title from "./components/Title";
 import Graph from "./components/Graph";
-import Period from "./components/Period";
 import News from "./components/News";
 import PieChart from "./components/PieChart";
 import stocks from "./stocks.json";
 import "./App.css";
 var axios = require("axios");
 
-let image = "./images/graph.png";
 let title = "Stocks";
 let news = "";
 let min = 0;
 let max = 1000;
+
+const monthArray = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+"11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+"21", "22", "23", "24", "25", "26", "27", "28", "29", "30"];
+
+let timeline = monthArray;
 
 class App extends Component {
   state = {
@@ -82,6 +86,8 @@ class App extends Component {
 
         this.setState({ priceArray })
 
+
+
       });
 
     // testing get/post routing
@@ -96,6 +102,8 @@ class App extends Component {
 
   }
 
+  
+
 
 
   render() {
@@ -105,14 +113,12 @@ class App extends Component {
         <Navbar handleClick={this.handleClick}/>
         <Wrapper>
           <Title />
-          <div className="row">
-            <Period />
-          </div>
           <Graph
             title={title}
             priceArray={this.state.priceArray}
             min={min}
             max={max}
+            timeline={timeline}
           />
           <div className="row">
             <News

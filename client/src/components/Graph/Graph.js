@@ -21,9 +21,7 @@ const Graph = props => (
       <div className="content">
 
         <ReactChartist data={{
-          labels: [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-          "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-          "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"],
+          labels: props.timeline,
           series: [props.priceArray]
           }} options={{
               lineSmooth: true,
@@ -43,7 +41,9 @@ const Graph = props => (
               }
           }} type="Line" className="ct-chart" />
       </div>
-
+      <div class="row" id="btnRow">
+        <button>Week</button><button>Month</button><button>Quarter</button><button>Year</button>
+      </div>
     </div>
 
   );
