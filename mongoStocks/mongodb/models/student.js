@@ -28,12 +28,11 @@ var studentSchema = new Schema({
     type: Number
   },
   transaction: [{
-    type: String,
+    transactionType: String,
     numberShares: Number,
     tickerSelected: String,
     totalCost: Number
   }],
-
   watchlist: [{
     tickerSelected: {
       type: String,
@@ -48,7 +47,9 @@ var studentSchema = new Schema({
       required: true,
       unique: true
     },
-    value: Number,
+    value: [Number],
+    totalValue: Number,
+    numberShares: Number,
     avargeCost: Number
   }]
 

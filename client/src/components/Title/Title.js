@@ -5,7 +5,10 @@ import "./Title.css";
 
 class Title extends React.Component {
   componentDidMount() {
-    axios.get("/api/students/test").then(response => console.log(response));
+    axios.get("/api/students/test").then(response => console.log(response.data));
+    axios.get("/api/transactions/test").then(response => console.log(response.data));
+
+
   }
 
   render() {

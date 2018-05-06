@@ -63,6 +63,12 @@ function updatePortfolio(studentID, purchase) {
     // Update portfolio
     // Check transaction type
 
+    // If transaction type === buy
+    if (true) {
+        // For each share number => push the transaction amount to the portfolio
+
+    }
+
 
 }
 
