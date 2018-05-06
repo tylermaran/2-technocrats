@@ -8,7 +8,7 @@
   margin-bottom: 30px;
   border-radius: 5px;
   background-color: white;
-  height: 200px;
+  height: 436px;
 }
 
 h1 {
@@ -18,6 +18,11 @@ h1 {
 
 #blurb {
   text-align: left;
+  color: #124257;
+}
+
+#blurb:hover {
+  color: blue;
 }
 
 @media screen and (max-width: 620px) {
@@ -27,5 +32,6 @@ h1 {
 
   #blurb {
     font-size: 10px;
+
   }
 }

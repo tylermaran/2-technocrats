@@ -13,9 +13,15 @@ let axios = require("axios");
 
 // let image = "./images/graph.png";
 let title = "Stocks";
-let news = "";
+let news1 = "";
+let newsLink1 = "";
+let news2 = "";
+let newsLink2 = "";
+let news3 = "";
+let newsLink3 = "";
 let min = 0;
 let max = 1000;
+let currentStock = "";
 
 class ProfilePage extends Component {
     state = {
@@ -49,6 +55,7 @@ class ProfilePage extends Component {
   handleClick = id => {
 
     const stock = this.state.stocks.find( item => item.id === id );
+    currentStock = stock;
     title = stock.title;
     const ticker = stock.title.toUpperCase(); // TODO: maybe unneeded??
 
@@ -66,16 +73,23 @@ class ProfilePage extends Component {
     })
       .then((response) => {
 
-        var stockData = response.data[ticker];
+        let stockData = response.data[ticker];
         console.log(stockData);
 
 
         const priceArray = [];
-        for ( let i = 0; i < this.state.dayLimit; i++ ) {
+        for ( let i = stockData.chart.length - this.state.dayLimit; i < stockData.chart.length; i++ ) {
           priceArray.push( stockData.chart[i].close );
         }
 
-        news = stockData.news[0].headline;
+        news1 = stockData.news[0].headline;
+        newsLink1 = stockData.news[0].url;
+
+        news2 = stockData.news[1].headline;
+        newsLink2 = stockData.news[1].url;
+
+        news3 = stockData.news[2].headline;
+        newsLink3 = stockData.news[2].url;
 
         min = Math.min.apply(Math, priceArray);
         max = Math.max.apply(Math, priceArray);
@@ -105,6 +119,9 @@ class ProfilePage extends Component {
   displayWeek = () => {
     this.setState({  timeline: [ "1", "2", "3", "4", "5", "6", "7"],
     dayLimit:7 })
+
+    this.handleClick(currentStock.id);
+
   }
 
   displayMonth = () => {
@@ -112,9 +129,18 @@ class ProfilePage extends Component {
     "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
     "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"],
   dayLimit: 30 })
+
+    this.handleClick(currentStock.id);
   }
 
+  displayQuarter = () => {
+    this.setState({timeline: [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+    "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+    "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"],
+  dayLimit: 30 })
 
+    this.handleClick(currentStock.id);
+  }
 
 
   render() {
@@ -138,7 +164,12 @@ class ProfilePage extends Component {
           />
           <div className="row">
             <News
-              news={news}
+              news1={news1}
+              newsLink1={newsLink1}
+              news2={news2}
+              newsLink2={newsLink2}
+              news3={news3}
+              newsLink3={newsLink3}
             />
             <PieChart />
           </div>
