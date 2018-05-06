@@ -149,9 +149,9 @@ class ProfilePage extends Component {
       <div className="app">
         
         <Navbar handleClick={this.handleClick}/>
-        <NavBarTop />
+        
         <Wrapper>
-          
+          <NavBarTop />
           <Title />
           <Graph
             title={title}

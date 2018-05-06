@@ -40,13 +40,10 @@ const Graph = props => (
               }
           }} type="Line" className="ct-chart" />
       </div>
-      <div class="row" id="btnRow">
+      <div className="row" id="btnRow">
         <button onClick={() => props.displayWeek()}>Week</button><button onClick={() => props.displayMonth()}>Month</button><button>Quarter</button><button>Year</button>
       </div>
     </div>
-
-
-
   );
 
 export default Graph;
