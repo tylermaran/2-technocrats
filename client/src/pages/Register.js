@@ -11,6 +11,12 @@ class Register extends Component {
       passwords: "",
       errors: {}
     };
+
+    this.onChange = this.onChange.bing(this);
+  }
+
+  onChange(e){
+    this.setState({[e.target.name]: e.target.value})
   }
 
   render() {
@@ -31,6 +37,7 @@ class Register extends Component {
                 placeholder="First and Last Name"
                 name="name"
                 value={this.state.name}
+                onChange={this.onChange}
                 />
               </div>
             </div>
@@ -46,6 +53,7 @@ class Register extends Component {
                 placeholder="example@example.com"
                 name="email"
                 value={this.state.email}
+                onChange={this.onChange}
                 />
               </div>
             </div>
@@ -63,6 +71,7 @@ class Register extends Component {
                   placeholder="12345"
                   id="password2"
                   value={this.state.password}
+                  onChange={this.onChange}
                 />
               </div>
             </div>
@@ -80,6 +89,7 @@ class Register extends Component {
                   placeholder="12345"
                   id="password2"
                   value={this.state.password2}
+                  onChange={this.onChange}
                 />
               </div>
             </div>
