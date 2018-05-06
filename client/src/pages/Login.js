@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import NavBarTop from "../components/Navbar/NavBarTop.js";
+import classnames from "classnames";
+import axios from "axios";
+
 
 class Register extends Component {
   constructor() {
