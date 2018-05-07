@@ -54,3 +54,16 @@ export const setCurrentUser = decoded => {
     payload: decoded
   }
 }
+
+//gog user out if token expired
+export const logoutUser = () => dispatch => {
+  //remove token from local storage
+  localStorage.removeItem('jwtToken');
+  console.log('logout pressed')
+
+  //remove auth
+  setAuthToken(false);
+
+  //set current user to {} which will set isAuthenticated to false
+  dispatch(setCurrentUser({}))
+}
