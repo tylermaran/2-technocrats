@@ -7,7 +7,7 @@ const axios = require("axios");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
- 
+  
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({
   extended: true
