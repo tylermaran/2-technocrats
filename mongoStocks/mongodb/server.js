@@ -55,8 +55,8 @@ app.get("/api/:ticker?", function (req, res) {
 // Buy route: Intiates a buy transaction. Takes in student id
 app.post("/buy/:id", function (req, res) {
   console.log("*********Buy Transaction***********");
-  var purchase = req.body;
-  console.log(purchase);
+  var transaction = req.body;
+  console.log(transaction);
 
   var parameters = {
     symbols: req.body.tickerSelected,
@@ -75,30 +75,35 @@ app.post("/buy/:id", function (req, res) {
       }
     })
     .then(function (response) {
-      console.log("Ticker: " + purchase.tickerSelected);
-      var purchasePrice = response.data[purchase.tickerSelected].quote.close;
-      console.log("Purchase Price" + purchasePrice);
-      purchase.totalCost = purchasePrice * purchase.numberShares;
+      console.log("Ticker: " + transaction.tickerSelected);
+      // purchase.transactionType = purchase.type;
+      transaction.numberShares = parseInt(transaction.numberShares);
+      var purchasePrice = response.data[transaction.tickerSelected].quote.close;
+      console.log("Purchase Price " + purchasePrice);
+      transaction.totalCost = purchasePrice * transaction.numberShares;
       var studentID = req.params.id;
-      res.json(response.data);
+      // res.json(response.data);
+
+      console.log(transaction);
 
       // Looks up student with id = req.params.id
       console.log(req.params.id);
+
       db.Student.findOneAndUpdate({
           _id: req.params.id
         }, {
           $push: {
-            transaction: purchase
+            transaction: transaction
           }
         }).then(function (dbStudent) {
           // View the added result in the console
-          console.log(dbStudent);
-          updatePortfolio(studentID, purchase)
+          updatePortfolio(studentID, transaction);
         })
         .catch(function (err) {
           // If an error occurred, send it to the client
           return res.json(err);
         });
+
     });
 });
 
@@ -106,7 +111,7 @@ app.post("/buy/:id", function (req, res) {
 app.post("/watch/:id", function (req, res) {
   console.log("******** Watch List ************");
   var watchlist = req.body;
-
+  console.log(watchlist);
   // looks for student id in db.Student and adds ticker to watch list
   db.Student.findOneAndUpdate({
       _id: req.params.id
@@ -160,12 +165,226 @@ app.get("/students", function (req, res) {
     });
 });
 
-// Takes in transactions and updates the student portfolio
-function updatePortfolio(id, transaction) {
-  console.log("Update portfolio: " + id)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Takes in transactions and updates the student portfolio***************************************
+function updatePortfolio(studentID, transaction) {
+  console.log("Update portfolio:");
+  console.log(studentID);
   console.log(transaction);
 
+  // Find the transaction Type
+  var transactionType = transaction.transactionType;
+
+  // Handle BUY requests - Further check to see if the stock already exists
+  if (transactionType === 'buy') {
+
+    // Look up student by id and returns the current portfolio
+    db.Student.findById(studentID, function (err, doc) {
+      var portfolio = doc.portfolio;
+      // Create array of current tickers
+      var currentTickers = [];
+      // Cycle through portfolio to add all tickers to currentTickers
+      for (let i = 0; i < portfolio.length; i++) {
+        currentTickers.push(portfolio[i].ticker);
+      }
+      console.log("Current Portfolio:");
+      console.log(currentTickers);
+      console.log("Transaction Selected: Buy " + transaction.tickerSelected);
+
+      for (let j = 0; j < currentTickers.length; j++) {
+        if (transaction.tickerSelected === currentTickers[j]) {
+          console.log(transaction.tickerSelected + " is already in your portfolio! Adding shares.")
+          return buyexisting(studentID, transaction)
+        }
+      }
+      // If it gets here, the stock was not in your portfolio and a new entry must be created
+      console.log("Running buy new stock function...");
+      return buynew(studentID, transaction)
+    });
+
+  }
+  if (transactionType === 'sell') {
+    // Look up student by id and returns the current portfolio
+    db.Student.findById(studentID, function (err, doc) {
+      var portfolio = doc.portfolio;
+      // Create array of current tickers
+      var currentTickers = [];
+      // Cycle through portfolio to add all tickers to currentTickers
+      for (let i = 0; i < portfolio.length; i++) {
+        currentTickers.push(portfolio[i].ticker);
+      }
+      console.log("Current Portfolio:");
+      console.log(currentTickers);
+      console.log("Transaction Selected: Buy " + transaction.tickerSelected);
+
+      for (let j = 0; j < currentTickers.length; j++) {
+        if (transaction.tickerSelected === currentTickers[j]) {
+          console.log(transaction.tickerSelected + " is in your portfolio.");
+          console.log("You have " + doc.portfolio[j].numberShares + " shares");
+          if (doc.portfolio[j].numberShares >= transaction.numberShares) {
+            console.log("You have " + doc.portfolio[j].numberShares + " shares");
+            console.log("You are selling " + transaction.numberShares + " shares");
+            return sellexisting(studentID, transaction)
+          } else {
+            console.log("Cannot sell more shares than you own!");
+          }
+
+        }
+      }
+      // If it gets here, the stock was not in your portfolio and a new entry must be created
+      console.log("Cannot Sell! " + transaction.tickerSelected + " is not in your portfolio!");
+      return;
+    });
+  }
+
+
 }
+
+// Handles buying a stock you already own
+function buyexisting(studentID, transaction) {
+  console.log("Adding to existing stock owned")
+
+  db.Student.findById(studentID, function (err, doc) {
+
+    for (let i = 0; i < doc.portfolio.length; i++) {
+      if (doc.portfolio[i].ticker === transaction.tickerSelected) {
+        var valueArray = doc.portfolio[i].value;
+        console.log(valueArray);
+        // Create array of transaction values
+        var newArray = valueArray;
+        newArray.push(transaction.totalCost);
+        console.log(newArray);
+        // Sum values in array to add new Total Value
+        var totalValue = newArray.reduce(function (acc, val) {
+          return acc + val;
+        });
+        var numberShares = doc.portfolio[i].numberShares;
+        numberShares = numberShares + transaction.numberShares;
+
+        // Update the whole object with total cost, average cost, and number shares
+        db.Student.update({
+            _id: studentID,
+            "portfolio.ticker": transaction.tickerSelected
+          }, {
+            $set: {
+              "portfolio.$.value": newArray,
+              "portfolio.$.totalValue": totalValue,
+              "portfolio.$.numberShares": numberShares
+            },
+            $inc: {
+              "cash": -transaction.totalCost
+            }
+          }).then(function (dbStudent) {
+            // Do Something
+          })
+          .catch(function (err) {
+            // If an error occurred, send it to the client
+            return res.json(err);
+          });
+      }
+    }
+  });
+}
+
+// Creates new transaction in Student Portfolio 
+function buynew(studentID, transaction) {
+
+  console.log("Add new Stock to the portfolio");
+
+  db.Student.findOneAndUpdate({
+      _id: studentID
+    }, {
+      $push: {
+        portfolio: {
+          ticker: transaction.tickerSelected,
+          value: transaction.totalCost,
+          numberShares: transaction.numberShares,
+          totalValue: transaction.totalCost,
+          avargeCost: (transaction.totalCost / transaction.numberShares)
+        }
+      },
+      $inc: {
+        "cash": -transaction.totalCost
+      }
+    }).then(function (dbStudent) {
+      // Do Something
+      console.log("getting to here?");
+    })
+    .catch(function (err) {
+      // If an error occurred, send it to the client
+      console.log("Error buying new stock");
+      return res.json(err);
+    });
+}
+
+
+function sellexisting(studentID, transaction) {
+  console.log("SELLING SHARES")
+
+  db.Student.findById(studentID, function (err, doc) {
+
+    for (let i = 0; i < doc.portfolio.length; i++) {
+      if (doc.portfolio[i].ticker === transaction.tickerSelected) {
+        var valueArray = doc.portfolio[i].value;
+        console.log(valueArray);
+        // Create array of transaction values
+        var newArray = valueArray;
+        newArray.push(-transaction.totalCost);
+        console.log(newArray);
+        // Sum values in array to add new Total Value
+        var totalValue = newArray.reduce(function (acc, val) {
+          return acc + val;
+        });
+
+        var numberShares = doc.portfolio[i].numberShares;
+        numberShares = numberShares - transaction.numberShares;
+
+        // Update the whole object with total cost, average cost, and number shares
+        db.Student.update({
+            _id: studentID,
+            "portfolio.ticker": transaction.tickerSelected
+          }, {
+            $set: {
+              "portfolio.$.value": newArray,
+              "portfolio.$.totalValue": totalValue,
+              "portfolio.$.numberShares": numberShares
+            },
+            $inc: {
+              "cash": transaction.totalCost
+            }
+          }).then(function (dbStudent) {
+            // Do Something
+          })
+          .catch(function (err) {
+            // If an error occurred, send it to the client
+            return res.json(err);
+          });
+      }
+    }
+  });
+
+}
+
+// ****************************************************************************************
+
+
+
+
+
+
 
 
 // Lookup data for chart
@@ -194,7 +413,7 @@ app.get("/chart/:ticker", function (req, res) {
       var sourceData = response.data;
 
       var chartArray = []
-      
+
       for (let index = 0; index < sourceData[ticker].chart.length; index++) {
 
         var chartValue = {
