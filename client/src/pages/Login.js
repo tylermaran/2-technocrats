@@ -19,9 +19,17 @@ class Login extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+
+    //if logged in and trying to go to the login page redirect to profile page
+    if(this.props.auth.isAuthenticated){
+      this.props.history.push('/profile')
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if(nextProps.auth.isAuthenticated) {
-      this.props.history.push('/');
+      this.props.history.push('/profile');
     }
     
     if (nextProps.errors) {
