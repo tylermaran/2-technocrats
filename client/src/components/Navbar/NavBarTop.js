@@ -8,12 +8,13 @@ class Navbar extends Component {
   onLogoutClick(e) {
     e.preventDefault();
     this.props.logoutUser();
+    this.props.history.push('/login')
   }
   render() {
     const { isAuthenticated, user } = this.props.auth;
 
     const authLinks = (
-      <ul className="navbar-nav ml-auto">
+      <ul className="navbar-nav mr-auto">
         <li className="nav-item">
           <a
             href=""
@@ -24,22 +25,17 @@ class Navbar extends Component {
               src={user.avatar}
               className="rounded-circle"
               alt={user.name}
-              style={{ width: '25px', marginRight: '5px' }}
+              style={{ width: "25px", marginRight: "5px" }}
               title="you must have a Gravatar connected to your email to display an image"
-            />{' '}
+            />{" "}
             Logout
           </a>
         </li>
-        {/* <li className="nav-item">
-          <Link className="navbar-brand" to="/register">
-            Register
-          </Link>
-        </li> */}
       </ul>
     );
 
     const guestLinks = (
-      <ul className="navbar-nav ml-auto">
+      <ul className="navbar-nav mr-auto">
         <li className="nav-item">
           <Link className="navbar-brand" to="/login">
             Login
@@ -54,33 +50,59 @@ class Navbar extends Component {
     );
 
     return (
-      <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
-        <div className="container">
-          <Link className="navbar-brand" to="/">
-            Profile
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#mobile-nav"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
-
-          <div className="collapse navbar-collapse" id="mobile-nav">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <Link className="nav-link" to="/profiles">
-                  {" "}
-                  Developers
-                </Link>
-              </li>
-            </ul>
-            {isAuthenticated ? authLinks : guestLinks}
-          </div>
+      <nav className="navbar navbar-toggleable-sm sticky-top navbar-inverse bg-primary">
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarTogglerDemo01"
+          aria-controls="navbarTogglerDemo01"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon" />
+        </button>
+        <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li className="nav-item active">
+              <Link className="navbar-brand" to="/profile">
+                Profile
+              </Link>
+            </li>
+          </ul>
+          {isAuthenticated ? authLinks : guestLinks}
         </div>
       </nav>
+      // <nav className="navbar navbar-toggleable-md navbar-dark bg-dark mb-4">
+      //   <button
+      //     className="navbar-toggler"
+      //     type="button"
+      //     data-toggle="collapse"
+      //     data-target="#navbarTogglerDemo01"
+      //     aria-controls="navbarTogglerDemo01"
+      //     aria-expanded="false"
+      //     aria-label="Toggle navigation"
+      //   >
+      //     <span className="navbar-toggler-icon" />
+      //   </button>
+      //   <div className="collapse navbar-collapse" id="mobile-nav">
+      //     <Link className="navbar-brand" to="/">
+      //       Profile
+      //     </Link>
+      //     <button
+      //       className="navbar-toggler"
+      //       type="button"
+      //       data-toggle="collapse"
+      //       data-target="#mobile-nav"
+      //     >
+      //       <span className="navbar-toggler-icon" />
+      //     </button>
+
+      //     {/* <div className="collapse navbar-collapse" id="mobile-nav"> */}
+      //     {isAuthenticated ? authLinks : guestLinks}
+      //     {/* </div> */}
+      //   </div>
+      // </nav>
     );
   }
 }

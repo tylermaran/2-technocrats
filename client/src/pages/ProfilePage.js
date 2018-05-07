@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import Wrapper from "../components/Wrapper";
 import Navbar from "../components/Navbar";
 import Title from "../components/Title";
@@ -35,9 +37,11 @@ class ProfilePage extends Component {
   };
 
   componentDidMount() {
-    // this.callApi()
-    //   .then(res => this.setState({ response: res.express }))
-    //   .catch(err => console.log(err));
+
+    //if logged in and trying to go to the login page redirect to profile page
+    if(!this.props.auth.isAuthenticated){
+      this.props.history.push('/login')
+    }
   }
 
   callApi = async () => {
@@ -147,11 +151,11 @@ class ProfilePage extends Component {
     return (
       
       <div className="app">
-        
+        <NavBarTop />
         <Navbar handleClick={this.handleClick}/>
         
         <Wrapper>
-          <NavBarTop />
+          
           <Title />
           <Graph
             title={title}
@@ -179,4 +183,14 @@ class ProfilePage extends Component {
 }
 }
 
-export default ProfilePage;
+ProfilePage.propTypes = {
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors
+})
+
+export default connect(mapStateToProps, {})(ProfilePage);
