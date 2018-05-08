@@ -6,9 +6,9 @@ const axios = require("axios");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
-require('dotenv').config()
-
 const db = require('./config/keys').mongoURI
+require('dotenv').config();
+require('./config/passport')(passport);
 
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({
@@ -16,17 +16,22 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+app.use(passport.initialize());
 
 // Serve up static assets
-app.use(express.static("client/build"));
+// app.use(express.static("client/build"));
 // Add routes, both API and view
 app.use(routes);
 
+//serve static if in producion
+if(process.env.NODE_ENV === 'production'){
+  //set static folder
+  app.use(express.static("client/build"));
+}
+
 //passport 
-app.use(passport.initialize());
 
 //Passport Config
-require('./config/passport')(passport);
 
 // Connect to the Mongo DB
 mongoose
