@@ -6,8 +6,14 @@ import "./Navbar.css";
 import stocks from "../../stocks.json";
 
 // Depending on the current path, this component sets the "active" classNameName on the appropriate navigation link item
-const Navbar = props => (
+class Navbar extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
+
+  render() {
+    return (
   <div className="col-4 col-lg-3 bd-sidebar" id="bd-docs-nav">
     <nav>
       <div className="bd-toc-item" id="brandName">
@@ -20,18 +26,18 @@ const Navbar = props => (
         Class #123
       </div>
     </nav>
-   {stocks.map(stock => ( 
-      <NavLinks 
-        handleClick={props.handleClick}
+   {stocks.map(stock => (
+      <NavLinks
+        handleClick={this.props.handleClick}
         name={stock.name}
         id={stock.id}
-     /> 
-    
-    ))} 
+     />
+
+    ))}
     </div>
 
-  
-  
+
+)}
 
 
   // <nav classNameNameName="navbar navbar-default">
@@ -60,6 +66,6 @@ const Navbar = props => (
   //     </ul>
   //   </div>
   // </nav>
-);
+};
 
 export default Navbar;

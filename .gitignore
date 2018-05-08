@@ -1,6 +1,7 @@
 node_modules
 client/node_modules
 config/.env
+config/keys_dev.js
 .env
 client/yarn.lock
-client/yarn-error.log
+client/yarn-error.log 
