@@ -4,7 +4,7 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../actions/authActions";
-
+import "../index.css";
 
 class Login extends Component {
   constructor() {
@@ -20,20 +20,19 @@ class Login extends Component {
   }
 
   componentDidMount() {
-
     //if logged in and trying to go to the login page redirect to profile page
-    if(this.props.auth.isAuthenticated){
-      this.props.history.push('/profile')
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/profile");
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.auth.isAuthenticated) {
-      this.props.history.push('/profile');
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/profile");
     }
-    
+
     if (nextProps.errors) {
-      this.setState({errors: nextProps.errors});
+      this.setState({ errors: nextProps.errors });
     }
   }
 
@@ -41,27 +40,25 @@ class Login extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onSubmit(e){
+  onSubmit(e) {
     e.preventDefault();
 
     const userFormData = {
       email: this.state.email,
       password: this.state.password
-    }
+    };
 
     this.props.loginUser(userFormData);
   }
 
   render() {
-
     const { errors } = this.state;
 
     return (
       <div>
         <NavBarTop />
-        <div className="container">
+        <div className="container margin-top">
           <form onSubmit={this.onSubmit}>
-         
             <div className="form-group row">
               <p className="col-2 col-form-label">Email</p>
               <div className="col-5">
@@ -100,7 +97,9 @@ class Login extends Component {
                 )}
               </div>
             </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
           </form>
         </div>
       </div>
@@ -112,11 +111,11 @@ Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
-}
+};
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
-})
+});
 
-export default connect(mapStateToProps, {loginUser })(Login);
+export default connect(mapStateToProps, { loginUser })(Login);

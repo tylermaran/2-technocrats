@@ -2,7 +2,7 @@ import React from "react";
 // import { Link, withRouter } from "react-router-dom";
 // import {Collapse} from 'react-bootstrap';
 import NavLinks from "../NavLinks";
-import "./Navbar.css";
+import "./Navbar.css"; 
 import stocks from "../../stocks.json";
 
 // Depending on the current path, this component sets the "active" classNameName on the appropriate navigation link item

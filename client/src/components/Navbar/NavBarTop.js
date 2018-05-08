@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import "./Navbar.css"; 
 
 class Navbar extends Component {
   onLogoutClick(e) {
@@ -50,7 +51,7 @@ class Navbar extends Component {
     );
 
     return (
-      <nav className="navbar navbar-toggleable-sm sticky-top navbar-inverse bg-primary">
+      <nav className="navbar navbar-toggleable-sm fixed-top navbar-inverse">
         <button
           className="navbar-toggler"
           type="button"

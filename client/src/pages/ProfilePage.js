@@ -9,6 +9,7 @@ import News from "../components/News";
 import PieChart from "../components/PieChart";
 import stocks from "../stocks.json";
 import NavBarTop from '../components/Navbar/NavBarTop.js'
+import "../index.css";
 
 
 let axios = require("axios");
@@ -148,38 +149,21 @@ class ProfilePage extends Component {
 
 
   render() {
-    return (
-      
-      <div className="app">
+    return <div className="app">
         <NavBarTop />
-        <Navbar handleClick={this.handleClick}/>
-        
-        <Wrapper>
-          
-          <Title />
-          <Graph
-            title={title}
-            priceArray={this.state.priceArray}
-            min={min}
-            max={max}
-            timeline={this.state.timeline}
-            displayWeek={this.displayWeek}
-            displayMonth={this.displayMonth}
-          />
-          <div className="row">
-            <News
-              news1={news1}
-              newsLink1={newsLink1}
-              news2={news2}
-              newsLink2={newsLink2}
-              news3={news3}
-              newsLink3={newsLink3}
-            />
-            <PieChart />
-          </div>
-        </Wrapper>
-      </div>
-  );
+        <div className="margin-top">
+          <Navbar handleClick={this.handleClick} />
+
+          <Wrapper>
+            <Title />
+            <Graph title={title} priceArray={this.state.priceArray} min={min} max={max} timeline={this.state.timeline} displayWeek={this.displayWeek} displayMonth={this.displayMonth} />
+            <div className="row">
+              <News news1={news1} newsLink1={newsLink1} news2={news2} newsLink2={newsLink2} news3={news3} newsLink3={newsLink3} />
+              <PieChart />
+            </div>
+          </Wrapper>
+        </div>
+      </div>;
 }
 }
 

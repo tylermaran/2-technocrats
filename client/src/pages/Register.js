@@ -5,6 +5,7 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../actions/authActions";
+import "../index.css";
 
 class Register extends Component {
   constructor() {
@@ -60,7 +61,7 @@ class Register extends Component {
     return (
       <div>
         <NavBarTop />
-        <div className="container">
+        <div className="container margin-top">
           <form onSubmit={this.onSubmit}>
             <div className="form-group row">
               <p className="col-2 col-form-p">Name</p>
