@@ -54,56 +54,44 @@ class Login extends Component {
   render() {
     const { errors } = this.state;
 
-    return (
-      <div>
+    return <div>
         <NavBarTop />
         <div className="container margin-top">
-          <form onSubmit={this.onSubmit}>
-            <div className="form-group row">
-              <p className="col-2 col-form-label">Email</p>
-              <div className="col-5">
-                <input
-                  className={classnames("form-control", {
-                    "is-invalid": errors.email
-                  })}
-                  type="email"
-                  id="email"
-                  placeholder="example@example.com"
-                  name="email"
-                  value={this.state.email}
-                  onChange={this.onChange}
-                />
-                {errors.email && (
-                  <div className="invalid-feedback">{errors.email}</div>
-                )}
-              </div>
+          <div className="row justify-content-center">
+            <div className="col-8 m-auto text-center">
+              <form className="form-inline justify-content-center" onSubmit={this.onSubmit}>
+                <div className="form-group row">
+                <p className="col-form-label text-center">Email</p>
+                  <div className="col-12">
+                    <input className={classnames("form-control", {
+                        "is-invalid": errors.email
+                      })} type="email" id="email" placeholder="example@example.com" name="email" value={this.state.email} onChange={this.onChange} />
+                    {errors.email && <div className="invalid-feedback">
+                        {errors.email}
+                      </div>}
+                  </div>
+                </div>
+                <div className="form-group row">
+                <p className="col-form-label text-center">
+                    Password
+                  </p>
+                  <div className="col-12">
+                    <input className={classnames("form-control", {
+                        "is-invalid": errors.password
+                      })} type="password" placeholder="password" name="password" id="password" value={this.state.password} onChange={this.onChange} />
+                    {errors.password && <div className="invalid-feedback">
+                        {errors.password}
+                      </div>}
+                  </div>
+                </div>
+                <button type="submit" className="btn btn-primary">
+                  Submit
+                </button>
+              </form>
             </div>
-            <div className="form-group row">
-              <p className="col-2 col-form-label">Password</p>
-              <div className="col-5">
-                <input
-                  className={classnames("form-control", {
-                    "is-invalid": errors.password
-                  })}
-                  type="password"
-                  placeholder="password"
-                  name="password"
-                  id="password"
-                  value={this.state.password}
-                  onChange={this.onChange}
-                />
-                {errors.password && (
-                  <div className="invalid-feedback">{errors.password}</div>
-                )}
-              </div>
-            </div>
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
-          </form>
+          </div>
         </div>
-      </div>
-    );
+      </div>;
   }
 }
 
