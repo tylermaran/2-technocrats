@@ -29,7 +29,10 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || db);
+mongoose
+  .connect(process.env.MONGODB_URI || db)
+  .then(() => console.log("MongooDB Connected"))
+  .catch(err => console.log(err));
 
 // Start the API server
 app.listen(PORT, function () {

@@ -8,7 +8,6 @@ class Navbar extends Component {
   onLogoutClick(e) {
     e.preventDefault();
     this.props.logoutUser();
-    this.props.history.push('/login')
   }
   render() {
     const { isAuthenticated, user } = this.props.auth;
@@ -37,7 +36,7 @@ class Navbar extends Component {
     const guestLinks = (
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
-          <Link className="navbar-brand" to="/login">
+          <Link className="navbar-brand" to="/">
             Login
           </Link>
         </li>

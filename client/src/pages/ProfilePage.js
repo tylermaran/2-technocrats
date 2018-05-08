@@ -40,7 +40,7 @@ class ProfilePage extends Component {
 
     //if logged in and trying to go to the login page redirect to profile page
     if(!this.props.auth.isAuthenticated){
-      this.props.history.push('/login')
+      this.props.history.push('/')
     }
   }
 
