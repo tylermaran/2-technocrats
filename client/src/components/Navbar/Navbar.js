@@ -43,8 +43,7 @@ const Navbar = props => (
   //     </div>
   //     <ul classNameNameName="nav navbar-nav">
   //       <li
-  //         classNameNameName={
-  //           window.location.pathname === "/" || window.location.pathname === "/about"
+  //         classNameNameName={  //           window.location.pathname === "/" || window.location.pathname === "/about"
   //             ? "active"
   //             : ""
   //         }
