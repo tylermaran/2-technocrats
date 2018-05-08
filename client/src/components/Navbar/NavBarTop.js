@@ -8,6 +8,7 @@ class Navbar extends Component {
   onLogoutClick(e) {
     e.preventDefault();
     this.props.logoutUser();
+    window.location.href = "/";
   }
   render() {
     const { isAuthenticated, user } = this.props.auth;
@@ -19,7 +20,7 @@ class Navbar extends Component {
             href=""
             onClick={this.onLogoutClick.bind(this)}
             className="nav-link"
-          > 
+          >
             <img
               src={user.avatar}
               className="rounded-circle"
@@ -62,13 +63,9 @@ class Navbar extends Component {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li className="nav-item active">
-              <Link className="navbar-brand" to="/profile">
-                Profile
-              </Link>
-            </li>
-          </ul>
+          <Link className="navbar-brand" to="/profile">
+            Profile
+          </Link>
           {isAuthenticated ? authLinks : guestLinks}
         </div>
       </nav>
