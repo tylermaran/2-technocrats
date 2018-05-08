@@ -32,7 +32,6 @@ class Navbar extends React.Component {
             name={stock.name}
             id={stock.id}
             />
-
         ))}
       </div>
     )}
