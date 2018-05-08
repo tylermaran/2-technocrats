@@ -3,16 +3,19 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const passport = require('passport');
 const axios = require("axios");
-
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
-  
+require('dotenv').config()
+
+const db = require('./config/keys').mongoURI
+
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
+
 
 // Serve up static assets
 app.use(express.static("client/build"));
@@ -26,7 +29,7 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/tsi");
+mongoose.connect(process.env.MONGODB_URI || db);
 
 // Start the API server
 app.listen(PORT, function () {
