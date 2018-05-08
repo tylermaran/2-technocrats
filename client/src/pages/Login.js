@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../actions/authActions";
 import "../index.css";
+import Spinner from '../components/Spiner'
 
 class Login extends Component {
   constructor() {
@@ -12,7 +13,8 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      errors: {}
+      errors: {},
+      loading: false
     };
 
     this.onChange = this.onChange.bind(this);
@@ -27,6 +29,8 @@ class Login extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    this.setState({ loading: false });
+    console.log(this.state)
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push("/profile");
     }
@@ -49,49 +53,77 @@ class Login extends Component {
     };
 
     this.props.loginUser(userFormData);
+    this.setState({ loading: true});
+    console.log(this.state)
   }
 
   render() {
     const { errors } = this.state;
 
-    return <div>
+    const loadingSpinner = (<Spinner />);
+
+    return (
+      <div>
         <NavBarTop />
         <div className="container margin-top">
           <div className="row justify-content-center">
             <div className="col-8 m-auto text-center">
-              <form className="form-inline justify-content-center" onSubmit={this.onSubmit}>
+              <form
+                className="form-inline justify-content-center"
+                onSubmit={this.onSubmit}
+              >
                 <div className="form-group row">
-                <p className="col-form-label text-center">Email</p>
+                  <p className="col-12 col-form-label text-center" for="email">
+                    Email
+                  </p>
                   <div className="col-12">
-                    <input className={classnames("form-control", {
+                    <input
+                      className={classnames("form-control", {
                         "is-invalid": errors.email
-                      })} type="email" id="email" placeholder="example@example.com" name="email" value={this.state.email} onChange={this.onChange} />
-                    {errors.email && <div className="invalid-feedback">
-                        {errors.email}
-                      </div>}
+                      })}
+                      type="email"
+                      id="email"
+                      placeholder="example@example.com"
+                      name="email"
+                      value={this.state.email}
+                      onChange={this.onChange}
+                    />
+                    {errors.email && (
+                      <div className="invalid-feedback">{errors.email}</div>
+                    )}
                   </div>
                 </div>
                 <div className="form-group row">
-                <p className="col-form-label text-center">
+                  <p className="col-12 col-form-label text-center" for="email">
                     Password
                   </p>
                   <div className="col-12">
-                    <input className={classnames("form-control", {
+                    <input
+                      className={classnames("form-control", {
                         "is-invalid": errors.password
-                      })} type="password" placeholder="password" name="password" id="password" value={this.state.password} onChange={this.onChange} />
-                    {errors.password && <div className="invalid-feedback">
-                        {errors.password}
-                      </div>}
+                      })}
+                      type="password"
+                      placeholder="password"
+                      name="password"
+                      id="password"
+                      value={this.state.password}
+                      onChange={this.onChange}
+                    />
+                    {errors.password && (
+                      <div className="invalid-feedback">{errors.password}</div>
+                    )}
                   </div>
                 </div>
                 <button type="submit" className="btn btn-primary">
                   Submit
                 </button>
+                {this.state.loading ? loadingSpinner : ""}
               </form>
             </div>
           </div>
         </div>
-      </div>;
+      </div>
+    );
   }
 }
 
