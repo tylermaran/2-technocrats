@@ -101,7 +101,7 @@ class App extends Component {
     return (
     <Router>
       <div className="container-fluid">
-        <Navbar handleClick={this.handleClick}/>
+        <Nav handleClick={this.handleClick}/>
         <Wrapper>
           <Title />
           <Graph
