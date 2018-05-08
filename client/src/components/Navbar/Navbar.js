@@ -20,7 +20,7 @@ const Navbar = props => (
       </div>
     </nav>
     {stocks.map(stock => (
-      <NavLinks
+      <NavLink
         handleClick={props.handleClick}
         name={stock.name}
         id={stock.id}
