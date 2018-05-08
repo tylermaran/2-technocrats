@@ -42,12 +42,14 @@
   },
   "devDependencies": {
     "concurrently": "^3.5.1",
-    "nodemon": "^1.17.3"
+    "nodemon": "^1.17.4"
   },
   "scripts": {
-    "server": "node server.js",
-    "client": "node scripts/start-client.js",
-    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "start": "node server.js",
+    "client": "npm start --prefix client",
+    "client-install": "npm install --prefix client",
+    "server": "nodemon server.js",
+    "dev": "concurrently \"nodemon server.js\" \"npm run client\"",
     "build": "node scripts/build.js",
     "seed": "node scripts/seedDB.js",
     "test": "echo \"Error: no test specified\" && exit 1",
