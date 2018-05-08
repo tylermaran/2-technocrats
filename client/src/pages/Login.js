@@ -31,7 +31,7 @@ class Login extends Component {
     if(nextProps.auth.isAuthenticated) {
       this.props.history.push('/profile');
     }
-    
+
     if (nextProps.errors) {
       this.setState({errors: nextProps.errors});
     }
@@ -61,7 +61,7 @@ class Login extends Component {
         <NavBarTop />
         <div className="container">
           <form onSubmit={this.onSubmit}>
-         
+
             <div className="form-group row">
               <p className="col-2 col-form-label">Email</p>
               <div className="col-5">
