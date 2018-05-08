@@ -60,6 +60,7 @@ class ProfilePage extends Component {
   handleClick = id => {
 
     const stock = this.state.stocks.find( item => item.id === id );
+    if (stock) {
     currentStock = stock;
     title = stock.title;
     const ticker = stock.title.toUpperCase(); // TODO: maybe unneeded??
@@ -118,7 +119,7 @@ class ProfilePage extends Component {
         console.log(response);
         console.log("it works");
       });
-
+    }
   }
 
   displayWeek = () => {
