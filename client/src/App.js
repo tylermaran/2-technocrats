@@ -1,126 +1,55 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import Wrapper from "./components/Wrapper";
-import Navbar from "./components/Navbar";
-import Title from "./components/Title";
-import Graph from "./components/Graph";
-import News from "./components/News";
-import PieChart from "./components/PieChart";
-import stocks from "./stocks.json";
+import { BrowserRouter as Router, Route, Switch  } from "react-router-dom";
+import { Provider } from "react-redux";
+import jwt_decode from 'jwt-decode';
+import setAuthToken from './utils/setAuthToken';
+import { setCurrentUser, logoutUser } from './actions/authActions'
+import store from './store';
 import "./App.css";
-var axios = require("axios");
 
-let image = "./images/graph.png";
-let title = "Stocks";
-let news = "";
-let min = 0;
-let max = 1000;
+//Pages
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import ProfilePage from "./pages/ProfilePage";
+
+//check for token
+if(localStorage.jwtToken){
+  //set auth token header auth
+  setAuthToken(localStorage.jwtToken);
+
+  //decode token and get user info and exp
+  const decoded = jwt_decode(localStorage.jwtToken);
+
+  //set user and is Authenticated
+  store.dispatch(setCurrentUser(decoded));
+
+  //check for expired token
+  const currentTime = Date.now() / 1000;
+  if(decoded.exp < currentTime){
+    //logout user
+    store.dispatch(logoutUser());
+
+    //TODO clear current profile
+
+    //redirect to login
+    window.location.href = '/login';
+  }
+}
 
 class App extends Component {
-  state = {
-    stocks,
-    priceArray: [],
-    title: ""
-  };
-
-  componentDidMount() {
-    // this.callApi()
-    //   .then(res => this.setState({ response: res.express }))
-    //   .catch(err => console.log(err));
-  }
-
-  callApi = async () => {
-    const response = await fetch("/api/users/test");
-    const body = await response.json();
-    console.log(body)
-    if (response.status !== 200) throw Error(`my error ${body.message}`);
-
-    return body;
-  };
-  // state = {
-  //   stocks
-  // };
-
-  handleClick = id => {
-
-    const stock = this.state.stocks.find( item => item.id === id );
-    title = stock.title;
-    const ticker = stock.title.toUpperCase(); // TODO: maybe unneeded??
-
-    //  Pull stock data based on parameters
-    var parameters = {
-      symbols: ticker,
-      types: 'chart,news',
-      range: '1y',
-      last: '5'
-    }
-    axios({
-      method: 'GET',
-      url: 'https://api.iextrading.com/1.0//stock/market/batch',
-      params: parameters
-    })
-      .then((response) => {
-
-        var stockData = response.data[ticker];
-        console.log(stockData);
-        const dayLimit = 30;
-
-        const priceArray = [];
-        for ( let i = 0; i < dayLimit; i++ ) {
-          priceArray.push( stockData.chart[i].close );
-        }
-
-        news = stockData.news[0].headline;
-
-        min = Math.min.apply(Math, priceArray);
-        max = Math.max.apply(Math, priceArray);
-
-        // const priceArray = stockData.chart
-        //   .map( quote => quote.close )
-        //   .filter( (quote, i) => i < dayLimit );
-
-        this.setState({ priceArray })
-
-      });
-
-    // testing get/post routing
-    axios({
-      method: 'GET',
-      url: '/api/users/test',
-    })
-      .then((response) => {
-        console.log(response);
-        console.log("it works");
-      });
-
-  }
-
-
-
   render() {
     return (
-    <Router>
-      <div className="container-fluid">
-        <Navbar handleClick={this.handleClick}/>
-        <Wrapper>
-          <Title />
-          <Graph
-            title={title}
-            priceArray={this.state.priceArray}
-            min={min}
-            max={max}
-          />
-          <div className="row">
-            <News
-              news={news}
-            />
-            <PieChart />
+      <Provider store={ store }>
+        <Router>
+          <div className="App">
+            <Route exact path="/profile" component={ProfilePage} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/" component={Login} />
           </div>
-        </Wrapper>
-      </div>
-    </Router>
-  );
-}
+        </Router>
+      </Provider>
+    );
+  }
 }
 
 export default App;

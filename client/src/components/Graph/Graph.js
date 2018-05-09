@@ -4,7 +4,6 @@ import ReactChartist from 'react-chartist';
 
 
 
-
 const Graph = props => (
 
 
@@ -13,17 +12,16 @@ const Graph = props => (
     <div className="graph card">
 
       <div className="header">
-
-        <h4>{props.title}</h4>
-
+        <div className="topRow">
+        <h4 id="stockTitle">{props.title}</h4>
+        <h4 id="price">55.55</h4>
+        </div>
       </div>
 
       <div className="content">
 
         <ReactChartist data={{
-          labels: [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-          "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-          "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"],
+          labels: props.timeline,
           series: [props.priceArray]
           }} options={{
               lineSmooth: true,
@@ -43,9 +41,11 @@ const Graph = props => (
               }
           }} type="Line" className="ct-chart" />
       </div>
-
+      <div className="row" id="btnRow">
+        <button onClick={() => props.displayWeek()}>Week</button><button onClick={() => props.displayMonth()}>Month</button>
+        <button onClick={() => props.displayQuarter()}>Quarter</button><button onClick={() => props.displayYear()}>Year</button>
+      </div>
     </div>
-
   );
 
 export default Graph;

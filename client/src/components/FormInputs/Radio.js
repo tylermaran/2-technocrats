@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
-import uncheckImage from 'assets/images/radio-1.svg';
-import checkImage from 'assets/images/radio-2.svg';
+import uncheckImage from '../../assets/images/radio-1.svg.png';
+import checkImage from '../../assets/images/radio-2.svg.png';
 
 class Radio extends Component {
 
