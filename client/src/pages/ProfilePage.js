@@ -24,45 +24,15 @@ let newsLink3 = "";
 let min = 0;
 let max = 1000;
 let currentStock = "";
+let currentPrice = "";
 
 class ProfilePage extends Component {
   state = {
     stocks,
     priceArray: [],
     title: "",
-    timeline: [
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      ""
-    ],
-    dayLimit: 30
+    timeline: [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"],
+    dayLimit: 21
   };
 
   componentDidMount() {
@@ -84,33 +54,35 @@ class ProfilePage extends Component {
   handleClick = id => {
     const stock = this.state.stocks.find(item => item.id === id);
     if (stock) {
-      currentStock = stock;
-      title = stock.title;
-      const ticker = stock.title.toUpperCase(); // TODO: maybe unneeded??
+    currentStock = stock;
+    title = stock.title;
+    const ticker = stock.title.toUpperCase(); // TODO: maybe unneeded??
 
-      //  Pull stock data based on parameters
-      var parameters = {
-        symbols: ticker,
-        types: "chart,news",
-        range: "1y",
-        last: "5"
-      };
-      axios({
-        method: "GET",
-        url: "api/search/search",
-        params: parameters
-      }).then(response => {
+    //  Pull stock data based on parameters
+    var parameters = {
+      symbols: ticker,
+      types: 'quote,chart,news',
+      range: '1y',
+      last: '5'
+    }
+    axios({
+      method: 'GET',
+      url: '/api/search/search',
+      params: parameters
+    })
+      .then((response) => {
+
         let stockData = response.data[ticker];
         console.log(stockData);
 
         const priceArray = [];
-        for (
-          let i = stockData.chart.length - this.state.dayLimit;
-          i < stockData.chart.length;
-          i++
-        ) {
-          priceArray.push(stockData.chart[i].close);
+        for ( let i = stockData.chart.length - (this.state.dayLimit - 1); i < stockData.chart.length; i++ ) {
+          priceArray.push( stockData.chart[i].close );
         }
+        priceArray.push(stockData.quote.close)
+
+
+        currentPrice = "$" + stockData.quote.close
 
         news1 = stockData.news[0].headline;
         newsLink1 = stockData.news[0].url;
@@ -146,57 +118,49 @@ class ProfilePage extends Component {
 
   displayWeek = () => {
     let newArray = [];
-    for (var i = 0; i < 8; i++) {
-      newArray.push(i);
+    for (var i = 0; i < 6 ; i++) {
+      newArray.push(i)
     }
-    this.setState({
-      timeline: newArray,
-      dayLimit: 7
-    });
+    this.setState({timeline: newArray,
+  dayLimit: 6 })
     this.handleClick(currentStock.id);
   };
 
   displayMonth = () => {
     let newArray = [];
-    for (var i = 0; i < 31; i++) {
-      newArray.push(i);
+    for (var i = 0; i <21 ; i++) {
+      newArray.push(i)
     }
-    this.setState({
-      timeline: newArray,
-      dayLimit: 30
-    });
+    this.setState({timeline: newArray,
+  dayLimit: 21 })
     this.handleClick(currentStock.id);
   };
 
   displayQuarter = () => {
     let newArray = [];
-    for (var i = 0; i < 91; i++) {
-      if (i % 5 == 0) {
-        newArray.push(i);
+    for (var i = 0; i <63 ; i++) {
+      if (i % 5 === 0) {
+        newArray.push(i)
       } else {
         newArray.push("");
       }
     }
-    this.setState({
-      timeline: newArray,
-      dayLimit: 90
-    });
+    this.setState({timeline: newArray,
+  dayLimit: 63 })
     this.handleClick(currentStock.id);
   };
 
   displayYear = () => {
     let newArray = [];
-    for (var i = 0; i < 366; i++) {
-      if (i % 25 == 0) {
-        newArray.push(i);
+    for (var i = 0; i <251 ; i++) {
+      if (i % 25 === 0) {
+        newArray.push(i)
       } else {
         newArray.push("");
       }
     }
-    this.setState({
-      timeline: newArray,
-      dayLimit: 365
-    });
+    this.setState({timeline: newArray,
+  dayLimit: 251 })
     this.handleClick(currentStock.id);
   };
 
@@ -230,6 +194,7 @@ class ProfilePage extends Component {
             {/* <Title onSearchStock={stock => this.onSearchStockClick(stock)} /> */}
             <Graph
               title={title}
+              currentPrice={currentPrice}
               priceArray={this.state.priceArray}
               min={min}
               max={max}

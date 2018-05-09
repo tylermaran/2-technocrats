@@ -12,10 +12,10 @@ const Graph = props => (
     <div className="graph card">
 
       <div className="header">
-        <div className="topRow">
+
         <h4 id="stockTitle">{props.title}</h4>
-        <h4 id="price">55.55</h4>
-        </div>
+        <h4 id="stockTitle">{props.currentPrice}</h4>
+
       </div>
 
       <div className="content">

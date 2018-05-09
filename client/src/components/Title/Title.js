@@ -18,7 +18,26 @@ class Title extends Component {
   }
 
   componentDidMount() {
-    // axios.get("/api/students/test").then(response => console.log(response));
+    console.log("YOOOOOOOOOOOOOOOOOOOOOOOOO");
+    const auth = localStorage.getItem("jwtToken");
+
+    axios({
+      method: 'GET',
+      url: '/api/users/current',
+      headers:
+        {
+          'Cache-Control': 'no-cache',
+          Authorization: auth
+        }
+    })
+      .then((response) => {
+
+        // let stockData = response.data['AAPL'];
+        console.log(response);
+        console.log("BROOOOOOOOOOOOOOOOOOO");
+      }).catch(response => {
+        console.log(response);
+      });
   }
 
   onSearchStockClick(e) {

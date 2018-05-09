@@ -35,14 +35,12 @@ button:active {
   padding-left: 50px;
 }
 
-h4 {
-  display: inline;
+.header {
+  height: 125px;
 }
 
-#stockTitle {
-  text-align: center;
-}
-
-#price {
-  float: right;
+.ct-series-a .ct-line,
+.ct-series-a .ct-point  {
+  stroke: #26a69a;
+  stroke-width: 2px;
 }

@@ -1,25 +1,41 @@
 import React from "react";
 import "./PieChart.css";
 import ReactChartist from 'react-chartist';
+import axios from 'axios';
 
-const PieChart = props => (
+const Portfolio =[];
+
+class PieChart extends React.Component {
+
+  state = {
+    portfolio: []
+  };
+
+componentDidMount () {
+  // axios.get("/api/users/current").then(response => {
+  //   console.log("YOOOOOOOOOOOOOOOOOOOOOOOOO");
+  //   console.log(response)
+  // });
+  
+}
+
+render() {
+  return (
   <div className="piechart col-6">
     {/*Graph goes below*/}
-
-
-      <div className=" pie card">
+    <div className=" pie card">
         <h4>Portfolio Diversity</h4>
 
         <div className="header">
 
-          <h4>{props.title}</h4>
+          <h4>{this.props.title}</h4>
 
         </div>
 
         <div className="content">
 
           <ReactChartist data={{
-                series: [15, 5, 20, 10, 10, 5, 5, 30]
+                series: this.state.portfolio
           }} options={{
 
             donut: true,
@@ -77,6 +93,9 @@ const PieChart = props => (
 
       </div>
 
-  </div>)
-
+  </div>
+    )
+  }
+}
+      
 export default PieChart;
