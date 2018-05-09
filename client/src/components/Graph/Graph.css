@@ -38,3 +38,9 @@ button:active {
 .header {
   height: 125px;
 }
+
+.ct-series-a .ct-line,
+.ct-series-a .ct-point  {
+  stroke: #26a69a;
+  stroke-width: 2px;
+}
