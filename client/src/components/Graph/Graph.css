@@ -34,3 +34,15 @@ button:active {
 #btnRow {
   padding-left: 50px;
 }
+
+h4 {
+  display: inline;
+}
+
+#stockTitle {
+  text-align: center;
+}
+
+#price {
+  float: right;
+}

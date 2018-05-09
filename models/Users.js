@@ -21,7 +21,36 @@ const UserSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
+  classNumber: {
+    type: String,
+    required: true
+  },
+  cash: {
+    type: Number
+  },
+  transaction: [{
+    transactionType: String,
+    numberShares: Number,
+    tickerSelected: String,
+    totalCost: Number
+  }],
+  watchlist: [{
+    tickerSelected: {
+      type: String,
+      required: true
+    }
+  }],
+  portfolio: [{
+    ticker: {
+      type: String,
+      required: true
+    },
+    value: [Number],
+    totalValue: Number,
+    numberShares: Number,
+    avargeCost: Number
+  }]
 });
 
 module.exports = User = mongoose.model("users", UserSchema);

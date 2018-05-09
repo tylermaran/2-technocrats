@@ -27,11 +27,11 @@ class Register extends Component {
     //if logged in and trying to go to the login page redirect to profile page
     if(this.props.auth.isAuthenticated){
       this.props.history.push('/profile')
-      
+
     }
     console.log("did mount")
   }
-  
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
