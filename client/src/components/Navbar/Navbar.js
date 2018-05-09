@@ -9,6 +9,32 @@ import stocks from "../../stocks.json";
 class Navbar extends React.Component {
 
 
+  // <nav classNameNameName="navbar navbar-default">
+  //   <div classNameNameName="container-fluid">
+  //     <div classNameNameName="navbar-header">
+  //       <Link classNameNameName="navbar-brand" to="/">
+  //         Tech Square Investments
+  //       </Link>
+  //     </div>
+  //     <ul classNameNameName="nav navbar-nav">
+  //       <li
+  //         classNameNameName={  //           window.location.pathname === "/" || window.location.pathname === "/about"
+  //             ? "active"
+  //             : ""
+  //         }
+  //       >
+  //         <Link to="/">About</Link>
+  //       </li>
+  //       <li classNameNameName={window.location.pathname === "/discover" ? "active" : ""}>
+  //         <Link to="/discover">Discover</Link>
+  //       </li>
+  //       <li classNameNameName={window.location.pathname === "/search" ? "active" : ""}>
+  //         <Link to="/search">Search</Link>
+  //       </li>
+  //     </ul>
+  //   </div>
+  // </nav>
+
 
   render() {
     return (
@@ -34,5 +60,4 @@ class Navbar extends React.Component {
       </div>
     )}
   };
-
   export default Navbar;
