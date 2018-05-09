@@ -8,7 +8,14 @@ import { GET_ERRORS, SET_CURRENT_USER } from "./types";
 export const registerUser = (userData, history) => dispatch => {
   axios
     .post("api/users/register", userData)
-    .then(res => history.push('./'))
+    .then(res => {
+      history.push('./')
+      
+      //TODO: create new object that can be used to login the user and send them to the profile pag
+      
+            // console.log(res);
+            // console.log(userData);
+    })    
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
