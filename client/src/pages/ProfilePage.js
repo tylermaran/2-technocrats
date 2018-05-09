@@ -27,13 +27,19 @@ let currentStock = "";
 let currentPrice = "";
 
 class ProfilePage extends Component {
-  state = {
-    stocks,
-    priceArray: [],
-    title: "",
-    timeline: [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"],
-    dayLimit: 21
-  };
+  constructor(props) {
+    super(props)
+    this.state = {
+      stocks,
+      priceArray: [],
+      title: "",
+      timeline: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"],
+      dayLimit: 21
+    };
+
+    this.stockSearch('');
+  }
+  
 
   componentDidMount() {
     //if logged in and trying to go to the login page redirect to profile page
@@ -53,6 +59,7 @@ class ProfilePage extends Component {
 
   handleClick = id => {
     const stock = this.state.stocks.find(item => item.id === id);
+    console.log(stock);
     if (stock) {
     currentStock = stock;
     title = stock.title;
@@ -65,6 +72,8 @@ class ProfilePage extends Component {
       range: '1y',
       last: '5'
     }
+
+
     axios({
       method: 'GET',
       url: '/api/search/search',
@@ -102,19 +111,8 @@ class ProfilePage extends Component {
 
         this.setState({ priceArray });
       });
-
-      // testing get/post routing
-      axios({
-        method: "GET",
-        url: "/api/users/test"
-      }).then(response => {
-        console.log(response);
-        console.log("it works");
-      });
     }
   };
-
-  stockSearch(stockTicker) {}
 
   displayWeek = () => {
     let newArray = [];
@@ -164,23 +162,8 @@ class ProfilePage extends Component {
     this.handleClick(currentStock.id);
   };
 
-  onSearchStock(stocks) {
-    // e.preventDefault();
-    //  Pull stock data based on parameters
-    var parameters = {
-      symbols: this.state.ticker,
-      types: "chart,news",
-      range: "1y",
-      last: "5"
-    };
-    axios({
-      method: "GET",
-      url: "/api/search/search",
-      params: parameters
-    }).then(response => {
-      console.log(response);
-    });
-    console.log("searched");
+  stockSearch(stocks) {
+    console.log(`Searched with ${stocks}`);
   }
 
   render() {
@@ -191,7 +174,7 @@ class ProfilePage extends Component {
           <Navbar handleClick={this.handleClick} />
 
           <Wrapper>
-            {/* <Title onSearchStock={stock => this.onSearchStockClick(stock)} /> */}
+            <Title stockSearchButtonClick={stock => this.stockSearch(stock)} />
             <Graph
               title={title}
               currentPrice={currentPrice}

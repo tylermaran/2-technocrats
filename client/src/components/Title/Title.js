@@ -10,7 +10,6 @@ class Title extends Component {
     };
 
     this.onChange = this.onChange.bind(this);
-    this.onSearchStockClick = this.onSearchStockClick.bind(this);
   }
 
   onChange(e) {
@@ -34,30 +33,13 @@ class Title extends Component {
 
         // let stockData = response.data['AAPL'];
         console.log(response);
-        console.log("BROOOOOOOOOOOOOOOOOOO");
+        // console.log("BROOOOOOOOOOOOOOOOOOO");
       }).catch(response => {
         console.log(response);
       });
   }
 
-  onSearchStockClick(e) {
-    e.preventDefault();
-    //  Pull stock data based on parameters
-    var parameters = {
-      symbols: this.state.ticker,
-      types: "chart,news",
-      range: "1y",
-      last: "5"
-    };
-    axios({
-      method: "GET",
-      url: "/api/search/search",
-      params: parameters
-    }).then(response => {
-      console.log(response)
-    });
-    console.log("searched");
-  }
+  
 
   render() {
     return (
@@ -73,7 +55,8 @@ class Title extends Component {
           />
           <button
             className="btn btn-outline-success my-2 my-sm-0"
-            onClick={this.onSearchStockClick(this.state.term)}
+            type="button"
+            onClick={(event) => this.onSearchStockClick(this.state.ticker)}
           >
             Search
           </button>
@@ -81,9 +64,25 @@ class Title extends Component {
       </div>
     );
   }
-  onSearchStockClick(term) {
-    // this.setState({ term });
-    this.props.onSearchStock(term);
+
+  onSearchStockClick(stock) {
+    this.props.stockSearchButtonClick(stock)
+    //  Pull stock data based on parameters
+    // console.log(e)
+    // var parameters = {
+    //   symbols: this.state.ticker,
+    //   types: "chart,news",
+    //   range: "1y",
+    //   last: "5"
+    // };
+    // axios({
+    //   method: "GET",
+    //   url: "/api/search/search",
+    //   params: parameters
+    // }).then(response => {
+    //   console.log(response)
+    // });
+    // console.log("searched");
   }
 }
 
