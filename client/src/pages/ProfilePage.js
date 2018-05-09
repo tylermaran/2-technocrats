@@ -9,7 +9,7 @@ import News from "../components/News";
 import PieChart from "../components/PieChart";
 import stocks from "../stocks.json";
 import NavBarTop from "../components/Navbar/NavBarTop.js";
-import "../index.css";
+// import "../index.css";
 
 let axios = require("axios");
 
