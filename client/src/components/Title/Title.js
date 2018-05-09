@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import "./Title.css";
 
 class Title extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       ticker: ""
     };
@@ -54,14 +54,17 @@ class Title extends Component {
           />
           <button
             className="btn btn-outline-success my-2 my-sm-0"
-            onClick={this.onSearchStockClick}
-            type="submit"
+            onClick={this.onSearchStockClick(this.state.term)}
           >
             Search
           </button>
         </form>
       </div>
     );
+  }
+  onSearchStockClick(term) {
+    // this.setState({ term });
+    this.props.onSearchStock(term);
   }
 }
 

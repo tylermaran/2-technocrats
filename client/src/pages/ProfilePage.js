@@ -8,9 +8,8 @@ import Graph from "../components/Graph";
 import News from "../components/News";
 import PieChart from "../components/PieChart";
 import stocks from "../stocks.json";
-import NavBarTop from '../components/Navbar/NavBarTop.js'
+import NavBarTop from "../components/Navbar/NavBarTop.js";
 import "../index.css";
-
 
 let axios = require("axios");
 
@@ -27,63 +26,90 @@ let max = 1000;
 let currentStock = "";
 
 class ProfilePage extends Component {
-    state = {
+  state = {
     stocks,
     priceArray: [],
     title: "",
-    timeline: [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",],
+    timeline: [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
     dayLimit: 30
   };
 
   componentDidMount() {
-
     //if logged in and trying to go to the login page redirect to profile page
-    if(!this.props.auth.isAuthenticated){
-      this.props.history.push('/')
+    if (!this.props.auth.isAuthenticated) {
+      this.props.history.push("/");
     }
+
+    const sesToken = sessionStorage.getItem("jwtToken");
+
+    
   }
 
   callApi = async () => {
-    const response = await fetch("/api/users/test");
-    const body = await response.json();
-    console.log(body)
-    if (response.status !== 200) throw Error(`my error ${body.message}`);
-
-    return body;
+  
   };
-  // state = {
-  //   stocks
-  // };
+
 
   handleClick = id => {
-
-    const stock = this.state.stocks.find( item => item.id === id );
+    const stock = this.state.stocks.find(item => item.id === id);
     if (stock) {
-    currentStock = stock;
-    title = stock.title;
-    const ticker = stock.title.toUpperCase(); // TODO: maybe unneeded??
+      currentStock = stock;
+      title = stock.title;
+      const ticker = stock.title.toUpperCase(); // TODO: maybe unneeded??
 
-    //  Pull stock data based on parameters
-    var parameters = {
-      symbols: ticker,
-      types: 'chart,news',
-      range: '1y',
-      last: '5'
-    }
-    axios({
-      method: 'GET',
-      url: 'https://api.iextrading.com/1.0//stock/market/batch',
-      params: parameters
-    })
-      .then((response) => {
-
+      //  Pull stock data based on parameters
+      var parameters = {
+        symbols: ticker,
+        types: "chart,news",
+        range: "1y",
+        last: "5"
+      };
+      axios({
+        method: "GET",
+        url: "api/search/search",
+        params: parameters
+      }).then(response => {
         let stockData = response.data[ticker];
         console.log(stockData);
 
-
         const priceArray = [];
-        for ( let i = stockData.chart.length - this.state.dayLimit; i < stockData.chart.length; i++ ) {
-          priceArray.push( stockData.chart[i].close );
+        for (
+          let i = stockData.chart.length - this.state.dayLimit;
+          i < stockData.chart.length;
+          i++
+        ) {
+          priceArray.push(stockData.chart[i].close);
         }
 
         news1 = stockData.news[0].headline;
@@ -102,81 +128,106 @@ class ProfilePage extends Component {
         //   .map( quote => quote.close )
         //   .filter( (quote, i) => i < dayLimit );
 
-        this.setState({ priceArray })
-
-
-
+        this.setState({ priceArray });
       });
 
-    // testing get/post routing
-    axios({
-      method: 'GET',
-      url: '/api/users/test',
-    })
-      .then((response) => {
+      // testing get/post routing
+      axios({
+        method: "GET",
+        url: "/api/users/test"
+      }).then(response => {
         console.log(response);
         console.log("it works");
       });
     }
-  }
+  };
+
+  stockSearch(stockTicker) {}
 
   displayWeek = () => {
     let newArray = [];
-    for (var i = 0; i <8 ; i++) {
-      newArray.push(i)
+    for (var i = 0; i < 8; i++) {
+      newArray.push(i);
     }
-    this.setState({timeline: newArray,
-  dayLimit: 7 })
+    this.setState({
+      timeline: newArray,
+      dayLimit: 7
+    });
     this.handleClick(currentStock.id);
-  }
+  };
 
   displayMonth = () => {
     let newArray = [];
-    for (var i = 0; i <31 ; i++) {
-      newArray.push(i)
+    for (var i = 0; i < 31; i++) {
+      newArray.push(i);
     }
-    this.setState({timeline: newArray,
-  dayLimit: 30 })
+    this.setState({
+      timeline: newArray,
+      dayLimit: 30
+    });
     this.handleClick(currentStock.id);
-  }
+  };
 
   displayQuarter = () => {
     let newArray = [];
-    for (var i = 0; i <91 ; i++) {
+    for (var i = 0; i < 91; i++) {
       if (i % 5 == 0) {
-        newArray.push(i)
+        newArray.push(i);
       } else {
-        newArray.push("")
+        newArray.push("");
       }
     }
-    this.setState({timeline: newArray,
-  dayLimit: 90 })
+    this.setState({
+      timeline: newArray,
+      dayLimit: 90
+    });
     this.handleClick(currentStock.id);
-  }
+  };
 
   displayYear = () => {
     let newArray = [];
-    for (var i = 0; i <366 ; i++) {
+    for (var i = 0; i < 366; i++) {
       if (i % 25 == 0) {
-        newArray.push(i)
+        newArray.push(i);
       } else {
-        newArray.push("")
+        newArray.push("");
       }
     }
-    this.setState({timeline: newArray,
-  dayLimit: 365 })
+    this.setState({
+      timeline: newArray,
+      dayLimit: 365
+    });
     this.handleClick(currentStock.id);
+  };
+
+  onSearchStock(stocks) {
+    // e.preventDefault();
+    //  Pull stock data based on parameters
+    var parameters = {
+      symbols: this.state.ticker,
+      types: "chart,news",
+      range: "1y",
+      last: "5"
+    };
+    axios({
+      method: "GET",
+      url: "/api/search/search",
+      params: parameters
+    }).then(response => {
+      console.log(response);
+    });
+    console.log("searched");
   }
 
-
   render() {
-    return <div className="app">
+    return (
+      <div className="app">
         <NavBarTop />
         <div className="margin-top">
           <Navbar handleClick={this.handleClick} />
 
           <Wrapper>
-            <Title />
+            {/* <Title onSearchStock={stock => this.onSearchStockClick(stock)} /> */}
             <Graph
               title={title}
               priceArray={this.state.priceArray}
@@ -186,25 +237,34 @@ class ProfilePage extends Component {
               displayWeek={this.displayWeek}
               displayMonth={this.displayMonth}
               displayQuarter={this.displayQuarter}
-              displayYear={this.displayYear} />
+              displayYear={this.displayYear}
+            />
             <div className="row">
-              <News news1={news1} newsLink1={newsLink1} news2={news2} newsLink2={newsLink2} news3={news3} newsLink3={newsLink3} />
+              <News
+                news1={news1}
+                newsLink1={newsLink1}
+                news2={news2}
+                newsLink2={newsLink2}
+                news3={news3}
+                newsLink3={newsLink3}
+              />
               <PieChart />
             </div>
           </Wrapper>
         </div>
-      </div>;
-}
+      </div>
+    );
+  }
 }
 
 ProfilePage.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
-}
+};
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
-})
+});
 
 export default connect(mapStateToProps, {})(ProfilePage);
