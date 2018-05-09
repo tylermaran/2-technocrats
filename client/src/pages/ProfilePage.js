@@ -31,9 +31,7 @@ class ProfilePage extends Component {
     stocks,
     priceArray: [],
     title: "",
-    timeline: [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-    "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-    "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"],
+    timeline: [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",],
     dayLimit: 30
   };
 
@@ -60,6 +58,7 @@ class ProfilePage extends Component {
   handleClick = id => {
 
     const stock = this.state.stocks.find( item => item.id === id );
+    if (stock) {
     currentStock = stock;
     title = stock.title;
     const ticker = stock.title.toUpperCase(); // TODO: maybe unneeded??
@@ -118,32 +117,54 @@ class ProfilePage extends Component {
         console.log(response);
         console.log("it works");
       });
-
+    }
   }
 
   displayWeek = () => {
-    this.setState({  timeline: [ "1", "2", "3", "4", "5", "6", "7"],
-    dayLimit:7 })
-
+    let newArray = [];
+    for (var i = 0; i <8 ; i++) {
+      newArray.push(i)
+    }
+    this.setState({timeline: newArray,
+  dayLimit: 7 })
     this.handleClick(currentStock.id);
-
   }
 
   displayMonth = () => {
-    this.setState({timeline: [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-    "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-    "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"],
+    let newArray = [];
+    for (var i = 0; i <31 ; i++) {
+      newArray.push(i)
+    }
+    this.setState({timeline: newArray,
   dayLimit: 30 })
-
     this.handleClick(currentStock.id);
   }
 
   displayQuarter = () => {
-    this.setState({timeline: [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-    "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-    "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"],
-  dayLimit: 30 })
+    let newArray = [];
+    for (var i = 0; i <91 ; i++) {
+      if (i % 5 == 0) {
+        newArray.push(i)
+      } else {
+        newArray.push("")
+      }
+    }
+    this.setState({timeline: newArray,
+  dayLimit: 90 })
+    this.handleClick(currentStock.id);
+  }
 
+  displayYear = () => {
+    let newArray = [];
+    for (var i = 0; i <366 ; i++) {
+      if (i % 25 == 0) {
+        newArray.push(i)
+      } else {
+        newArray.push("")
+      }
+    }
+    this.setState({timeline: newArray,
+  dayLimit: 365 })
     this.handleClick(currentStock.id);
   }
 
@@ -156,7 +177,16 @@ class ProfilePage extends Component {
 
           <Wrapper>
             <Title />
-            <Graph title={title} priceArray={this.state.priceArray} min={min} max={max} timeline={this.state.timeline} displayWeek={this.displayWeek} displayMonth={this.displayMonth} />
+            <Graph
+              title={title}
+              priceArray={this.state.priceArray}
+              min={min}
+              max={max}
+              timeline={this.state.timeline}
+              displayWeek={this.displayWeek}
+              displayMonth={this.displayMonth}
+              displayQuarter={this.displayQuarter}
+              displayYear={this.displayYear} />
             <div className="row">
               <News news1={news1} newsLink1={newsLink1} news2={news2} newsLink2={newsLink2} news3={news3} newsLink3={newsLink3} />
               <PieChart />

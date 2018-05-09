@@ -12,9 +12,10 @@ const Graph = props => (
     <div className="graph card">
 
       <div className="header">
-
-        <h4>{props.title}</h4>
-
+        <div className="topRow">
+        <h4 id="stockTitle">{props.title}</h4>
+        <h4 id="price">55.55</h4>
+        </div>
       </div>
 
       <div className="content">
@@ -41,7 +42,8 @@ const Graph = props => (
           }} type="Line" className="ct-chart" />
       </div>
       <div className="row" id="btnRow">
-        <button onClick={() => props.displayWeek()}>Week</button><button onClick={() => props.displayMonth()}>Month</button><button>Quarter</button><button>Year</button>
+        <button onClick={() => props.displayWeek()}>Week</button><button onClick={() => props.displayMonth()}>Month</button>
+        <button onClick={() => props.displayQuarter()}>Quarter</button><button onClick={() => props.displayYear()}>Year</button>
       </div>
     </div>
   );
