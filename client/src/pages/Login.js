@@ -4,7 +4,7 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../actions/authActions";
-import "../index.css";
+// import "../index.css";
 import Spinner from '../components/Spiner'
 
 class Login extends Component {

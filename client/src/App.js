@@ -32,7 +32,7 @@ if(localStorage.jwtToken){
     //TODO clear current profile
 
     //redirect to login
-    window.location.href = '/login';
+    window.location.href = '/';
   }
 }
 
