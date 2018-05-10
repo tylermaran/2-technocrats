@@ -8,9 +8,7 @@ import Graph from "../components/Graph";
 import News from "../components/News";
 import PieChart from "../components/PieChart";
 import stocks from "../stocks.json";
-import NavBarTop from '../components/Navbar/NavBarTop.js'
-import "../index.css";
-
+import NavBarTop from "../components/Navbar/NavBarTop.js";
 
 let axios = require("axios");
 
@@ -28,67 +26,119 @@ let currentStock = "";
 let currentPrice = "";
 
 class ProfilePage extends Component {
-    state = {
-    stocks,
-    priceArray: [],
-    title: "",
-    timeline: [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"],
-    dayLimit: 21
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      stocks,
+      priceArray: [],
+      title: "",
+      timeline: [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      dayLimit: 21
+    };
 
-  componentDidMount() {
-
-    //if logged in and trying to go to the login page redirect to profile page
-    if(!this.props.auth.isAuthenticated){
-      this.props.history.push('/')
-    }
+    this.stockSearch("");
   }
 
-  callApi = async () => {
-    const response = await fetch("/api/users/test");
-    const body = await response.json();
-    console.log(body)
-    if (response.status !== 200) throw Error(`my error ${body.message}`);
+  getCurrentUserData(){
+    const auth = localStorage.getItem("jwtToken");
 
-    return body;
-  };
-  // state = {
-  //   stocks
-  // };
-
-  handleClick = id => {
-
-    const stock = this.state.stocks.find( item => item.id === id );
-    if (stock) {
-    currentStock = stock;
-    title = stock.title;
-    const ticker = stock.title.toUpperCase(); // TODO: maybe unneeded??
-
-    //  Pull stock data based on parameters
-    var parameters = {
-      symbols: ticker,
-      types: 'quote,chart,news',
-      range: '1y',
-      last: '5'
-    }
     axios({
       method: 'GET',
-      url: '/api/search/search',
-      params: parameters
+      url: '/api/users/current',
+      headers:
+        {
+          'Cache-Control': 'no-cache',
+          Authorization: auth
+        }
     })
       .then((response) => {
+        console.log(response);
+      }).catch(response => {
+        console.log(response);
+      });
+  }
 
+  componentDidMount() {
+    //if logged in and trying to go to the login page redirect to profile page
+    if (!this.props.auth.isAuthenticated) {
+      this.props.history.push("/");
+    }
+
+    const sesToken = sessionStorage.getItem("jwtToken");
+
+    this.getCurrentUserData()
+  }
+
+  callApi = async () => {};
+
+  handleClick = (id, searchedStock) => {
+    console.log(`id is${id} and searched stock is ${searchedStock}`)
+    let stock = "";
+    let ticker = "";
+    if (id === "") {
+      stock = searchedStock;
+      ticker = stock.toUpperCase();
+      title = stock.toUpperCase();
+    } else {
+      stock = this.state.stocks.find(item => item.id === id);
+      currentStock = stock;
+      title = stock.title;
+      ticker = stock.title.toUpperCase(); // TODO: maybe unneeded??
+    }
+
+    console.log(stock);
+
+    if (stock) {
+      
+
+      //  Pull stock data based on parameters
+      var parameters = {
+        symbols: ticker,
+        types: "quote,chart,news",
+        range: "1y",
+        last: "5"
+      };
+
+      axios({
+        method: "GET",
+        url: "/api/search/search",
+        params: parameters
+      }).then(response => {
         let stockData = response.data[ticker];
         console.log(stockData);
 
         const priceArray = [];
-        for ( let i = stockData.chart.length - (this.state.dayLimit - 1); i < stockData.chart.length; i++ ) {
-          priceArray.push( stockData.chart[i].close );
+        for (
+          let i = stockData.chart.length - (this.state.dayLimit - 1);
+          i < stockData.chart.length;
+          i++
+        ) {
+          priceArray.push(stockData.chart[i].close);
         }
-        priceArray.push(stockData.quote.close)
+        priceArray.push(stockData.quote.close);
 
-
-        currentPrice = "$" + stockData.quote.close
+        currentPrice = "$" + stockData.quote.close;
 
         news1 = stockData.news[0].headline;
         newsLink1 = stockData.news[0].url;
@@ -106,81 +156,81 @@ class ProfilePage extends Component {
         //   .map( quote => quote.close )
         //   .filter( (quote, i) => i < dayLimit );
 
-        this.setState({ priceArray })
-
-
-
-      });
-
-    // testing get/post routing
-    axios({
-      method: 'GET',
-      url: '/api/users/test',
-    })
-      .then((response) => {
-        console.log(response);
-        console.log("it works");
+        this.setState({ priceArray });
       });
     }
-  }
+  };
 
   displayWeek = () => {
     let newArray = [];
-    for (var i = 0; i < 6 ; i++) {
-      newArray.push(i)
+    for (var i = 0; i < 6; i++) {
+      newArray.push(i);
     }
-    this.setState({timeline: newArray,
-  dayLimit: 6 })
+    this.setState({
+      timeline: newArray,
+      dayLimit: 6
+    });
     this.handleClick(currentStock.id);
-  }
+  };
 
   displayMonth = () => {
     let newArray = [];
-    for (var i = 0; i <21 ; i++) {
-      newArray.push(i)
+    for (var i = 0; i < 21; i++) {
+      newArray.push(i);
     }
-    this.setState({timeline: newArray,
-  dayLimit: 21 })
+    this.setState({
+      timeline: newArray,
+      dayLimit: 21
+    });
     this.handleClick(currentStock.id);
-  }
+  };
 
   displayQuarter = () => {
     let newArray = [];
-    for (var i = 0; i <63 ; i++) {
+    for (var i = 0; i < 63; i++) {
       if (i % 5 === 0) {
-        newArray.push(i)
+        newArray.push(i);
       } else {
-        newArray.push("")
+        newArray.push("");
       }
     }
-    this.setState({timeline: newArray,
-  dayLimit: 63 })
+    this.setState({
+      timeline: newArray,
+      dayLimit: 63
+    });
     this.handleClick(currentStock.id);
-  }
+  };
 
   displayYear = () => {
     let newArray = [];
-    for (var i = 0; i <251 ; i++) {
+    for (var i = 0; i < 251; i++) {
       if (i % 25 === 0) {
-        newArray.push(i)
+        newArray.push(i);
       } else {
-        newArray.push("")
+        newArray.push("");
       }
     }
-    this.setState({timeline: newArray,
-  dayLimit: 251 })
+    this.setState({
+      timeline: newArray,
+      dayLimit: 251
+    });
     this.handleClick(currentStock.id);
+  };
+
+  stockSearch(stock) {
+    console.log(`Searched with ${stock}`);
+    this.handleClick("", stock)
   }
 
-
   render() {
-    return <div className="app">
+    return (
+      <div className="app">
         <NavBarTop />
         <div className="margin-top">
           <Navbar handleClick={this.handleClick} />
 
           <Wrapper>
-            <Title />
+            <Title stockSearchButtonClick={stock => this.stockSearch(stock)} />
             <Graph
               title={title}
               currentPrice={currentPrice}
@@ -191,25 +241,34 @@ class ProfilePage extends Component {
               displayWeek={this.displayWeek}
               displayMonth={this.displayMonth}
               displayQuarter={this.displayQuarter}
-              displayYear={this.displayYear} />
+              displayYear={this.displayYear}
+            />
             <div className="row">
-              <News news1={news1} newsLink1={newsLink1} news2={news2} newsLink2={newsLink2} news3={news3} newsLink3={newsLink3} />
+              <News
+                news1={news1}
+                newsLink1={newsLink1}
+                news2={news2}
+                newsLink2={newsLink2}
+                news3={news3}
+                newsLink3={newsLink3}
+              />
               <PieChart />
             </div>
           </Wrapper>
         </div>
-      </div>;
-}
+      </div>
+    );
+  }
 }
 
 ProfilePage.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
-}
+};
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
-})
+});
 
 export default connect(mapStateToProps, {})(ProfilePage);

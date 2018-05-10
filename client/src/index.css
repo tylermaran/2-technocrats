@@ -1,14 +1,15 @@
-* {
+/* * {
   box-sizing: border-box;
   font-family: sans-serif;
-}
+} */
 
 html, body, #root {
   padding: 0;
-  /* margin: 0; */
+  margin: 0;
   height: 100%;
 }
 
 .margin-top {
-  margin-top:58px;
+  padding-top:58px;
+  
 }
