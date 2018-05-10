@@ -17,10 +17,10 @@ class Title extends Component {
   }
 
   componentDidMount() {
-  
+
   }
 
-  
+
 
   render() {
     return (

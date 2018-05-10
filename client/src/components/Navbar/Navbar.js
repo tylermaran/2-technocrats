@@ -16,9 +16,7 @@ class Navbar extends React.Component {
     return (
       <div className="col-4 col-lg-3 bd-sidebar" id="bd-docs-nav">
         <nav>
-          <div className="bd-toc-item" id="brandName">
-            Tech Square Investments
-          </div>
+          
           <div className="bd-toc-item" id="studentName">
             Welcome {user.name}
           </div>

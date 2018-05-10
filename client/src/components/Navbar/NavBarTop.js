@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
-import "./Navbar.css"; 
+import "./Navbar.css";
 
 class NavbarTop extends Component {
   onLogoutClick(e) {
@@ -36,7 +36,7 @@ class NavbarTop extends Component {
     );
 
     const guestLinks = (
-      <ul className="navbar-nav ml-auto">
+      <ul className="navbar-nav ml-auto" >
         <li className="nav-item">
           <Link className="navbar-brand" to="/">
             Login
@@ -51,7 +51,7 @@ class NavbarTop extends Component {
     );
 
     return (
-      <nav className="navbar navbar-toggleable-sm fixed-top navbar-inverse">
+      <nav className="navbar navbar-toggleable-sm fixed-top navbar-inverse" >
         <button
           className="navbar-toggler"
           type="button"
@@ -64,8 +64,8 @@ class NavbarTop extends Component {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <Link className="navbar-brand" to="/profile">
-            Profile
+          <Link className="navbar-brand" style={{ fontFamily: "Montserrat"}} to="/profile">
+            Tech Square Investments
           </Link>
           {isAuthenticated ? authLinks : guestLinks}
         </div>
