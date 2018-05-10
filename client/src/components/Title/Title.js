@@ -17,7 +17,6 @@ class Title extends Component {
   }
 
   componentDidMount() {
-    console.log("YOOOOOOOOOOOOOOOOOOOOOOOOO");
     const auth = localStorage.getItem("jwtToken");
 
     axios({
@@ -30,10 +29,7 @@ class Title extends Component {
         }
     })
       .then((response) => {
-
-        // let stockData = response.data['AAPL'];
         console.log(response);
-        // console.log("BROOOOOOOOOOOOOOOOOOO");
       }).catch(response => {
         console.log(response);
       });

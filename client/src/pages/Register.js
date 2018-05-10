@@ -16,7 +16,14 @@ class Register extends Component {
       password: "",
       password2: "",
       errors: {},
-      loading: false
+      loading: false,
+      color: {
+        name: "",
+        email: "",
+        password: "",
+        password2: ""
+
+      }
     };
 
     this.onChange = this.onChange.bind(this);
@@ -40,6 +47,7 @@ class Register extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
+
   }
 
   onSubmit(e) {
@@ -74,6 +82,7 @@ class Register extends Component {
                     className={classnames("form-control", {
                       "is-invalid": errors.name
                     })}
+                    style={{border: this.state.color}}
                     type="name"
                     id="name"
                     placeholder="Name"
