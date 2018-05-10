@@ -9,7 +9,6 @@ import News from "../components/News";
 import PieChart from "../components/PieChart";
 import stocks from "../stocks.json";
 import NavBarTop from "../components/Navbar/NavBarTop.js";
-// import "../index.css";
 
 let axios = require("axios");
 
@@ -61,6 +60,25 @@ class ProfilePage extends Component {
     this.stockSearch("");
   }
 
+  getCurrentUserData(){
+    const auth = localStorage.getItem("jwtToken");
+
+    axios({
+      method: 'GET',
+      url: '/api/users/current',
+      headers:
+        {
+          'Cache-Control': 'no-cache',
+          Authorization: auth
+        }
+    })
+      .then((response) => {
+        console.log(response);
+      }).catch(response => {
+        console.log(response);
+      });
+  }
+
   componentDidMount() {
     //if logged in and trying to go to the login page redirect to profile page
     if (!this.props.auth.isAuthenticated) {
@@ -68,6 +86,8 @@ class ProfilePage extends Component {
     }
 
     const sesToken = sessionStorage.getItem("jwtToken");
+
+    this.getCurrentUserData()
   }
 
   callApi = async () => {};

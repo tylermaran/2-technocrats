@@ -17,22 +17,7 @@ class Title extends Component {
   }
 
   componentDidMount() {
-    const auth = localStorage.getItem("jwtToken");
-
-    axios({
-      method: 'GET',
-      url: '/api/users/current',
-      headers:
-        {
-          'Cache-Control': 'no-cache',
-          Authorization: auth
-        }
-    })
-      .then((response) => {
-        console.log(response);
-      }).catch(response => {
-        console.log(response);
-      });
+  
   }
 
   
@@ -63,22 +48,6 @@ class Title extends Component {
 
   onSearchStockClick(stock) {
     this.props.stockSearchButtonClick(stock)
-    //  Pull stock data based on parameters
-    // console.log(e)
-    // var parameters = {
-    //   symbols: this.state.ticker,
-    //   types: "chart,news",
-    //   range: "1y",
-    //   last: "5"
-    // };
-    // axios({
-    //   method: "GET",
-    //   url: "/api/search/search",
-    //   params: parameters
-    // }).then(response => {
-    //   console.log(response)
-    // });
-    // console.log("searched");
   }
 }
 

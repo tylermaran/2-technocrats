@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import "./Navbar.css"; 
 
-class Navbar extends Component {
+class NavbarTop extends Component {
   onLogoutClick(e) {
     e.preventDefault();
     this.props.logoutUser();
@@ -74,7 +74,7 @@ class Navbar extends Component {
   }
 }
 
-Navbar.propTypes = {
+NavbarTop.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
@@ -83,4 +83,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { logoutUser })(Navbar);
+export default connect(mapStateToProps, { logoutUser })(NavbarTop);
