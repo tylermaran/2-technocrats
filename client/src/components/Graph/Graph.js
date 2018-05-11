@@ -1,24 +1,24 @@
 import React from "react";
 import "./Graph.css";
 import ReactChartist from "react-chartist";
-import SellBtn from "../SellBtn";
-import BuyBtn from "../BuyBtn";
+import SellButton from "../BuyAndSellBtn/SellButton";
+import BuyButton from "../BuyAndSellBtn/BuyButton";
 
 const Graph = props => (
-
-
   <div className="graph card">
-    <div className="row" style={{ marginBottom: "30px" }}>
-      <div className="col-2">
-        <BuyBtn /><SellBtn />
+    <div className="row justify-content-start" style={{ marginBottom: "30px" }}>
+      <div className="col-4">
+        <div className="row">
+          <BuyButton />
         </div>
-    <div className="header col-8">
-      <h4 id="stockTitle">{props.title}</h4>
-      <h4 id="stockTitle">{props.currentPrice}</h4>
-
-    </div>
-    
-    
+        <div className="row">
+          <SellButton />
+        </div>
+      </div>
+      <div className="header col-4">
+        <h4 id="stockTitle">{props.title}</h4>
+        <h4 id="stockTitle">{props.currentPrice}</h4>
+      </div>
     </div>
 
     <div className="content">

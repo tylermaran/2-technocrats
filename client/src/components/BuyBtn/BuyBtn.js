@@ -45,6 +45,7 @@ class BuyBtn extends React.Component {
     return (
       <div>
         <button
+          className="btn"
           style={{
             float: "right",
             backgroundColor: "#50ae54",
