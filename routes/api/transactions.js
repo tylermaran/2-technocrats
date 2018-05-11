@@ -11,6 +11,9 @@ router.get("/test", (req, res) => res.json({
 
 router.post("/transaction/:id", function (req, res) {
     console.log("*********Buy Transaction***********");
+    
+    // Needs purchase.tickerSelected & purchase.numberShares
+    
     var purchase = req.body;
     console.log(purchase);
 
