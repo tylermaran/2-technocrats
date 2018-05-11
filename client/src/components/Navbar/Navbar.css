@@ -49,6 +49,17 @@
   font-weight: bold;
 }
 
+.bd-sidebar #balance {
+  font-family: "Open Sans";
+  background-color: #E5E4E2;
+  border: 1px solid lightgrey;
+  color: green;
+  height: 60px;
+  line-height: 60px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
 .bd-sidebar ul li {
   padding: 1rem 2.25rem;
   font-family: "Open Sans";

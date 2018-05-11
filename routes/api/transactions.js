@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const axios = require("axios");
+const User = require("../../models/Users");
 
 // @route   GET api/us/test
 // @desc    Test post route
@@ -9,16 +11,17 @@ router.get("/test", (req, res) => res.json({
 }));
 
 
-router.post("/transaction/:id", function (req, res) {
+router.post("/transaction", function (req, res) {
     console.log("*********Buy Transaction***********");
     
     // Needs purchase.tickerSelected & purchase.numberShares
     
     var purchase = req.body;
     console.log(purchase);
+    var ticker = req.body.tickerSelected.toUpperCase();
 
     var parameters = {
-        symbols: req.body.tickerSelected,
+        symbols: ticker,
         types: 'quote,news,chart',
         range: '1m',
         last: '5'
@@ -34,8 +37,9 @@ router.post("/transaction/:id", function (req, res) {
             }
         })
         .then(function (response) {
-            console.log("Ticker: " + purchase.tickerSelected);
-            var purchasePrice = response.data[purchase.tickerSelected].quote.close;
+            console.log("Ticker: " + ticker);
+            // console.log(response);
+            var purchasePrice = response.data[ticker].quote.close;
             console.log("Purchase Price" + purchasePrice);
             purchase.totalCost = purchasePrice * purchase.numberShares;
             var studentID = req.params.id;

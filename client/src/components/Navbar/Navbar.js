@@ -22,10 +22,10 @@ class Navbar extends React.Component {
         <nav>
           
           <div className="bd-toc-item" id="studentName">
-            Welcome {user.name}
+            Welcome, {user.name}
           </div>
-          <div className="bd-toc-item" id="studentName">
-           Balance ${this.props.cash.toLocaleString(navigator.language, { minimumFractionDigits: 2 })}
+          <div className="bd-toc-item" id="balance">
+           Cash Balance: ${this.props.cash.toLocaleString(navigator.language, { minimumFractionDigits: 2 })}
           </div>
         </nav>
         {this.props.portfolio.map(stock => (

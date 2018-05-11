@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Title.css";
+let axios = require("axios");
 
 class Title extends Component {
   constructor(props) {
@@ -45,9 +46,33 @@ class Title extends Component {
     );
   }
 
-  onSearchStockClick(stock) {
-    this.props.stockSearchButtonClick(stock)
+onSearchStockClick(stock) {
+  this.props.stockSearchButtonClick(stock)
+  console.log("Stock is:");
+  console.log(stock);
+  const auth = localStorage.getItem("jwtToken");
+  var transaction = {
+    type: 'buy',
+    numberShares: 1,
+    tickerSelected: stock
   }
+  axios({
+      method: 'POST',
+      url: '/api/transactions/transaction',
+      data: transaction,
+      headers: {
+        'Cache-Control': 'no-cache',
+        Authorization: auth
+      }
+    })
+    .then((response) => {
+      console.log(response);
+    }).catch(err => {
+      console.log(err);
+    });
+}
+
+
 }
 
 export default Title;
