@@ -55,7 +55,8 @@ class ProfilePage extends Component {
         "19",
         "20"
       ],
-      dayLimit: 21
+      dayLimit: 21,
+      portfolio: []
     };
 
     this.stockSearch("");
@@ -74,7 +75,7 @@ class ProfilePage extends Component {
         }
     })
       .then((response) => {
-        console.log(response);
+        this.setState({ portfolio: response.data.portfolio})
       }).catch(response => {
         console.log(response);
       });
@@ -86,7 +87,7 @@ class ProfilePage extends Component {
       this.props.history.push("/");
     }
 
-    const sesToken = sessionStorage.getItem("jwtToken");
+    // const sesToken = sessionStorage.getItem("jwtToken");
 
     this.getCurrentUserData()
   }
@@ -239,7 +240,10 @@ class ProfilePage extends Component {
       <div className="app">
         <NavBarTop />
         <div className="margin-top">
-          <Navbar handleClick={this.handleClick} />
+          <Navbar 
+          portfolio={this.state.portfolio}
+          handleClick={this.handleClick} 
+          />
 
           <Wrapper>
             <Title stockSearchButtonClick={stock => this.stockSearch(stock)} />

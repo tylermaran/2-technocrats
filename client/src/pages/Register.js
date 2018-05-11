@@ -71,12 +71,12 @@ class Register extends Component {
     return (
       <div>
         <NavBarTop />
-        <div className="container margin-top">
-          <div className="row justify-content-center">
+        <div className="container margin-top" style={{ marginTop: "50px" , fontFamily: "Open Sans"}}>
+          <div className="row justify-content-center" >
             <div className="col-5 m-auto">
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
-                  <label>Name</label>
+
 
                   <input
                     className={classnames("form-control", {
@@ -97,7 +97,7 @@ class Register extends Component {
                   )}
                 </div>
                 <div className="form-group">
-                  <label>Email</label>
+
 
                   <input
                     className={classnames("form-control", {
@@ -105,7 +105,7 @@ class Register extends Component {
                     })}
                     type="email"
                     id="email"
-                    placeholder="example@example.com"
+                    placeholder="Email"
                     name="email"
                     value={this.state.email}
                     onChange={this.onChange}
@@ -117,7 +117,7 @@ class Register extends Component {
                   )}
                 </div>
                 <div className="form-group">
-                  <label>Password</label>
+
 
                   <input
                     className={classnames("form-control", {
@@ -137,7 +137,7 @@ class Register extends Component {
                   )}
                 </div>
                 <div className="form-group">
-                  <label>Confirm Password</label>
+
                   <input
                     className={classnames("form-control", {
                       "is-invalid": errors.password2
@@ -156,7 +156,7 @@ class Register extends Component {
                   )}
                 </div>
 
-                <button type="submit" className="btn align-middle btn-primary float-left">
+                <button style={{ paddingBottom: "30px" , backgroundColor: "#124257", borderColor: "#26a69a"}} type="submit" className="btn align-middle btn-primary float-left">
                   Submit
                 </button>
                 {this.state.loading ? loadingSpinner : ""}
