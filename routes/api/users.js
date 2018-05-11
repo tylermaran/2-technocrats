@@ -112,7 +112,16 @@ router.get(
   "/current",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    console.log(req.user);
+
+    // const userWithNoPassword = {
+    //   name: "",
+    //   email: "",
+    //   transaction: [],
+    //   watchlist: [],
+    //   portfolio: [],
+    // }
+    // console.log(`password is ${req.user.password}`);
+    // console.log(req.user);
     res.json(req.user);
   }
 );

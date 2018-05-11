@@ -5,13 +5,17 @@ import { connect } from "react-redux";
 // import {Collapse} from 'react-bootstrap';
 import NavLinks from "../NavLinks";
 import "./Navbar.css";
-import stocks from "../../stocks.json";
+// import stocks from "../../stocks.json";
 
 // Depending on the current path, this component sets the "active" classNameName on the appropriate navigation link item
 class Navbar extends React.Component {
+  
 
+  componentDidMount(){
+    // console.log(this.state.props)
+  }
   render() {
-    const { isAuthenticated, user } = this.props.auth
+    const { user } = this.props.auth
     // const stocks = {};
     return (
       <div className="col-4 col-lg-3 bd-sidebar" id="bd-docs-nav">
@@ -26,7 +30,7 @@ class Navbar extends React.Component {
             Class #123
           </div>
         </nav>
-        {stocks.map(stock => (
+        {this.props.portfolio.map(stock => (
           <NavLinks
             handleClick={this.props.handleClick}
             name={stock.name}
