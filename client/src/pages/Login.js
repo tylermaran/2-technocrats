@@ -63,10 +63,12 @@ class Login extends Component {
 
     return (
       <div>
+        <Card wide>
         <NavBarTop />
         <div className="container margin-top" style={{ marginTop: "50px" , fontFamily: "Open Sans"}}>
           <div className="row justify-content-center">
             <div className="col-5 m-auto">
+            <CardBody>
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
 
@@ -114,10 +116,13 @@ class Login extends Component {
                 </button>
                 {this.state.loading ? loadingSpinner : ""}
               </form>
+              </CardBody>
             </div>
           </div>
         </div>
+        </Card>
       </div>
+    
     );
   }
 }
