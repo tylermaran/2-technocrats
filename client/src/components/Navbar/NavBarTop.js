@@ -18,7 +18,7 @@ class NavbarTop extends Component {
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
           <a
-            style={{color: "#124257"}}
+            style={{color: "#E5E4E2"}}
             href=""
             onClick={this.onLogoutClick.bind(this)}
             className="nav-link"
@@ -27,7 +27,7 @@ class NavbarTop extends Component {
               src={user.avatar}
               className="rounded-circle"
               alt={user.name}
-              style={{ width: "25px", marginRight: "5px" }}
+              style={{ width: "30px", marginRight: "5px" }}
               title="you must have a Gravatar connected to your email to display an image"
             />{" "}
             Logout
@@ -65,7 +65,10 @@ class NavbarTop extends Component {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <Link className="navbar-brand" style={{ fontFamily: "Montserrat", color: "#124257"}} to="/profile">
+          <Link className="navbar-brand" style={{ 
+              fontFamily: "Montserrat", 
+              color: "#E5E4E2",  
+              fontSize: '25px'}} to="/profile">
             Tech Square Investments
           </Link>
           {isAuthenticated ? authLinks : guestLinks}
