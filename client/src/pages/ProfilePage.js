@@ -35,28 +35,7 @@ class ProfilePage extends Component {
       priceArray: [],
       title: "",
       currentStock: "",
-      timeline: [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-        "11",
-        "12",
-        "13",
-        "14",
-        "15",
-        "16",
-        "17",
-        "18",
-        "19",
-        "20"
-      ],
+      timeline: [],
       dayLimit: 21,
       portfolio: []
     };
@@ -90,36 +69,17 @@ class ProfilePage extends Component {
     }
 
     // const sesToken = sessionStorage.getItem("jwtToken");
-
+    this.displayMonth()
     this.getCurrentUserData()
   }
 
   handleClick = (searchedStock) => {
     console.log(`searched stock is ${searchedStock}`)
 
-    // let ticker = "";
-    // let title= "";
-    // let stock = "";
-
-    // stock = searchedStock;
-    // stock = searchedStock;
-    // stock = searchedStock;
     const ticker = searchedStock.toUpperCase();
     this.setState({currentStock: ticker});
     console.log(ticker)
 
-    // if (id === "") {
-    //   stock = searchedStock;
-    //   ticker = stock.toUpperCase();
-    //   title = stock.toUpperCase();
-    // } else {
-      // stock = this.state.stocks.find(item => item.id === id);
-      // currentStock = stock;
-      // title = stock.title;
-      // ticker = stock.title.toUpperCase(); // TODO: maybe unneeded??
-    // }
-
-    // console.log(stock);
 
     if (ticker) {
       //  Pull stock data based on parameters
@@ -169,8 +129,11 @@ class ProfilePage extends Component {
         //   .filter( (quote, i) => i < dayLimit );
 
         this.setState({ priceArray });
+        
+      })
+      .catch(err => {
+        console.log(err)
       });
-
 
 
     }

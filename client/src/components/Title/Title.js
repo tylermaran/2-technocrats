@@ -32,6 +32,12 @@ class Title extends Component {
             name="ticker"
             value={this.state.ticker}
             placeholder="Search Stocks"
+            onKeyDown={
+              (e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  this.onSearchStockClick(this.state.ticker);
+                }}}
           />
           <button
             className="btn btn-outline-success my-2 my-sm-0"
