@@ -31,6 +31,7 @@ class ProfilePage extends Component {
     super(props);
     this.state = {
       stocks,
+      title,
       priceArray: [],
       title: "",
       currentStock: "",
@@ -148,6 +149,7 @@ class ProfilePage extends Component {
         priceArray.push(stockData.quote.close);
 
         currentPrice = "$" + stockData.quote.close;
+        this.setState({title: stockData.quote.companyName});
 
         //Adding News 
         news1 = stockData.news[0].headline;
@@ -253,7 +255,7 @@ class ProfilePage extends Component {
           <Wrapper>
             <Title stockSearchButtonClick={stock => this.stockSearch(stock)} />
             <Graph
-              title={title}
+              title={this.state.title}
               currentPrice={currentPrice}
               priceArray={this.state.priceArray}
               min={min}
