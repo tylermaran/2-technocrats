@@ -71,35 +71,29 @@ class Title extends Component {
 
 onSearchStockClick(stock) {
 
-const auth = localStorage.getItem("jwtToken");
+  const auth = localStorage.getItem("jwtToken");
+  this.props.stockSearchButtonClick(stock)
 
-console.log(this.state.student._id)
-this.props.stockSearchButtonClick(stock)
-console.log("Stock is:");
-console.log(stock);
+  var transaction = {
+    type: 'buy',
+    numberShares: 1,
+    tickerSelected: stock
+  }
 
-console.log("Does user show up here?");
-// console.log(user);
-var transaction = {
-  type: 'buy',
-  numberShares: 1,
-  tickerSelected: stock
-}
-
-axios({
-    method: 'POST',
-    url: '/api/transactions/transaction/' + this.state.student._id,
-    data: transaction,
-    headers: {
-      'Cache-Control': 'no-cache',
-      Authorization: auth
-    }
-  })
-  .then((response) => {
-    console.log(response);
-  }).catch(err => {
-    console.log(err);
-  });
+  axios({
+      method: 'POST',
+      url: '/api/transactions/transaction/' + this.state.student._id,
+      data: transaction,
+      headers: {
+        'Cache-Control': 'no-cache',
+        Authorization: auth
+      }
+    })
+    .then((response) => {
+      console.log(response);
+    }).catch(err => {
+      console.log(err);
+    });
 }
 
 

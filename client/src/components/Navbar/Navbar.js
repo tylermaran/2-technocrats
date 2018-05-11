@@ -19,7 +19,6 @@ class Navbar extends React.Component {
     return (
       <div className="col-4 col-lg-3 bd-sidebar" id="bd-docs-nav">
         <nav>
-          
           <div className="bd-toc-item" id="studentName">
             Welcome, {user.name}
           </div>
@@ -33,8 +32,8 @@ class Navbar extends React.Component {
         {this.props.portfolio.map(stock => (
           <NavLinks
             handleClick={this.props.handleClick}
-            name={stock.ticker}
-            id={stock.ticker}
+            name={stock.ticker.toUpperCase()}
+            id={stock.ticker.toUpperCase()}
             />
         ))}
       </div>

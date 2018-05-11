@@ -3,7 +3,7 @@
 .bd-sidebar {
   text-align: center;
   border-right: 1px solid lightgrey;
-  height: 100%;
+  height: 100vh;
   max-width: 275px; 
   position: fixed;
   z-index: 100;
