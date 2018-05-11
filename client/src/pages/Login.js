@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Card, CardBody } from "reactstrap";
 import NavBarTop from "../components/Navbar/NavBarTop.js";
 import classnames from "classnames";
