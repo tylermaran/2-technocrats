@@ -3,11 +3,15 @@ import "./Graph.css";
 import ReactChartist from "react-chartist";
 
 const Graph = props => (
+
+
   <div className="graph card">
     <div className="header">
       <h4 id="stockTitle">{props.title}</h4>
       <h4 id="stockTitle">{props.currentPrice}</h4>
-      <button style={{ float: "right" }} className="float-right">
+      <button 
+      
+      style={{ float: "right" }} className="float-right">
         Buy
       </button>
       <button style={{ float: "right" }} className="float-right">
@@ -47,13 +51,6 @@ const Graph = props => (
       <button onClick={() => props.displayMonth()}>Month</button>
       <button onClick={() => props.displayQuarter()}>Quarter</button>
       <button onClick={() => props.displayYear()}>Year</button>
-
-      <button style={{ float: "right" }} className="float-right">
-        Buy
-      </button>
-      <button style={{ float: "right" }} className="float-right">
-        Sell
-      </button>
     </div>
   </div>
 );
