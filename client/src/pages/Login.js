@@ -65,7 +65,7 @@ class Login extends Component {
 
     return (
       <div>
-        <Card narrow >
+        <Card wide >
         <NavBarTop/>
         <div className="container margin-top" style={{ marginTop: "50px" , fontFamily: "Open Sans", backgroundColor: "#183248"}}>
           <div className="row justify-content-center">
