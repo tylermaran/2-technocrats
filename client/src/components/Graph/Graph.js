@@ -8,13 +8,17 @@ const Graph = props => (
 
 
   <div className="graph card">
-    <div className="header">
+    <div className="row" style={{ marginBottom: "30px" }}>
+      <div className="col-2">
+        <BuyBtn /><SellBtn />
+        </div>
+    <div className="header col-8">
       <h4 id="stockTitle">{props.title}</h4>
       <h4 id="stockTitle">{props.currentPrice}</h4>
 
     </div>
-    <div className="row" style={{ marginBottom: "30px"}}>
-    <BuyBtn /><SellBtn />
+    
+    
     </div>
 
     <div className="content">

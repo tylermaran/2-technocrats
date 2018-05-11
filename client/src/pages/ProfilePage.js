@@ -214,7 +214,7 @@ class ProfilePage extends Component {
         <div className="margin-top">
           <Navbar
           portfolio={this.state.portfolio}
-          cash = {this.state.cash}
+          cash={this.state.cash}
           handleClick={this.handleClick}
           />
 
@@ -223,6 +223,7 @@ class ProfilePage extends Component {
 
             <Graph
               title={this.state.title}
+              cash={this.state.cash}
               currentPrice={currentPrice}
               priceArray={this.state.priceArray}
               min={min}

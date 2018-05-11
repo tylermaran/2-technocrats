@@ -14,7 +14,6 @@ class Navbar extends React.Component {
   }
   render() {
     const { user } = this.props.auth
-    console.log("BROLIOLIOLIOLIOLIO");
     console.log(user)
     // const stocks = {};
     return (
