@@ -106,7 +106,7 @@ class Login extends Component {
                     </div>
                   )}
                 </div>
-                <button style={{ paddingBottom: "30px" , backgroundColor: "#124257", borderColor: "#26a69a"}}
+                <button style={{ paddingBottom: "30px" , backgroundColor: "#124257", borderColor: "#50ae54"}}
                   type="submit"
                   className="btn align-middle btn-primary float-left"
                 >

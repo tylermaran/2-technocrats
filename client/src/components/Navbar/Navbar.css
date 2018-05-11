@@ -10,17 +10,23 @@
   margin-left: -20px;
   overflow: scroll;
   color: #124257;
+  background-color: #F5F4F2;
   box-shadow: 0 0 5px black;
 }
 
 .fixed-top, ul {
-  background-color: #124257;
+  background-color: #F5F4F2;
   font-family: "Open Sans";
+
+}
+
+.fixed-top {
+  border: 1px solid grey;
+  box-shadow: 0 0 5px black;
 }
 
 .bd-sidebar #brandName {
   font-family: "Montserrat";
-  background-color: #124257;
   height: 60px;
   line-height: 60px;
   color: white;
@@ -42,11 +48,22 @@
 
 .bd-sidebar #studentName {
   font-family: "Open Sans";
-  background-color: #E5E4E2;
+  background-color: #F5F4F2;
   border: 1px solid lightgrey;
   height: 60px;
   line-height: 60px;
   font-weight: bold;
+}
+
+.bd-sidebar #balance {
+  font-family: "Open Sans";
+  background-color: #E5E4E2;
+  border: 1px solid lightgrey;
+  color: green;
+  height: 60px;
+  line-height: 60px;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .bd-sidebar ul li {

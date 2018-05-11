@@ -18,6 +18,7 @@ class NavbarTop extends Component {
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
           <a
+            style={{color: "#124257"}}
             href=""
             onClick={this.onLogoutClick.bind(this)}
             className="nav-link"
@@ -38,12 +39,12 @@ class NavbarTop extends Component {
     const guestLinks = (
       <ul className="navbar-nav ml-auto" >
         <li className="nav-item">
-          <Link className="navbar-brand" to="/">
+          <Link style={{color: "#124257"}} className="navbar-brand" to="/">
             Login
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="navbar-brand" to="/register">
+          <Link style={{color: "#124257"}} className="navbar-brand" to="/register">
             Register
           </Link>
         </li>
@@ -64,7 +65,7 @@ class NavbarTop extends Component {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <Link className="navbar-brand" style={{ fontFamily: "Montserrat"}} to="/profile">
+          <Link className="navbar-brand" style={{ fontFamily: "Montserrat", color: "#124257"}} to="/profile">
             Tech Square Investments
           </Link>
           {isAuthenticated ? authLinks : guestLinks}

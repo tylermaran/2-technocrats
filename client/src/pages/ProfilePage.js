@@ -37,7 +37,8 @@ class ProfilePage extends Component {
       currentStock: "",
       timeline: [],
       dayLimit: 21,
-      portfolio: []
+      portfolio: [],
+      cash: 0
     };
 
     this.stockSearch("");
@@ -57,6 +58,7 @@ class ProfilePage extends Component {
     })
       .then((response) => {
         this.setState({ portfolio: response.data.portfolio})
+        this.setState({cash: response.data.cash})
       }).catch(err => {
         console.log(err);
       });
@@ -111,7 +113,7 @@ class ProfilePage extends Component {
         currentPrice = "$" + stockData.quote.close;
         this.setState({title: stockData.quote.companyName});
 
-        //Adding News 
+        //Adding News
         news1 = stockData.news[0].headline;
         newsLink1 = stockData.news[0].url;
 
@@ -210,13 +212,15 @@ class ProfilePage extends Component {
       <div className="app">
         <NavBarTop />
         <div className="margin-top">
-          <Navbar 
+          <Navbar
           portfolio={this.state.portfolio}
-          handleClick={this.handleClick} 
+          cash = {this.state.cash}
+          handleClick={this.handleClick}
           />
 
           <Wrapper>
             <Title stockSearchButtonClick={stock => this.stockSearch(stock)} />
+
             <Graph
               title={this.state.title}
               currentPrice={currentPrice}
@@ -229,6 +233,7 @@ class ProfilePage extends Component {
               displayQuarter={this.displayQuarter}
               displayYear={this.displayYear}
             />
+
             <div className="row">
               <News
                 news1={news1}
