@@ -37,15 +37,15 @@ button:active {
 }
 
 .header {
-  height: 125px;
+  height: 100px;
 }
 
 .ct-series-a .ct-line  {
-  stroke: #26a69a;
+  stroke: #50ae54;
   stroke-width: 2px;
 }
 
 .ct-series-a .ct-point {
-  stroke: #26a69a;
+  stroke: #50ae54;
   stroke-width: 4px;
 }

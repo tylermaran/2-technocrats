@@ -13,7 +13,7 @@ const Graph = props => (
       <h4 id="stockTitle">{props.currentPrice}</h4>
 
     </div>
-    <div className="row" style={{ marginBottom: "50px"}}>
+    <div className="row" style={{ marginBottom: "30px"}}>
     <BuyBtn /><SellBtn />
     </div>
 
