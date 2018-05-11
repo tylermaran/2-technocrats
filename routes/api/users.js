@@ -54,7 +54,15 @@ router.post("/register", (req, res) => {
         password: req.body.password,
         classNumber: 1337,
         cash: 10000,
+        portfolio: [{
+          ticker: 'MSFT',
+          value: [150],
+          totalValue: 150,
+          numberShares: 1,
+          averageCost: 150
+        }]
       });
+
 
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {

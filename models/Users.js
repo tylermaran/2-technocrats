@@ -49,7 +49,7 @@ const UserSchema = new Schema({
     value: [Number],
     totalValue: Number,
     numberShares: Number,
-    avargeCost: Number
+    averageCost: Number
   }]
 });
 
