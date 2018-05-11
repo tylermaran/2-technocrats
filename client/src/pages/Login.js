@@ -71,8 +71,8 @@ class Login extends Component {
           <div className="row justify-content-center">
             <div className="col-5 m-auto">
             <CardImg top width="100%" src="http://cdn.moneycrashers.com/wp-content/uploads/2016/07/volatile-stock-market.jpg" alt="Card image cap" />
-            <CardBody style={{ backgroundColor: "#676B6F"}}>
-              <CardTitle style={{ marginTop: "50px" , fontFamily: "Open Sans",  textalign: "center", color: "#FFFFFF"}} >User Login</CardTitle>
+            <CardBody style={{ backgroundColor: "#000000"}}>
+              <CardTitle style={{ marginTop: "50px" , fontFamily: "Open Sans",  textAlign: "center", color: "#FFFFFF", fontSize:"35px"}} >User Login</CardTitle>
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
 
@@ -112,7 +112,7 @@ class Login extends Component {
                     </div>
                   )}
                 </div>
-                <Button style={{ paddingBottom: "30px" , backgroundColor: "#124257", borderColor: "#50ae54"}}
+                <Button style={{ paddingBottom: "30px" , backgroundColor: "#050505", borderColor: "#50ae54"}}
                   type="submit"
                   className="btn align-middle btn-primary float-left"
                 >
