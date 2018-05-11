@@ -77,7 +77,7 @@ class Register extends Component {
         <div className="container margin-top" style={{ marginTop: "50px" , fontFamily: "Open Sans", backgroundColor: "#183248"}}>
           <div className="row justify-content-center" >
             <div className="col-5 m-auto">
-            <CardImg top width="100%" src="src/assets/images/stockgif.gif" alt="Card image cap" />
+            <CardImg top width="100%" src="../assets/images/stockgif.gif" alt="Card image cap" />
             <CardBody style={{ backgroundColor: "#000000"}}>
             <CardTitle style={{ marginTop: "50px" , fontFamily: "Open Sans",  textAlign: "center", color: "#FFFFFF", fontSize:"35px"}} >Register</CardTitle>
               <form onSubmit={this.onSubmit}>
