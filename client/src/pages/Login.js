@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Card, CardBody } from 'mdbreact';
+import { Button, Card, CardBody } from 'reactstrap';
 import NavBarTop from "../components/Navbar/NavBarTop.js";
 import classnames from "classnames";
 import PropTypes from "prop-types";
