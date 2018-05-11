@@ -3,13 +3,15 @@ import React from "react";
 import "./NavLinks.css";
 
 // Depending on the current path, this component sets the "active" classNameName on the appropriate navigation link item
-const NavLinks = props => (
-  
-  <div onClick={() => props.handleClick(props.id)}>
+const NavLinks = props => {
+  console.log(props);
+  return (
+    <div onClick={() => props.handleClick(props.name)}>
       <ul className="nav bd-sidenav">
-        <li className="bd-toc-link active">{props.name}</li>
+        <li className="bd-toc-link active">{props.id}</li>
       </ul>
-  </div>
-);
+    </div>
+  );
+};
 
 export default NavLinks;

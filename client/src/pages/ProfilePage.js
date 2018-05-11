@@ -33,6 +33,7 @@ class ProfilePage extends Component {
       stocks,
       priceArray: [],
       title: "",
+      currentStock: "",
       timeline: [
         "1",
         "2",
@@ -76,8 +77,8 @@ class ProfilePage extends Component {
     })
       .then((response) => {
         this.setState({ portfolio: response.data.portfolio})
-      }).catch(response => {
-        console.log(response);
+      }).catch(err => {
+        console.log(err);
       });
   }
 
@@ -92,32 +93,34 @@ class ProfilePage extends Component {
     this.getCurrentUserData()
   }
 
-  callApi = async () => {};
+  handleClick = (searchedStock) => {
+    console.log(`searched stock is ${searchedStock}`)
 
-  handleClick = (id, searchedStock) => {
-    console.log(`id is${id} and searched stock is ${searchedStock}`)
+    // let ticker = "";
+    // let title= "";
+    // let stock = "";
 
-    let ticker = "";
-    let title= "";
-    let stock = "";
+    // stock = searchedStock;
+    // stock = searchedStock;
+    // stock = searchedStock;
+    const ticker = searchedStock.toUpperCase();
+    this.setState({currentStock: ticker});
+    console.log(ticker)
 
+    // if (id === "") {
+    //   stock = searchedStock;
+    //   ticker = stock.toUpperCase();
+    //   title = stock.toUpperCase();
+    // } else {
+      // stock = this.state.stocks.find(item => item.id === id);
+      // currentStock = stock;
+      // title = stock.title;
+      // ticker = stock.title.toUpperCase(); // TODO: maybe unneeded??
+    // }
 
-    if (id === "") {
-      stock = searchedStock;
-      ticker = stock.toUpperCase();
-      title = stock.toUpperCase();
-    } else {
-      stock = this.state.stocks.find(item => item.id === id);
-      currentStock = stock;
-      title = stock.title;
-      ticker = stock.title.toUpperCase(); // TODO: maybe unneeded??
-    }
+    // console.log(stock);
 
-    console.log(stock);
-
-    if (stock) {
-
-
+    if (ticker) {
       //  Pull stock data based on parameters
       var parameters = {
         symbols: ticker,
@@ -146,6 +149,7 @@ class ProfilePage extends Component {
 
         currentPrice = "$" + stockData.quote.close;
 
+        //Adding News 
         news1 = stockData.news[0].headline;
         newsLink1 = stockData.news[0].url;
 
@@ -183,7 +187,8 @@ class ProfilePage extends Component {
       timeline: newArray,
       dayLimit: 6
     });
-    this.handleClick(currentStock.id);
+    console.log(currentStock)
+    this.handleClick(this.state.currentStock);
   };
 
   displayMonth = () => {
@@ -195,7 +200,7 @@ class ProfilePage extends Component {
       timeline: newArray,
       dayLimit: 21
     });
-    this.handleClick(currentStock.id);
+    this.handleClick(this.state.currentStock);
   };
 
   displayQuarter = () => {
@@ -211,7 +216,7 @@ class ProfilePage extends Component {
       timeline: newArray,
       dayLimit: 63
     });
-    this.handleClick(currentStock.id);
+    this.handleClick(this.state.currentStock);
   };
 
   displayYear = () => {
@@ -227,12 +232,12 @@ class ProfilePage extends Component {
       timeline: newArray,
       dayLimit: 251
     });
-    this.handleClick(currentStock.id);
+    this.handleClick(this.state.currentStock);
   };
 
   stockSearch(stock) {
     console.log(`Searched with ${stock}`);
-    this.handleClick("", stock)
+    this.handleClick(stock)
   }
 
   render() {
