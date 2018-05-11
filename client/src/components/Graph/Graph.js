@@ -47,13 +47,6 @@ const Graph = props => (
       <button onClick={() => props.displayMonth()}>Month</button>
       <button onClick={() => props.displayQuarter()}>Quarter</button>
       <button onClick={() => props.displayYear()}>Year</button>
-
-      <button style={{ float: "right" }} className="float-right">
-        Buy
-      </button>
-      <button style={{ float: "right" }} className="float-right">
-        Sell
-      </button>
     </div>
   </div>
 );
