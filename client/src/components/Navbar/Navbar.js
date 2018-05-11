@@ -14,6 +14,8 @@ class Navbar extends React.Component {
   }
   render() {
     const { user } = this.props.auth
+    console.log("BROLIOLIOLIOLIOLIO");
+    console.log(user)
     // const stocks = {};
     return (
       <div className="col-4 col-lg-3 bd-sidebar" id="bd-docs-nav">
@@ -23,7 +25,7 @@ class Navbar extends React.Component {
             Welcome {user.name}
           </div>
           <div className="bd-toc-item" id="studentName">
-            Class #123
+           Balance ${this.props.cash.toLocaleString(navigator.language, { minimumFractionDigits: 2 })}
           </div>
         </nav>
         {this.props.portfolio.map(stock => (

@@ -58,7 +58,8 @@ class ProfilePage extends Component {
         "20"
       ],
       dayLimit: 21,
-      portfolio: []
+      portfolio: [],
+      cash: 0
     };
 
     this.stockSearch("");
@@ -78,6 +79,7 @@ class ProfilePage extends Component {
     })
       .then((response) => {
         this.setState({ portfolio: response.data.portfolio})
+        this.setState({cash: response.data.cash})
       }).catch(err => {
         console.log(err);
       });
@@ -249,6 +251,7 @@ class ProfilePage extends Component {
         <div className="margin-top">
           <Navbar
           portfolio={this.state.portfolio}
+          cash = {this.state.cash}
           handleClick={this.handleClick}
           />
 
