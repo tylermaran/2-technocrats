@@ -70,7 +70,7 @@ class Login extends Component {
         <div className="container margin-top" style={{ marginTop: "50px" , fontFamily: "Open Sans", backgroundColor: "#183248"}}>
           <div className="row justify-content-center">
             <div className="col-5 m-auto">
-            <CardImg top width="100%" src="http://media.istockphoto.com/photos/business-district-stock-market-and-finance-data-on-city-background-picture-id509615012?k=6&m=509615012&s=170667a&w=0&h=DC1r6jRUxL-aU-hKm8pmiqArSRZDZGmNLWOG3wKMmno=" alt="Card image cap" />
+            <CardImg top width="100%" src={require('../assets/images/stockgif.gif')} alt="Card image cap" />
             <CardBody style={{ backgroundColor: "#000000"}}>
               <CardTitle style={{ marginTop: "50px" , fontFamily: "Open Sans",  textAlign: "center", color: "#FFFFFF", fontSize:"35px"}} >User Login</CardTitle>
               <form onSubmit={this.onSubmit}>
