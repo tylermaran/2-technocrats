@@ -2,7 +2,7 @@ import React from "react";
 import "./Graph.css";
 import ReactChartist from "react-chartist";
 import SellBtn from "../SellBtn";
-
+import BuyBtn from "../BuyBtn";
 
 const Graph = props => (
 
@@ -12,7 +12,9 @@ const Graph = props => (
       <h4 id="stockTitle">{props.title}</h4>
       <h4 id="stockTitle">{props.currentPrice}</h4>
 
-      <SellBtn />
+    </div>
+    <div className="row" style={{ marginBottom: "50px"}}>
+    <BuyBtn /><SellBtn />
     </div>
 
     <div className="content">

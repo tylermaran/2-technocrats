@@ -1,5 +1,5 @@
 import React from "react";
-import "./SellBtn.css";
+import "./BuyBtn.css";
 import ReactChartist from "react-chartist";
 import Modal from 'react-modal';
 
@@ -19,7 +19,7 @@ const customStyles = {
 // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
 
 
-class SellBtn extends React.Component {
+class BuyBtn extends React.Component {
   constructor() {
     super();
 
@@ -48,7 +48,7 @@ class SellBtn extends React.Component {
   render() {
     return (
       <div>
-        <button style={{ float: "right" , backgroundColor: "#E55451", zIndex: "999", height: "32px"}} onClick={this.openModal}>Sell</button>
+        <button style={{ float: "right" , backgroundColor: "#26a69a", zIndex: "999", marginLeft: "50px", height: "32px"}} onClick={this.openModal}>Buy</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -57,7 +57,7 @@ class SellBtn extends React.Component {
           contentLabel="Example Modal"
         >
 
-          <h1>Sell!</h1>
+          <h1>Buy!</h1>
         </Modal>
       </div>
     );
@@ -66,4 +66,4 @@ class SellBtn extends React.Component {
 
 
 
-export default SellBtn;
+export default BuyBtn;
