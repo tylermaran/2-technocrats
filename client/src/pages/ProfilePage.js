@@ -38,7 +38,8 @@ class ProfilePage extends Component {
       timeline: [],
       dayLimit: 21,
       portfolio: [],
-      cash: 0
+      cash: 0,
+      portfolioSum: 0
     };
 
     this.stockSearch("");
@@ -59,6 +60,14 @@ class ProfilePage extends Component {
       .then((response) => {
         this.setState({ portfolio: response.data.portfolio})
         this.setState({cash: response.data.cash})
+        let portfolio = response.data.portfolio;
+        let portfolioSum = 0;
+        for (let i = 0; i < portfolio.length; i++) {
+          portfolioSum = portfolioSum + portfolio[i].totalValue;
+        }
+        this.setState({portfolioSum: portfolioSum})
+
+
       }).catch(err => {
         console.log(err);
       });
@@ -214,7 +223,12 @@ class ProfilePage extends Component {
         <div className="margin-top">
           <Navbar
           portfolio={this.state.portfolio}
+<<<<<<< HEAD
           cash={this.state.cash}
+=======
+          cash = {this.state.cash}
+          portfolioSum = {this.state.portfolioSum}
+>>>>>>> 2cb3f3ccc7ee4c829b42f450168af0788caba1a2
           handleClick={this.handleClick}
           />
 
