@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import 'bootstrap/dist/css/bootstrap.css';
+import { Button, Card, CardBody, CardTitle } from "reactstrap";
 import { withRouter } from "react-router-dom";
 import NavBarTop from "../components/Navbar/NavBarTop.js";
 import classnames from "classnames";
@@ -70,10 +72,13 @@ class Register extends Component {
 
     return (
       <div>
+        <Card narrow >
         <NavBarTop />
-        <div className="container margin-top" style={{ marginTop: "50px" , fontFamily: "Open Sans"}}>
+        <div className="container margin-top" style={{ marginTop: "50px" , fontFamily: "Open Sans", backgroundColor: "#183248"}}>
           <div className="row justify-content-center" >
             <div className="col-5 m-auto">
+            <CardBody style={{ backgroundColor: "#000000"}}>
+            <CardTitle style={{ marginTop: "50px" , fontFamily: "Open Sans",  textAlign: "center", color: "#FFFFFF", fontSize:"35px"}} >Register</CardTitle>
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
 
@@ -156,14 +161,16 @@ class Register extends Component {
                   )}
                 </div>
 
-                <button style={{ paddingBottom: "30px" , backgroundColor: "#124257", borderColor: "#50ae54"}} type="submit" className="btn align-middle btn-primary float-left">
+                <Button style={{ paddingBottom: "30px" , backgroundColor: "#050505", borderColor: "#50ae54"}} type="submit" className="btn align-middle btn-primary float-left">
                   Submit
-                </button>
+                </Button>
                 {this.state.loading ? loadingSpinner : ""}
               </form>
+              </CardBody>
             </div>
           </div>
         </div>
+        </Card>
       </div>
     );
   }
