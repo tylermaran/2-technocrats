@@ -1,6 +1,8 @@
 import React from "react";
 import "./Graph.css";
 import ReactChartist from "react-chartist";
+import SellBtn from "../SellBtn";
+
 
 const Graph = props => (
 
@@ -9,14 +11,8 @@ const Graph = props => (
     <div className="header">
       <h4 id="stockTitle">{props.title}</h4>
       <h4 id="stockTitle">{props.currentPrice}</h4>
-      <button 
-      
-      style={{ float: "right" }} className="float-right">
-        Buy
-      </button>
-      <button style={{ float: "right" }} className="float-right">
-        Sell
-      </button>
+
+      <SellBtn />
     </div>
 
     <div className="content">

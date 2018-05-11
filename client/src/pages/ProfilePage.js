@@ -227,7 +227,7 @@ class ProfilePage extends Component {
       timeline: newArray,
       dayLimit: 251
     });
-    this.handleClick(currentStock.id);
+      this.handleClick(currentStock.id);
   };
 
   stockSearch(stock) {
@@ -240,13 +240,14 @@ class ProfilePage extends Component {
       <div className="app">
         <NavBarTop />
         <div className="margin-top">
-          <Navbar 
+          <Navbar
           portfolio={this.state.portfolio}
-          handleClick={this.handleClick} 
+          handleClick={this.handleClick}
           />
 
           <Wrapper>
             <Title stockSearchButtonClick={stock => this.stockSearch(stock)} />
+
             <Graph
               title={title}
               currentPrice={currentPrice}
@@ -259,6 +260,7 @@ class ProfilePage extends Component {
               displayQuarter={this.displayQuarter}
               displayYear={this.displayYear}
             />
+
             <div className="row">
               <News
                 news1={news1}
