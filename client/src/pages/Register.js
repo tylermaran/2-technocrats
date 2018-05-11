@@ -156,7 +156,7 @@ class Register extends Component {
                   )}
                 </div>
 
-                <button style={{ paddingBottom: "30px" , backgroundColor: "#124257", borderColor: "#26a69a"}} type="submit" className="btn align-middle btn-primary float-left">
+                <button style={{ paddingBottom: "30px" , backgroundColor: "#124257", borderColor: "#50ae54"}} type="submit" className="btn align-middle btn-primary float-left">
                   Submit
                 </button>
                 {this.state.loading ? loadingSpinner : ""}

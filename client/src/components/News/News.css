@@ -22,7 +22,7 @@ h1 {
 }
 
 #blurb:hover {
-  color: blue;
+  color: #50ae54;
 }
 
 @media screen and (max-width: 620px) {
