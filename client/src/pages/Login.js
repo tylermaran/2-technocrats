@@ -64,14 +64,11 @@ class Login extends Component {
     return (
       <div>
         <NavBarTop />
-        <div className="container margin-top">
+        <div className="container margin-top" style={{ marginTop: "50px" , fontFamily: "Open Sans"}}>
           <div className="row justify-content-center">
             <div className="col-5 m-auto">
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
-                  <label>
-                    Email
-                  </label>
 
                   <input
                     className={classnames("form-control", {
@@ -79,7 +76,7 @@ class Login extends Component {
                     })}
                     type="email"
                     id="email"
-                    placeholder="example@example.com"
+                    placeholder="Email"
                     name="email"
                     value={this.state.email}
                     onChange={this.onChange}
@@ -91,16 +88,13 @@ class Login extends Component {
                   )}
                 </div>
                 <div className="form-group">
-                  <label>
-                    Password
-                  </label>
 
                   <input
                     className={classnames("form-control", {
                       "is-invalid": errors.password
                     })}
                     type="password"
-                    placeholder="password"
+                    placeholder="Password"
                     name="password"
                     id="password"
                     value={this.state.password}
@@ -112,7 +106,7 @@ class Login extends Component {
                     </div>
                   )}
                 </div>
-                <button
+                <button style={{ paddingBottom: "30px" , backgroundColor: "#124257", borderColor: "#26a69a"}}
                   type="submit"
                   className="btn align-middle btn-primary float-left"
                 >

@@ -40,8 +40,12 @@ button:active {
   height: 125px;
 }
 
-.ct-series-a .ct-line,
-.ct-series-a .ct-point  {
+.ct-series-a .ct-line  {
   stroke: #26a69a;
   stroke-width: 2px;
+}
+
+.ct-series-a .ct-point {
+  stroke: #26a69a;
+  stroke-width: 4px;
 }

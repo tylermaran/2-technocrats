@@ -25,6 +25,7 @@ let max = 1000;
 let currentStock = "";
 let currentPrice = "";
 
+
 class ProfilePage extends Component {
   constructor(props) {
     super(props);
@@ -95,8 +96,12 @@ class ProfilePage extends Component {
 
   handleClick = (id, searchedStock) => {
     console.log(`id is${id} and searched stock is ${searchedStock}`)
-    let stock = "";
+
     let ticker = "";
+    let title= "";
+    let stock = "";
+
+
     if (id === "") {
       stock = searchedStock;
       ticker = stock.toUpperCase();
@@ -111,7 +116,7 @@ class ProfilePage extends Component {
     console.log(stock);
 
     if (stock) {
-      
+
 
       //  Pull stock data based on parameters
       var parameters = {
@@ -159,7 +164,14 @@ class ProfilePage extends Component {
 
         this.setState({ priceArray });
       });
+
+
+
     }
+
+
+
+
   };
 
   displayWeek = () => {
