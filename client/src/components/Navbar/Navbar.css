@@ -59,7 +59,8 @@
   font-family: "Open Sans";
   background-color: #E5E4E2;
   border: 1px solid lightgrey;
-  color: green;
+  color: black;
+  padding: 0px 0px 0px 10px;
   height: 60px;
   line-height: 60px;
   font-weight: bold;
@@ -77,4 +78,8 @@
 
 .bd-sidebar ul #stocks {
   font-weight: bold;
+}
+
+#cashbalance {
+  color: green;
 }
