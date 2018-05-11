@@ -3,21 +3,36 @@ import "./PieChart.css";
 import ReactChartist from 'react-chartist';
 import axios from 'axios';
 
-const Portfolio =[];
+const Portfolio = [];
 
 class PieChart extends React.Component {
 
-  state = {
-    portfolio: []
-  };
+    state = {
+      portfolio: []
+    };
 
-componentDidMount () {
-  // axios.get("/api/users/current").then(response => {
-  //   console.log("YOOOOOOOOOOOOOOOOOOOOOOOOO");
-  //   console.log(response)
-  // });
-  
-}
+    componentDidMount() {
+      const auth = localStorage.getItem("jwtToken");
+
+      axios({
+          method: 'GET',
+          url: '/api/users/current',
+          headers: {
+            'Cache-Control': 'no-cache',
+            Authorization: auth
+          }
+        })
+        .then((response) => {
+
+          // let stockData = response.data['AAPL'];
+          console.log(response.data.portfolio);
+          this.setState({portfolio: response.data.portfolio});
+          console.log("Pie Chart pulled from Portfolio");
+        }).catch(response => {
+          console.log(response);
+        });
+    }
+
 
 render() {
   return (
@@ -72,7 +87,7 @@ render() {
 
 
           <div className="legend">
-            <i className="fa fa-circle" id="btn1"></i> Microsoft
+            {/* <i className="fa fa-circle" id="btn1"></i> Microsoft
 
             <i className="fa fa-circle" id="btn2"></i> SPDR<br />
 
@@ -86,7 +101,7 @@ render() {
 
             <i className="fa fa-circle" id="btn7"></i> USO
 
-            <i className="fa fa-circle" id="btn8"></i> DOW<br />
+            <i className="fa fa-circle" id="btn8"></i> DOW<br /> */}
           </div>
 
         </div>
