@@ -51,27 +51,17 @@ class NavbarTop extends Component {
       </ul>
     );
 
-    return (
-      <nav className="navbar navbar-toggleable-sm fixed-top navbar-inverse" >
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarTogglerDemo01"
-          aria-controls="navbarTogglerDemo01"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+    return <nav className="navbar navbar-expand-md fixed-top navbar-inverse">
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <Link className="navbar-brand" style={{ fontFamily: "Montserrat", color: "#124257"}} to="/profile">
+          <Link className="navbar-brand" style={{ fontFamily: "Montserrat", color: "#124257" }} to="/profile">
             Tech Square Investments
           </Link>
           {isAuthenticated ? authLinks : guestLinks}
         </div>
-      </nav>
-    );
+      </nav>;
   }
 }
 

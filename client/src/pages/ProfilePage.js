@@ -223,12 +223,8 @@ class ProfilePage extends Component {
         <div className="margin-top">
           <Navbar
           portfolio={this.state.portfolio}
-<<<<<<< HEAD
-          cash={this.state.cash}
-=======
           cash = {this.state.cash}
           portfolioSum = {this.state.portfolioSum}
->>>>>>> 2cb3f3ccc7ee4c829b42f450168af0788caba1a2
           handleClick={this.handleClick}
           />
 
