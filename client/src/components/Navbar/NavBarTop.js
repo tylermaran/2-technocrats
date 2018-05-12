@@ -60,7 +60,7 @@ class NavbarTop extends Component {
               fontFamily: "Montserrat", 
               color: "#E5E4E2",  
               fontSize: '25px'}} to="/profile">
-            Tech Square Investmentas
+            Tech Square Investments
           </Link>
           {isAuthenticated ? authLinks : guestLinks}
         </div>

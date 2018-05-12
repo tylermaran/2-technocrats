@@ -24,7 +24,7 @@ router.post("/transaction/:id?", function (req, res) {
     var ticker = req.body.tickerSelected.toUpperCase();
 
     var parameters = {
-        symbols: ticker,
+        symbols: ticker.toUpperCase(),
         types: 'quote,news,chart',
         range: '1m',
         last: '5'
