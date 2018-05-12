@@ -20,9 +20,11 @@ router.post("/transaction/:id?", function(req, res) {
 
   var purchase = req.body;
   var auth = req.headers.authorization;
+  console.log(purchase);
   console.log(auth);
   console.log(purchase);
   var ticker = req.body.tickerSelected.toUpperCase();
+  console.log("Ticker is: " + ticker)
 
     var parameters = {
         symbols: ticker.toUpperCase(),
@@ -106,11 +108,8 @@ function updatePortfolio(studentID, transaction) {
             transaction.tickerSelected +
               " is already in your portfolio! Adding shares."
           );
-          buyexisting(studentID, transaction)
-          .then(result => {
-            console.log("***Promised****")
-            console.log(result);
-          })
+          return buyexisting(studentID, transaction)
+          
         }
       }
       // If it gets here, the stock was not in your portfolio and a new entry must be created
@@ -158,7 +157,7 @@ function updatePortfolio(studentID, transaction) {
 
 // Handles buying a stock you already own
 function buyexisting(studentID, transaction) {
-  return new Promise((resolve, reject) => {
+  
     User.findById(studentID, function(err, doc) {
       console.log("Adding to existing stock owned");
 
@@ -204,7 +203,6 @@ function buyexisting(studentID, transaction) {
         }
       }
     });
-  });
 }
 
 // Creates new transaction in Student Portfolio

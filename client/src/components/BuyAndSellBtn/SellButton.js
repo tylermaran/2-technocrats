@@ -60,7 +60,7 @@ class SellButton extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
   openModal() {
-    // this.setState({ modalIsOpen: true });
+    this.setState({ modalIsOpen: true });
   }
 
   afterOpenModal() {
@@ -68,13 +68,13 @@ class SellButton extends Component {
   }
 
   closeModal() {
-    // this.setState({ modalIsOpen: false });
+    this.setState({ modalIsOpen: false });
   }
 
   render() {
     return (
       <div className="input-group mb-3 justify-content-center">
-        {/* <Modal
+        <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
@@ -89,17 +89,13 @@ class SellButton extends Component {
             {" "}
             {this.state.totalCost}
           </p>
-        </Modal> */}
+        </Modal>
         <div
           style={{ height: "40px", width: "60px" }}
           className="input-group-prepend "
         >
-          <button
-            style={{ margin: "0px", height: "100%" }}
-            className="btn btn-outline-danger"
-            type="button"
-            onClick={event => this.sellStock(this.props.currentStock, this.state.shares)}
-          >
+    <button style={{ margin: "0px", height: "100%" }} className="btn btn-outline-danger" 
+          type="button" onClick={event => this.sellStock(this.props.currentStock, this.state.shares, this.props.currentStockPrice)}>
             Sell
           </button>
         </div>
@@ -119,14 +115,14 @@ class SellButton extends Component {
     );
   }
 
-  sellStock(ticker, shares) {
+  sellStock(ticker, shares, price) {
     // event.preventDefault();
     console.log("Current Stock");
 
     console.log(ticker);
     console.log(shares);
     let portfolio = this.state.student.portfolio;
-    let price = 100;
+    // let price = 100;
     let numShares = 0;
 
     for (let i = 0; i < portfolio.length; i++) {
