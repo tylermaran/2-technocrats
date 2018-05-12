@@ -14,27 +14,18 @@ class NavbarTop extends Component {
   render() {
     const { isAuthenticated, user } = this.props.auth;
 
-    const authLinks = (
-      <ul className="navbar-nav ml-auto">
+    const authLinks = <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <a
-            style={{ color: "#E5E4E2" }}
-            href=""
-            onClick={this.onLogoutClick.bind(this)}
-            className="nav-link"
-          >
-            <img
-              src={user.avatar}
-              className="rounded-circle"
-              alt={user.name}
-              style={{ width: "30px", marginRight: "5px" }}
-              title="you must have a Gravatar connected to your email to display an image"
-            />{" "}
-            Logout
+          <a href="https://tsireact.herokuapp.com/" style={{ fontFamily: "Montserrat", color: "#E5E4E2" }} className="navbar-brand">
+            Bank
           </a>
         </li>
-      </ul>
-    );
+        <li className="nav-item">
+          <a style={{ color: "#E5E4E2" }} href="" onClick={this.onLogoutClick.bind(this)} className="nav-link">
+            <img src={user.avatar} className="rounded-circle" alt={user.name} style={{ width: "30px", marginRight: "5px" }} title="you must have a Gravatar connected to your email to display an image" /> Logout
+          </a>
+        </li>
+      </ul>;
 
     const guestLinks = <ul className="navbar-nav ml-auto">
         <li className="nav-item">

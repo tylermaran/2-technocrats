@@ -55,11 +55,11 @@ router.post("/register", (req, res) => {
         classNumber: 1337,
         cash: 10000,
         portfolio: [{
-          ticker: 'MSFT',
-          value: [150],
-          totalValue: 150,
-          numberShares: 1,
-          averageCost: 150
+          ticker: '',
+          value: [],
+          totalValue: '',
+          numberShares: '',
+          averageCost: ""
         }]
       });
 
@@ -97,7 +97,6 @@ router.post(`/login`, (req, res) => {
           name: user.name,
           avatar: user.avatar
         };
-
         jwt.sign(
           payload,
           keys.secretOrKey,

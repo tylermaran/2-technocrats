@@ -85,7 +85,7 @@ buyStock(ticker, shares) {
       }
     })
     .then((response) => {
-      console.log(response);
+      console.log(`buying: ${response}`);
     }).catch(err => {
       console.log(err);
     });
