@@ -1,23 +1,20 @@
 import React from "react";
 import "./SellBtn.css";
 import ReactChartist from "react-chartist";
-import Modal from 'react-modal';
-
-
+import Modal from "react-modal";
 
 const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)"
   }
 };
 
 // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
-
 
 class SellBtn extends React.Component {
   constructor() {
@@ -33,22 +30,32 @@ class SellBtn extends React.Component {
   }
 
   openModal() {
-    this.setState({modalIsOpen: true});
+    this.setState({ modalIsOpen: true });
   }
 
   afterOpenModal() {
     // references are now sync'd and can be accessed.
-
   }
 
   closeModal() {
-    this.setState({modalIsOpen: false});
+    this.setState({ modalIsOpen: false });
   }
 
   render() {
     return (
       <div>
-        <button style={{ float: "right" , backgroundColor: "#E55451", zIndex: "999", height: "32px"}} onClick={this.openModal}>Sell</button>
+        <button
+          className="btn"
+          style={{
+            float: "right",
+            backgroundColor: "#E55451",
+            zIndex: "999",
+            height: "32px"
+          }}
+          onClick={this.openModal}
+        >
+          Sell
+        </button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -56,14 +63,11 @@ class SellBtn extends React.Component {
           style={customStyles}
           contentLabel="Example Modal"
         >
-
           <h1>Sell!</h1>
         </Modal>
       </div>
     );
   }
 }
-
-
 
 export default SellBtn;

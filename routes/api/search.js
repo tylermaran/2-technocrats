@@ -27,7 +27,7 @@ router.get("/search", function (req, res) {
             }
         })
         .then(function (response) {
-            console.log(response.data);
+            // console.log(response.data);
             res.json(response.data);
         });
 });

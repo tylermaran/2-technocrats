@@ -14,45 +14,34 @@ class NavbarTop extends Component {
   render() {
     const { isAuthenticated, user } = this.props.auth;
 
-    const authLinks = (
-      <ul className="navbar-nav ml-auto">
+    const authLinks = <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <a
-            style={{color: "#124257"}}
-            href=""
-            onClick={this.onLogoutClick.bind(this)}
-            className="nav-link"
-          >
-            <img
-              src={user.avatar}
-              className="rounded-circle"
-              alt={user.name}
-              style={{ width: "25px", marginRight: "5px" }}
-              title="you must have a Gravatar connected to your email to display an image"
-            />{" "}
-            Logout
+          <a href="https://tsireact.herokuapp.com/" style={{ width: "30px", marginRight: "20px", fontFamily: "Montserrat", color: "#E5E4E2" }} className="nav-link">
+            Bank
           </a>
         </li>
-      </ul>
-    );
-
-    const guestLinks = (
-      <ul className="navbar-nav ml-auto" >
         <li className="nav-item">
-          <Link style={{color: "#124257"}} className="navbar-brand" to="/">
+          <a style={{ color: "#E5E4E2" }} href="" onClick={this.onLogoutClick.bind(this)} className="nav-link">
+            <img src={user.avatar} className="rounded-circle" alt={user.name} style={{ width: "30px", marginRight: "5px" }} title="you must have a Gravatar connected to your email to display an image" /> Logout
+          </a>
+        </li>
+      </ul>;
+
+    const guestLinks = <ul className="navbar-nav ml-auto">
+        <li className="nav-item">
+          <Link style={{ fontFamily: "Montserrat", color: "#E5E4E2" }} className="navbar-brand" to="/">
             Login
           </Link>
         </li>
         <li className="nav-item">
-          <Link style={{color: "#124257"}} className="navbar-brand" to="/register">
+          <Link style={{ fontFamily: "Montserrat", color: "#E5E4E2" }} className="navbar-brand" to="/register">
             Register
           </Link>
         </li>
-      </ul>
-    );
+      </ul>;
 
     return (
-      <nav className="navbar navbar-toggleable-sm fixed-top navbar-inverse" >
+      <nav className="navbar navbar-expand-md fixed-top navbar-inverse">
         <button
           className="navbar-toggler"
           type="button"
@@ -65,7 +54,10 @@ class NavbarTop extends Component {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <Link className="navbar-brand" style={{ fontFamily: "Montserrat", color: "#124257"}} to="/profile">
+          <Link className="navbar-brand" style={{ 
+              fontFamily: "Montserrat", 
+              color: "#E5E4E2",  
+              fontSize: '25px'}} to="/profile">
             Tech Square Investments
           </Link>
           {isAuthenticated ? authLinks : guestLinks}
