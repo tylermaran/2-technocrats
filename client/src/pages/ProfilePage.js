@@ -34,6 +34,7 @@ class ProfilePage extends Component {
       priceArray: [],
       // title: "",
       currentStock: "",
+      currentStockPrice: 0,
       timeline: [],
       dayLimit: 21,
       portfolio: [],
@@ -116,6 +117,8 @@ class ProfilePage extends Component {
 
           currentPrice = "$" + stockData.quote.close;
           this.setState({ title: stockData.quote.companyName });
+
+          this.setState({currentStockPrice: stockData.quote.close})
 
           //Adding News
           news1 = stockData.news[0].headline;
@@ -221,6 +224,7 @@ class ProfilePage extends Component {
             <Graph
               title={this.state.title}
               currentStock={this.state.currentStock}
+              currentStockPrice={this.state.currentStockPrice}
               cash={this.state.cash}
               currentPrice={currentPrice}
               priceArray={this.state.priceArray}

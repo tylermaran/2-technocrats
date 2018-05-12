@@ -75,7 +75,7 @@ class BuyButton extends Component {
 
   render() {
     return <div className="input-group mb-3 justify-content-center">
-        {/* <Modal
+        <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
@@ -84,9 +84,10 @@ class BuyButton extends Component {
         >
           <h3 style={{ color: "green", fontweight: "bold" }}> {this.state.message}</h3>
           <p style={{ color: "black", fontweight: "bold" }}> {this.state.totalCost}</p>
-        </Modal> */}
+        </Modal>
         <div style={{ height: "40px", width: "60px" }} className="input-group-prepend ">
-          <button style={{ margin: "0px", height: "100%" }} className="btn btn-outline-success" type="button" onClick={event => this.buyStock(this.props.currentStock, this.state.shares)}>
+          <button style={{ margin: "0px", height: "100%" }} className="btn btn-outline-success" 
+          type="button" onClick={event => this.buyStock(this.props.currentStock, this.state.shares, this.props.currentStockPrice)}>
             Buy
           </button>
         </div>
@@ -95,10 +96,10 @@ class BuyButton extends Component {
   }
 
 
-buyStock(ticker, shares) {
+buyStock(ticker, shares, price) {
   console.log(ticker);
   console.log(shares);
-  let price = 100;
+  // let price = ;
   let cash = this.state.student.cash;
   console.log(cash)
   let existing = []
@@ -112,14 +113,18 @@ buyStock(ticker, shares) {
   }
 
   if (cash > (price * shares)) {
-    this.setState({ message: "You purchased " + shares + " shares of " + ticker + "!" });
-    this.setState({totalCost: "Total Cost: $" + (price*shares) })
+    this.setState({
+      message: "You purchased " + shares + " shares of " + ticker + "!"
+    });
+    this.setState({
+      totalCost: "Total Cost: $" + (price * shares)
+    })
     var transaction = {
       type: 'buy',
       numberShares: shares,
       tickerSelected: ticker
     }
-  
+
     axios({
         method: 'POST',
         url: '/api/transactions/transaction/' + this.state.student._id,
@@ -134,10 +139,13 @@ buyStock(ticker, shares) {
       }).catch(err => {
         console.log(err);
       });
-  }
-  else {
-    this.setState({ message: "Sorry! Not Enough Cash" });
-    this.setState({ totalCost: "You would need: $" + (price*shares) + " to buy."})
+  } else {
+    this.setState({
+      message: "Sorry! Not Enough Cash"
+    });
+    this.setState({
+      totalCost: "You would need: $" + (price * shares) + " to buy."
+    })
   }
 
 
@@ -156,7 +164,8 @@ buyStock(ticker, shares) {
     }).catch(err => {
       console.log(err);
     });
-const auth = localStorage.getItem("jwtToken");
+  this.openModal();
+  const auth = localStorage.getItem("jwtToken");
 }
 
 }
