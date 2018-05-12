@@ -16,7 +16,7 @@ class NavbarTop extends Component {
 
     const authLinks = <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <a href="https://tsireact.herokuapp.com/" style={{ fontFamily: "Montserrat", color: "#E5E4E2" }} className="navbar-brand">
+          <a href="https://tsireact.herokuapp.com/" style={{ width: "30px", marginRight: "20px", fontFamily: "Montserrat", color: "#E5E4E2" }} className="nav-link">
             Bank
           </a>
         </li>
