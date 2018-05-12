@@ -53,14 +53,7 @@ router.post("/register", (req, res) => {
         avatar,
         password: req.body.password,
         classNumber: 1337,
-        cash: 10000,
-        portfolio: [{
-          ticker: 'MSFT',
-          value: [150],
-          totalValue: 150,
-          numberShares: 1,
-          averageCost: 150
-        }]
+        cash: 10000
       });
 
 
