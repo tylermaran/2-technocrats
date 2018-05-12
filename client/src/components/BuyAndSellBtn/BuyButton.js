@@ -165,7 +165,7 @@ buyStock(ticker, shares) {
     }).catch(err => {
       console.log(err);
     });
-
+const auth = localStorage.getItem("jwtToken");
 }
 
 }
