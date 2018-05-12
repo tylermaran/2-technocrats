@@ -25,7 +25,6 @@ let max = 1000;
 let currentStock = "";
 let currentPrice = "";
 
-
 class ProfilePage extends Component {
   constructor(props) {
     super(props);
@@ -45,30 +44,28 @@ class ProfilePage extends Component {
     this.stockSearch("");
   }
 
-  getCurrentUserData(){
+  getCurrentUserData() {
     const auth = localStorage.getItem("jwtToken");
 
     axios({
-      method: 'GET',
-      url: '/api/users/current',
-      headers:
-        {
-          'Cache-Control': 'no-cache',
-          Authorization: auth
-        }
+      method: "GET",
+      url: "/api/users/current",
+      headers: {
+        "Cache-Control": "no-cache",
+        Authorization: auth
+      }
     })
-      .then((response) => {
-        this.setState({ portfolio: response.data.portfolio})
-        this.setState({cash: response.data.cash})
+      .then(response => {
+        this.setState({ portfolio: response.data.portfolio });
+        this.setState({ cash: response.data.cash });
         let portfolio = response.data.portfolio;
         let portfolioSum = 0;
         for (let i = 0; i < portfolio.length; i++) {
           portfolioSum = portfolioSum + portfolio[i].totalValue;
         }
-        this.setState({portfolioSum: portfolioSum})
-
-
-      }).catch(err => {
+        this.setState({ portfolioSum: portfolioSum });
+      })
+      .catch(err => {
         console.log(err);
       });
   }
@@ -80,17 +77,14 @@ class ProfilePage extends Component {
     }
 
     // const sesToken = sessionStorage.getItem("jwtToken");
-    this.displayMonth()
-    this.getCurrentUserData()
+    this.displayMonth();
+    this.getCurrentUserData();
   }
 
-  handleClick = (searchedStock) => {
-
-
+  handleClick = searchedStock => {
     const ticker = searchedStock.toUpperCase();
-    this.setState({currentStock: ticker});
-    console.log(ticker)
-
+    this.setState({ currentStock: ticker });
+    console.log(ticker);
 
     if (ticker) {
       //  Pull stock data based on parameters
@@ -105,50 +99,47 @@ class ProfilePage extends Component {
         method: "GET",
         url: "/api/search/search",
         params: parameters
-      }).then(response => {
-        let stockData = response.data[ticker];
-        console.log(stockData);
-
-        const priceArray = [];
-        for (
-          let i = stockData.chart.length - (this.state.dayLimit - 1);
-          i < stockData.chart.length;
-          i++
-        ) {
-          priceArray.push(stockData.chart[i].close);
-        }
-        priceArray.push(stockData.quote.close);
-
-        currentPrice = "$" + stockData.quote.close;
-        this.setState({title: stockData.quote.companyName});
-
-        //Adding News
-        news1 = stockData.news[0].headline;
-        newsLink1 = stockData.news[0].url;
-
-        news2 = stockData.news[1].headline;
-        newsLink2 = stockData.news[1].url;
-
-        news3 = stockData.news[2].headline;
-        newsLink3 = stockData.news[2].url;
-
-        min = Math.min.apply(Math, priceArray);
-        max = Math.max.apply(Math, priceArray);
-
-        // const priceArray = stockData.chart
-        //   .map( quote => quote.close )
-        //   .filter( (quote, i) => i < dayLimit );
-
-        this.setState({ priceArray });
-        
       })
-      .catch(err => {
-        console.log(err)
-      });
+        .then(response => {
+          let stockData = response.data[ticker];
+          console.log(stockData);
 
+          const priceArray = [];
+          for (
+            let i = stockData.chart.length - (this.state.dayLimit - 1);
+            i < stockData.chart.length;
+            i++
+          ) {
+            priceArray.push(stockData.chart[i].close);
+          }
+          priceArray.push(stockData.quote.close);
 
+          currentPrice = "$" + stockData.quote.close;
+          this.setState({ title: stockData.quote.companyName });
+
+          //Adding News
+          news1 = stockData.news[0].headline;
+          newsLink1 = stockData.news[0].url;
+
+          news2 = stockData.news[1].headline;
+          newsLink2 = stockData.news[1].url;
+
+          news3 = stockData.news[2].headline;
+          newsLink3 = stockData.news[2].url;
+
+          min = Math.min.apply(Math, priceArray);
+          max = Math.max.apply(Math, priceArray);
+
+          // const priceArray = stockData.chart
+          //   .map( quote => quote.close )
+          //   .filter( (quote, i) => i < dayLimit );
+
+          this.setState({ priceArray });
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
-
   };
 
   displayWeek = () => {
@@ -160,7 +151,7 @@ class ProfilePage extends Component {
       timeline: newArray,
       dayLimit: 6
     });
-    console.log(currentStock)
+    console.log(currentStock);
     this.handleClick(this.state.currentStock);
   };
 
@@ -209,8 +200,7 @@ class ProfilePage extends Component {
   };
 
   stockSearch(stock) {
-
-    this.handleClick(stock)
+    this.handleClick(stock);
   }
 
   render() {
@@ -219,10 +209,10 @@ class ProfilePage extends Component {
         <NavBarTop />
         <div className="margin-top">
           <Navbar
-          portfolio={this.state.portfolio}
-          cash = {this.state.cash}
-          portfolioSum = {this.state.portfolioSum}
-          handleClick={this.handleClick}
+            portfolio={this.state.portfolio}
+            cash={this.state.cash}
+            portfolioSum={this.state.portfolioSum}
+            handleClick={this.handleClick}
           />
 
           <Wrapper>
@@ -230,6 +220,7 @@ class ProfilePage extends Component {
 
             <Graph
               title={this.state.title}
+              currentStock={this.state.currentStock}
               cash={this.state.cash}
               currentPrice={currentPrice}
               priceArray={this.state.priceArray}

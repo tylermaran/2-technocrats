@@ -79,26 +79,6 @@ onSearchStockClick(stock) {
   const auth = localStorage.getItem("jwtToken");
   this.props.stockSearchButtonClick(stock)
 
-  var transaction = {
-    type: 'buy',
-    numberShares: 1,
-    tickerSelected: stock
-  }
-
-  axios({
-      method: 'POST',
-      url: '/api/transactions/transaction/' + this.state.student._id,
-      data: transaction,
-      headers: {
-        'Cache-Control': 'no-cache',
-        Authorization: auth
-      }
-    })
-    .then((response) => {
-      console.log(response);
-    }).catch(err => {
-      console.log(err);
-    });
 }
 
 

@@ -75,7 +75,7 @@ class BuyButton extends Component {
 
   render() {
     return <div className="input-group mb-3 justify-content-center">
-        <Modal
+        {/* <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
@@ -84,24 +84,14 @@ class BuyButton extends Component {
         >
           <h3 style={{ color: "green", fontweight: "bold" }}> {this.state.message}</h3>
           <p style={{ color: "black", fontweight: "bold" }}> {this.state.totalCost}</p>
-        </Modal>
+        </Modal> */}
         <div style={{ height: "40px", width: "60px" }} className="input-group-prepend ">
-          <button style={{ margin: "0px", height: "100%" }} className="btn btn-outline-success" type="button"
-          onClick={(event) => this.buyStock("MSFT", this.state.shares)}>
+          <button style={{ margin: "0px", height: "100%" }} className="btn btn-outline-success" type="button" onClick={event => this.buyStock(this.props.currentStock, this.state.shares)}>
             Buy
           </button>
         </div>
-          <input type="number" 
-            onChange={this.onChange}
-            name="shares"
-            value={this.state.shares}
-            className="form-control col-4" 
-            placeholder="# Shares" 
-            aria-label="" 
-            min="0" max = "1000" 
-            aria-describedby="basic-addon1" />
-
-        </div>;
+        <input type="number" onChange={this.onChange} name="shares" value={this.state.shares} className="form-control col-4" placeholder="# Shares" aria-label="" min="0" max="1000" aria-describedby="basic-addon1" />
+      </div>;
   }
 
 
@@ -147,7 +137,7 @@ buyStock(ticker, shares) {
   }
   else {
     this.setState({ message: "Sorry! Not Enough Cash" });
-    this.setState({totalCost: "You would need: $" + (price*shares) + " to buy."})
+    this.setState({ totalCost: "You would need: $" + (price*shares) + " to buy."})
   }
 
 
@@ -161,7 +151,8 @@ buyStock(ticker, shares) {
       }
     })
     .then((response) => {
-      console.log(`buying: ${response}`);
+      console.log(`buying: ${ticker}`);
+      console.log(response);
     }).catch(err => {
       console.log(err);
     });

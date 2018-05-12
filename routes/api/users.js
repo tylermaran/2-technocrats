@@ -53,14 +53,7 @@ router.post("/register", (req, res) => {
         avatar,
         password: req.body.password,
         classNumber: 1337,
-        cash: 10000,
-        portfolio: [{
-          ticker: '',
-          value: [],
-          totalValue: '',
-          numberShares: '',
-          averageCost: ""
-        }]
+        cash: 10000
       });
 
 
