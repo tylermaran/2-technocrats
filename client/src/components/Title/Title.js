@@ -36,7 +36,6 @@ class Title extends Component {
         this.setState({
           student: response.data
         });
-        console.log("Title page pulling user data");
       }).catch(response => {
         console.log(response);
       });
