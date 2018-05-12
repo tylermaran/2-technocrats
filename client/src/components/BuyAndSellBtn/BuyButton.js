@@ -153,6 +153,7 @@ buyStock(ticker, shares) {
 
   this.openModal();
   const auth = localStorage.getItem("jwtToken");
+
 }
 
 }
