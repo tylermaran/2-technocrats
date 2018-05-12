@@ -9,7 +9,7 @@ export const registerUser = (userData, history) => dispatch => {
   axios
     .post("api/users/register", userData)
     .then(res => {
-      history.push('./')
+      history.push('/')
       
       //TODO: create new object that can be used to login the user and send them to the profile pag
       
