@@ -3,12 +3,13 @@ import "./PieChart.css";
 import ReactChartist from 'react-chartist';
 import axios from 'axios';
 
-const Portfolio = [];
+
 
 class PieChart extends React.Component {
 
     state = {
-      portfolio: []
+      portfolio: [],
+      portfolioSum: 10
     };
 
     componentDidMount() {
@@ -26,8 +27,19 @@ class PieChart extends React.Component {
 
           // let stockData = response.data['AAPL'];
           console.log(response.data.portfolio);
-          this.setState({portfolio: response.data.portfolio});
-          console.log("Pie Chart pulled from Portfolio");
+          let portfolio = response.data.portfolio;
+          const portfolioValue = [];
+          let portfolioSum = 0;
+          for (let i = 0; i < portfolio.length; i++) {
+            portfolioValue.push(portfolio[i].totalValue);
+            portfolioSum = portfolioSum + portfolio[i].totalValue;
+          }
+          console.log("PIIIIIIIIIEIIEIEIEIIEIEIEIIEIEI")
+          console.log(portfolioValue);
+          console.log(portfolioSum);
+          this.setState({portfolioSum: portfolioSum});
+          this.setState({portfolio: portfolioValue});
+
         }).catch(response => {
           console.log(response);
         });
@@ -61,7 +73,7 @@ render() {
 
             height: "245px",
 
-            total: 100,
+            total: this.state.portfolioSum,
 
             showLabel: false,
 
@@ -87,7 +99,8 @@ render() {
 
 
           <div className="legend">
-            {/* <i className="fa fa-circle" id="btn1"></i> Microsoft
+            {
+              /* <i className="fa fa-circle" id="btn1"></i> Microsoft
 
             <i className="fa fa-circle" id="btn2"></i> SPDR<br />
 

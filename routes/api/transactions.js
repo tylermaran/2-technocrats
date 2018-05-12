@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const User = require("../../models/Users");
+const passport = require("passport");
 
 // @route   GET api/us/test
 // @desc    Test post route
@@ -11,12 +12,14 @@ router.get("/test", (req, res) => res.json({
 }));
 
 
-router.post("/transaction", function (req, res) {
+router.post("/transaction/:id?", function (req, res) {
     console.log("*********Buy Transaction***********");
     
     // Needs purchase.tickerSelected & purchase.numberShares
-    
+
     var purchase = req.body;
+    var auth = req.headers.authorization;
+    console.log(auth);
     console.log(purchase);
     var ticker = req.body.tickerSelected.toUpperCase();
 
@@ -40,14 +43,15 @@ router.post("/transaction", function (req, res) {
             console.log("Ticker: " + ticker);
             // console.log(response);
             var purchasePrice = response.data[ticker].quote.close;
-            console.log("Purchase Price" + purchasePrice);
+            console.log("Purchase Price " + purchasePrice);
             purchase.totalCost = purchasePrice * purchase.numberShares;
             var studentID = req.params.id;
-            res.json(response.data);
+            console.log("USER ID")
+            console.log(studentID);
 
             // Looks up student with id = req.params.id
-            console.log(req.params.id);
-            db.Student.findOneAndUpdate({
+            // console.log(email);
+            User.findOneAndUpdate({
                     _id: req.params.id
                 }, {
                     $push: {
@@ -71,13 +75,14 @@ function updatePortfolio(studentID, transaction) {
     console.log(transaction);
   
     // Find the transaction Type
-    var transactionType = transaction.transactionType;
-  
+    var transactionType = transaction.type;
+
     // Handle BUY requests - Further check to see if the stock already exists
     if (transactionType === 'buy') {
+      console.log("Gets here");
   
       // Look up student by id and returns the current portfolio
-      db.Student.findById(studentID, function (err, doc) {
+      User.findById(studentID, function (err, doc) {
         var portfolio = doc.portfolio;
         // Create array of current tickers
         var currentTickers = [];
@@ -103,7 +108,7 @@ function updatePortfolio(studentID, transaction) {
     }
     if (transactionType === 'sell') {
       // Look up student by id and returns the current portfolio
-      db.Student.findById(studentID, function (err, doc) {
+      User.findById(studentID, function (err, doc) {
         var portfolio = doc.portfolio;
         // Create array of current tickers
         var currentTickers = [];
@@ -142,7 +147,7 @@ function updatePortfolio(studentID, transaction) {
   function buyexisting(studentID, transaction) {
     console.log("Adding to existing stock owned")
   
-    db.Student.findById(studentID, function (err, doc) {
+    User.findById(studentID, function (err, doc) {
   
       for (let i = 0; i < doc.portfolio.length; i++) {
         if (doc.portfolio[i].ticker === transaction.tickerSelected) {
@@ -160,7 +165,7 @@ function updatePortfolio(studentID, transaction) {
           numberShares = numberShares + transaction.numberShares;
   
           // Update the whole object with total cost, average cost, and number shares
-          db.Student.update({
+          User.update({
               _id: studentID,
               "portfolio.ticker": transaction.tickerSelected
             }, {
@@ -189,7 +194,7 @@ function updatePortfolio(studentID, transaction) {
   
     console.log("Add new Stock to the portfolio");
   
-    db.Student.findOneAndUpdate({
+    User.findOneAndUpdate({
         _id: studentID
       }, {
         $push: {
@@ -219,7 +224,7 @@ function updatePortfolio(studentID, transaction) {
   function sellexisting(studentID, transaction) {
     console.log("SELLING SHARES")
   
-    db.Student.findById(studentID, function (err, doc) {
+    User.findById(studentID, function (err, doc) {
   
       for (let i = 0; i < doc.portfolio.length; i++) {
         if (doc.portfolio[i].ticker === transaction.tickerSelected) {
@@ -238,7 +243,7 @@ function updatePortfolio(studentID, transaction) {
           numberShares = numberShares - transaction.numberShares;
   
           // Update the whole object with total cost, average cost, and number shares
-          db.Student.update({
+          User.update({
               _id: studentID,
               "portfolio.ticker": transaction.tickerSelected
             }, {
