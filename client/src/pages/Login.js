@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import 'bootstrap/dist/css/bootstrap.css';
+import "bootstrap/dist/css/bootstrap.css";
 import { Button, Card, CardBody, CardImg, CardTitle } from "reactstrap";
 import NavBarTop from "../components/Navbar/NavBarTop.js";
 import classnames from "classnames";
@@ -64,69 +64,100 @@ class Login extends Component {
     const loadingSpinner = <Spinner />;
 
     return (
-      <div>
-        <Card wide >
-        <NavBarTop/>
-        <div className="container margin-top" style={{ marginTop: "50px" , fontFamily: "Open Sans", backgroundColor: "#183248"}}>
-          <div className="row justify-content-center">
-            <div className="col-5 m-auto">
-            <CardImg top width="100%" src={require('../assets/images/stockgif.gif')} alt="Card image cap" />
-            <CardBody style={{ backgroundColor: "#000000"}}>
-              <CardTitle style={{ marginTop: "50px" , fontFamily: "Open Sans",  textAlign: "center", color: "#FFFFFF", fontSize:"35px"}} >User Login</CardTitle>
-              <form onSubmit={this.onSubmit}>
-                <div className="form-group">
-
-                  <input
-                    className={classnames("form-control", {
-                      "is-invalid": errors.email
-                    })}
-                    type="email"
-                    id="email"
-                    placeholder="Email"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.onChange}
-                  />
-                  {errors.email && (
-                    <div style={{ color: "red" }} className="invalid-feedback">
-                      {errors.email}
+      <div style={{ backgroundColor: "#183248" }}>
+        <Card wide>
+          <NavBarTop />
+          <div
+            className="margin-top"
+            style={{
+              marginTop: "0px",
+              fontFamily: "Open Sans",
+              backgroundColor: "#183248"
+            }}
+          >
+            <div className="row justify-content-center">
+              <div className="col-5 m-auto">
+                <CardImg
+                  style={{ marginTop: "20px" }}
+                  top
+                  width="100%"
+                  src={require("../assets/images/stockgif.gif")}
+                  alt="Card image cap"
+                />
+                <CardBody style={{ backgroundColor: "#000000" }}>
+                  <CardTitle
+                    style={{
+                      marginTop: "25px",
+                      fontFamily: "Open Sans",
+                      textAlign: "center",
+                      color: "#FFFFFF",
+                      fontSize: "35px"
+                    }}
+                  >
+                    User Login
+                  </CardTitle>
+                  <form onSubmit={this.onSubmit}>
+                    <div className="form-group">
+                      <input
+                        className={classnames("form-control", {
+                          "is-invalid": errors.email
+                        })}
+                        type="email"
+                        id="email"
+                        placeholder="Email"
+                        name="email"
+                        value={this.state.email}
+                        onChange={this.onChange}
+                      />
+                      {errors.email && (
+                        <div
+                          style={{ color: "red" }}
+                          className="invalid-feedback"
+                        >
+                          {errors.email}
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-                <div className="form-group">
-
-                  <input
-                    className={classnames("form-control", {
-                      "is-invalid": errors.password
-                    })}
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    id="password"
-                    value={this.state.password}
-                    onChange={this.onChange}
-                  />
-                  {errors.password && (
-                    <div style={{ color: "red" }} className="invalid-feedback">
-                      {errors.password}
+                    <div className="form-group">
+                      <input
+                        className={classnames("form-control", {
+                          "is-invalid": errors.password
+                        })}
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        id="password"
+                        value={this.state.password}
+                        onChange={this.onChange}
+                      />
+                      {errors.password && (
+                        <div
+                          style={{ color: "red" }}
+                          className="invalid-feedback"
+                        >
+                          {errors.password}
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-                <Button style={{ paddingBottom: "30px" , backgroundColor: "#050505", borderColor: "#50ae54"}}
-                  type="submit"
-                  className="btn align-middle btn-primary float-left"
-                >
-                  Submit
-                </Button>
-                {this.state.loading ? loadingSpinner : ""}
-              </form>
-              </CardBody>
+                    <Button
+                      style={{
+                        paddingBottom: "30px",
+                        backgroundColor: "#050505",
+                        borderColor: "#50ae54"
+                      }}
+                      type="submit"
+                      className="btn align-middle btn-primary float-left"
+                    >
+                      Submit
+                    </Button>
+                    {this.state.loading ? loadingSpinner : ""}
+                  </form>
+                </CardBody>
+              </div>
             </div>
           </div>
-        </div>
         </Card>
       </div>
-    
     );
   }
 }

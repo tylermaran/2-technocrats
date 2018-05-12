@@ -1,5 +1,5 @@
 import React from "react";
-import spinner from "../assets/images/Loading 3.gif";
+import spinner from "../assets/images/spinner-white.gif";
 
 export default () => {
   return (

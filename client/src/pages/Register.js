@@ -75,7 +75,7 @@ class Register extends Component {
       <div>
         <Card wide >
         <NavBarTop />
-        <div className="container margin-top" style={{ marginTop: "50px" , fontFamily: "Open Sans", backgroundColor: "#183248"}}>
+        <div className="margin-top" style={{ marginTop: "0px" , fontFamily: "Open Sans", backgroundColor: "#183248"}}>
           <div className="row justify-content-center" >
             <div className="col-5 m-auto">
             <CardImg top width="100%" src={require('../assets/images/stocks.jpg')} alt="Card image cap" />
