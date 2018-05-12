@@ -18,7 +18,7 @@ class NavbarTop extends Component {
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
           <a
-            style={{color: "#E5E4E2"}}
+            style={{ color: "#E5E4E2" }}
             href=""
             onClick={this.onLogoutClick.bind(this)}
             className="nav-link"
@@ -36,35 +36,48 @@ class NavbarTop extends Component {
       </ul>
     );
 
-    const guestLinks = (
-      <ul className="navbar-nav ml-auto" >
+    const guestLinks = <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link style={{color: "#124257"}} className="navbar-brand" to="/">
+          <Link style={{ fontFamily: "Montserrat", color: "#E5E4E2" }} className="navbar-brand" to="/">
             Login
           </Link>
         </li>
         <li className="nav-item">
-          <Link style={{color: "#124257"}} className="navbar-brand" to="/register">
+          <Link style={{ fontFamily: "Montserrat", color: "#E5E4E2" }} className="navbar-brand" to="/register">
             Register
           </Link>
         </li>
-      </ul>
-    );
+      </ul>;
 
-    return <nav className="navbar navbar-expand-md fixed-top navbar-inverse">
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    return (
+      <nav className="navbar navbar-expand-md fixed-top navbar-inverse">
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarTogglerDemo01"
+          aria-controls="navbarTogglerDemo01"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <Link className="navbar-brand" style={{ 
-              fontFamily: "Montserrat", 
-              color: "#E5E4E2",  
-              fontSize: '25px'}} to="/profile">
+          <Link
+            className="navbar-brand"
+            style={{
+              fontFamily: "Montserrat",
+              color: "#E5E4E2",
+              fontSize: "25px"
+            }}
+            to="/profile"
+          >
             Tech Square Investmentas
           </Link>
           {isAuthenticated ? authLinks : guestLinks}
         </div>
-      </nav>;
+      </nav>
+    );
   }
 }
 
