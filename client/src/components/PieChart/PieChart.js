@@ -75,7 +75,7 @@ render() {
 
             total: this.state.portfolioSum,
 
-            showLabel: false,
+            showLabel: true,
 
             axisX: {
 

@@ -33,7 +33,7 @@ class ProfilePage extends Component {
       stocks,
       title,
       priceArray: [],
-      title: "",
+      // title: "",
       currentStock: "",
       timeline: [],
       dayLimit: 21,
@@ -148,9 +148,6 @@ class ProfilePage extends Component {
 
 
     }
-
-
-
 
   };
 
