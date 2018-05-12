@@ -10,10 +10,14 @@ const Graph = props => {
       <div className="row justify-content-start" style={{ marginBottom: "30px" }}>
         <div className="col-4">
           <div className="row">
-            <BuyButton currentStock={props.currentStock} />
+            <BuyButton 
+            currentStock={props.currentStock}
+            currentStockPrice={props.currentStockPrice} />
           </div>
           <div className="row">
-            <SellButton currentStock={props.currentStock} />
+            <SellButton 
+            currentStockPrice={props.currentStockPrice}
+            currentStock={props.currentStock} />
           </div>
         </div>
         <div className="header col-4">
