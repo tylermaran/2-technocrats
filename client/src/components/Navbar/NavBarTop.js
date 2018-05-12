@@ -54,16 +54,11 @@ class NavbarTop extends Component {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <Link
-            className="navbar-brand"
-            style={{
-              fontFamily: "Montserrat",
-              color: "#E5E4E2",
-              fontSize: "25px"
-            }}
-            to="/profile"
-          >
-            Tech Square Investmentas
+          <Link className="navbar-brand" style={{ 
+              fontFamily: "Montserrat", 
+              color: "#E5E4E2",  
+              fontSize: '25px'}} to="/profile">
+            Tech Square Investments
           </Link>
           {isAuthenticated ? authLinks : guestLinks}
         </div>

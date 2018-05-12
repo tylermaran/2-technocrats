@@ -85,7 +85,7 @@ class ProfilePage extends Component {
   }
 
   handleClick = (searchedStock) => {
-    console.log(`searched stock is ${searchedStock}`)
+
 
     const ticker = searchedStock.toUpperCase();
     this.setState({currentStock: ticker});
@@ -209,7 +209,7 @@ class ProfilePage extends Component {
   };
 
   stockSearch(stock) {
-    console.log(`Searched with ${stock}`);
+
     this.handleClick(stock)
   }
 

@@ -10,12 +10,11 @@ class Navbar extends React.Component {
   
 
   componentDidMount(){
-    // console.log(this.state.props)
+
   }
   render() {
     const { user } = this.props.auth
-    console.log(user)
-    // const stocks = {};
+
     return (
       <div className="col-4 col-lg-3 bd-sidebar" id="bd-docs-nav">
         <nav>

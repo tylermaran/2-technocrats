@@ -24,12 +24,12 @@ router.post("/transaction/:id?", function(req, res) {
   console.log(purchase);
   var ticker = req.body.tickerSelected.toUpperCase();
 
-  var parameters = {
-    symbols: ticker,
-    types: "quote,news,chart",
-    range: "1m",
-    last: "5"
-  };
+    var parameters = {
+        symbols: ticker.toUpperCase(),
+        types: 'quote,news,chart',
+        range: '1m',
+        last: '5'
+    }
 
   // When buying, does a last minute price check on the stock
   axios({
