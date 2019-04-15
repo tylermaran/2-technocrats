@@ -41,7 +41,8 @@
     "react-modal": "^3.4.4",
     "shuffle-array": "^1.0.1",
     "url-loader": "^1.0.1",
-    "validator": "^9.4.1"
+    "validator": "^9.4.1",
+    "yarn": "^1.15.2"
   },
   "devDependencies": {
     "nodemon": "^1.17.4"
